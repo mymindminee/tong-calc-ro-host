@@ -1,0 +1,25 @@
+name: Sync from upstream
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Mirror upstream main, keep our workflow
+        run: |
+          git remote add upstream https://github.com/attackjom/tong-calc-ro-host.git
+          git fetch upstream main
+          if [ "$(git rev-parse HEAD^{tree})" = "$(git rev-parse upstream/main^{tree})" ]; then echo up to date; exit 0; fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout upstream/main -- .
+          git add -A
+          git commit -m "sync upstream $(git rev-parse --short upstream/main)" || echo nothing to commit
+          git push

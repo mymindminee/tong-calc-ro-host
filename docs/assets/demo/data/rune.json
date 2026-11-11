@@ -1,0 +1,207 @@
+{
+  "4000000000": {
+    "id": 4000000000,
+    "name": "Doubtful Components",
+    "name_k": "의문의 부속품",
+    "description": "2 pieces : Every 3 enhancement rate, Atk + 2, Matk + 2.\n4 pieces : Increases physical and magical damage against all size enemies by 1%, Atk + 10, Matk + 10.",
+    "description_k": "2개 : 3강화 당, ATK + 2, MATK + 2씩 증가.\n4개 : 모든 크기의 몬스터에게 주는 물리 / 마법 데미지 +1%, ATK + 10, MATK + 10.",
+    "script": {
+      "atk": [
+        "SET[2]3---2",
+        "SET[4]===10"
+      ],
+      "matk": [
+        "SET[2]3---2",
+        "SET[4]===10"
+      ],
+      "p_size_all": [
+        "SET[4]1"
+      ],
+      "m_size_all": [
+        "SET[4]1"
+      ]
+    }
+  },
+  "4000000001": {
+    "id": 4000000001,
+    "name": "Demigod",
+    "name_k": "반신",
+    "description": "2 pieces : Increases physical and magical damage against boss type monsters by 10%.\n3 pieces : Increases physical and magical damage against boss type monsters by 15%, every 3 enhancement rate, increases physical and magical damage against boss type monsters by additional 3%.",
+    "description_k": "2개 : 보스형 몬스터에게 주는 물리/마법 데미지 10% 증가.\n3개 : 보스형 몬스터에게 주는 물리/마법 데미지 15% 증가, 3강화 당, 보스형 몬스터에게 주는 물리/마법 데미지 3%씩 추가 증가.",
+    "script": {
+      "p_class_boss": [
+        "SET[2]10",
+        "SET[3]15",
+        "SET[3]3---3"
+      ],
+      "m_class_boss": [
+        "SET[2]10",
+        "SET[3]15",
+        "SET[3]3---3"
+      ]
+    }
+  },
+  "4000000002": {
+    "id": 4000000002,
+    "name": "Syncytium",
+    "name_k": "융합체",
+    "description": "2 pieces : S.Matk + 15,\nincreases damage taken from all property by 15%.\nevery 3 enhancement rate,\nreduces damage taken from all property by 3%,\nincreases poison and ghost property magical damage by 4%.",
+    "description_k": "2개 : S.Matk + 15, \n모든 속성 공격에 대한 내성 15% 감소.\n3강화 당,\n모든 속성 공격에 대한 내성 3%씩 증가,\n독속성, 염속성 마법 데미지 4%씩 증가.",
+    "script": {
+      "sMatk": [
+        "SET[2]15"
+      ],
+      "m_my_element_poison": [
+        "SET[2]3---4"
+      ],
+      "m_my_element_ghost": [
+        "SET[2]3---4"
+      ]
+    }
+  },
+  "4000000003": {
+    "id": 4000000003,
+    "name": "Predator",
+    "name_k": "포식자",
+    "description": "2 pieces : P.ATK + 20, increases damage taken from all property by 15%, \nevery 3 enhancement rate, reduces damage taken from all property by 2%, increases melee and long ranged physical damage by 4%.",
+    "description_k": "2개 : P.ATK + 20,\n모든 속성 공격에 대한 내성 15% 감소.\n3강화 당,\n모든 속성 공격에 대한 내성 2%씩 증가,\n근접 및 원거리 물리 데미지 4%씩 증가.",
+    "script": {
+      "pAtk": [
+        "SET[2]20"
+      ],
+      "melee": [
+        "SET[2]3---4"
+      ],
+      "range": [
+        "SET[2]3---4"
+      ]
+    }
+  },
+  "4000000004": {
+    "id": 4000000004,
+    "name": "Frozen Horn",
+    "name_k": "얼어붙은 뿔",
+    "description": "2 pieces : S.MATK + 20, every 3 enhancement rate, additional S.MATK + 4.\n5 pieces : Increases poison, earth, wind and water property magical damage by 25%, every 3 enhancement rate, increases poison, earth, wind and water property magical damage by additional 3%.",
+    "description_k": "2개 : S.MATK + 20. 3강화 당, S.MATK + 4씩 추가 증가.\n5개 : 독, 지, 풍, 수속성 마법 데미지 25% 증가. 3강화 당, 독, 지, 풍, 수속성 마법 데미지 3%씩 추가 증가.",
+    "script": {
+      "sMatk": [
+        "SET[2]20",
+        "SET[2]3---4"
+      ],
+      "m_my_element_poison": [
+        "SET[5]25",
+        "SET[5]3---3"
+      ],
+      "m_my_element_earth": [
+        "SET[5]25",
+        "SET[5]3---3"
+      ],
+      "m_my_element_wind": [
+        "SET[5]25",
+        "SET[5]3---3"
+      ],
+      "m_my_element_water": [
+        "SET[5]25",
+        "SET[5]3---3"
+      ]
+    }
+  },
+  "4000000005": {
+    "id": 4000000005,
+    "name": "Encroachment",
+    "name_k": "잠식",
+    "description": "2 pieces : Increases physical damage against boss type enemies by 20%, increases physical damage against normal type enemies by 5%, every enhancement rate,\nincreases physical damage against normal and boss type enemies by additional 1%.",
+    "description_k": "2개 : 보스 등급 적에게 주는 물리 데미지 20% 증가, 일반 등급 적에게 주는 물리 데미지 5% 증가. 1강화 당, 일반 및 보스 등급 적에게 주는 물리 데미지 1%씩 추가 증가.",
+    "script": {
+      "p_class_boss": [
+        "SET[2]20",
+        "SET[1]1---1"
+      ],
+      "p_class_normal": [
+        "SET[2]5",
+        "SET[1]1---1"
+      ]
+    }
+  },
+  "4000000006": {
+    "id": 4000000006,
+    "name": "Footsteps of Dimension",
+    "name_k": "차원의 발걸음",
+    "description": "2 pieces : Increases physical / magical damage against monsters in Encroached Geffenia area by 10%, every 3 enhancement rate, increases physical / magical damage against monsters in Encroached Geffenia area by additional 3%.\n3 pieces : POW + 10, SPL + 10, CON + 10, CRT + 10. P.ATK, S.MATK + 15.\n5 pieces : MaxHP + 5%,  every 3 enhancement rate, additional MaxHP + 3%.",
+    "description_k": "2개 : 잠식된 게페니아 지역에 등장하는 몬스터에게 주는 물리/마법 데미지 10% 증가. 3강화 당, 잠식된 게페니아 지역에 등장하는 몬스터에게 주는 물리/마법 데미지 3%씩 추가 증가.\n3개 : POW + 10, SPL + 10, CON + 10, CRT + 10, P.ATK, S.MATK + 15.\n5개 : MHP + 5%. 3강화 당, MHP + 3%씩 추가 증가.",
+    "script": {
+      "p_final": [
+        "SET[2]SPAWN[ch1_gfn03]10",
+        "SET[2]SPAWN[ch1_gfn03]3---3"
+      ],
+      "m_final": [
+        "SET[2]SPAWN[ch1_gfn03]10",
+        "SET[2]SPAWN[ch1_gfn03]3---3"
+      ],
+      "pow": [
+        "SET[3]10"
+      ],
+      "spl": [
+        "SET[3]10"
+      ],
+      "con": [
+        "SET[3]10"
+      ],
+      "crt": [
+        "SET[3]10"
+      ],
+      "pAtk": [
+        "SET[3]15"
+      ],
+      "sMatk": [
+        "SET[3]15"
+      ],
+      "maxHp": [
+        "SET[5]5",
+        "SET[5]3---3"
+      ]
+    }
+  },
+  "4000000007": {
+    "id": 4000000007,
+    "name": "Working Group",
+    "name_k": "실무진",
+    "description": "2 pieces : MaxHP + 3%, every 5 enhancement rate, additional MaxHP + 5%.",
+    "description_k": "MHP + 3%. 5강화 당, MHP + 3%씩 추가 증가.",
+    "script": {
+      "hpPercent": [
+        "SET[2]3",
+        "SET[2]5---5"
+      ]
+    }
+  },
+  "4000000008": {
+    "id": 4000000008,
+    "name": "Company",
+    "name_k": "집단",
+    "description": "2 pieces : Increases melee / long ranged physical damage by 6%, every 3 enhancement rate, increases long ranged physical damage by additional 1%.\n4 pieces : P.ATK + 20, increases melee / long ranged physical damage by additional 4%.\n6 pieces : CRI + 15, increases critical damage by 35%, every 3 enhancement rate, increases critical damage by additional 5%.",
+    "description_k": "2개 : 근접/원거리 물리 데미지 6% 증가. 3강화 당, 근접/원거리 물리 데미지 1%씩 추가 증가.\n4개 : P.ATK + 20, 근접/원거리 물리 데미지 4% 추가 증가.\n6개 : CRI + 15, 크리티컬 데미지 35% 증가. 3강화 당, 크리티컬 데미지 5%씩 추가 증가.",
+    "script": {
+      "melee": [
+        "SET[2]6",
+        "SET[2]3---1",
+        "SET[4]4"
+      ],
+      "range": [
+        "SET[2]6",
+        "SET[2]3---1",
+        "SET[4]4"
+      ],
+      "pAtk": [
+        "SET[4]20"
+      ],
+      "cri": [
+        "SET[6]15"
+      ],
+      "criDmg": [
+        "SET[6]35",
+        "SET[6]3---5"
+      ]
+    }
+  }
+}
