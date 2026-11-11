@@ -109,7 +109,60 @@
     first.parentElement.insertAdjacentElement('beforebegin', btn);
   }
 
-  function mount() { mountBooster(); mountToggles(); }
+  // --- compare: duplicate main item into the compare row when a slot is enabled ----
+  var OPT = { weapon: [0,1,2], shield: [6,7], headUpper: [8,9], headMiddle: [10,11,29], headLower: [30,31,32],
+    armor: [12,13,28], garment: [14,15], accRight: [16,17], accLeft: [18,19], shadowWeapon: [20], shadowArmor: [21],
+    shadowShield: [22], shadowBoot: [23], shadowEarring: [24], shadowPendant: [25] };
+  var DUP_KEY = 'dupCompare';
+  function dupEnabled() { return localStorage.getItem(DUP_KEY) !== '0'; }
+
+  function copySlot(c, slot) {
+    var m = c.model, m2 = c.model2;
+    if (slot === 'runeTablet') { m2.selectedRunes = (m.selectedRunes || []).slice(0, 1); return; }
+    if (!m[slot]) return;
+    Object.keys(m).forEach(function (k) {
+      // slot itself + its refine/grade/cards/enchants (keys prefixed by the slot name)
+      if (k === slot || (k.indexOf(slot) === 0 && /^(Refine|Grade|Card\d*|Enchant\d*)$/.test(k.slice(slot.length)))) m2[k] = m[k];
+    });
+    if (slot === 'weapon') m2.ammo = m.ammo;
+    m2.rawOptionTxts = m2.rawOptionTxts || [];
+    (OPT[slot] || []).forEach(function (i) { m2.rawOptionTxts[i] = (m.rawOptionTxts || [])[i]; });
+  }
+
+  var prevCompare = [];
+  function hookCompare() {
+    var c = window.__roCalc;
+    if (!c || c.__dupHooked) return;
+    c.__dupHooked = true;
+    var orig = c.onListItemComparingChange.bind(c);
+    c.onListItemComparingChange = function (clear) {
+      var names = clear ? [] : (c.compareItemNames || []);
+      var added = dupEnabled() ? names.filter(function (n) { return prevCompare.indexOf(n) < 0 && !c.model2[n]; }) : [];
+      added.forEach(function (n) { copySlot(c, n); });
+      prevCompare = names.slice();
+      var r = orig(clear);
+      // the compare row only computes card/option slots on an itemList change, so bump the
+      // list reference after the row has rendered (app debounces compare render by 250ms)
+      if (added.length) setTimeout(function () {
+        run(function (c) { added.forEach(function (n) { if (Array.isArray(c[n + 'List'])) c[n + 'List'] = c[n + 'List'].slice(); }); });
+      }, 500);
+      return r;
+    };
+  }
+
+  function mountDupCheckbox() {
+    var wrap = document.querySelector('.item_label_compare');
+    if (!wrap || document.getElementById('dup-compare')) return;
+    var lbl = document.createElement('label');
+    lbl.style.cssText = 'display:flex;align-items:center;gap:4px;font-size:12px;margin-bottom:2px;cursor:pointer';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox'; cb.id = 'dup-compare'; cb.checked = dupEnabled();
+    cb.onchange = function () { localStorage.setItem(DUP_KEY, cb.checked ? '1' : '0'); };
+    lbl.appendChild(cb); lbl.appendChild(document.createTextNode('Duplicate item to compare (same item / refine / cards / options)'));
+    wrap.insertAdjacentElement('afterbegin', lbl);
+  }
+
+  function mount() { mountBooster(); mountToggles(); hookCompare(); mountDupCheckbox(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
