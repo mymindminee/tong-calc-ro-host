@@ -2,9 +2,10 @@
 # Re-applies local additions on top of the upstream build (run after every sync).
 set -euo pipefail
 cd "$(dirname "$0")/docs"
+cp ../booster.js .
 
 # 1) expose the main calculator component as window.__roCalc
-chunk=$(grep -l 'ngOnInit(){this.optionList=' chunk-*.js)
+chunk=$(grep -l 'ngOnInit(){\(window.__roCalc=this;\)\?this.optionList=' chunk-*.js)
 [ "$(echo "$chunk" | wc -l)" = 1 ] || { echo "anchor not unique: $chunk"; exit 1; }
 if ! grep -q 'window.__roCalc=this' "$chunk"; then
   sed -i 's/ngOnInit(){this.optionList=/ngOnInit(){window.__roCalc=this;this.optionList=/' "$chunk"
