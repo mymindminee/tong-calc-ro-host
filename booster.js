@@ -156,7 +156,7 @@
         e.skill.dropdown.forEach(function (d) {
           var o = document.createElement('option');
           o.value = d.value;
-          o.textContent = t.label + ' ' + d.label;
+          o.textContent = (t.skill === 'Cantocandidus' ? 'Agi' : 'Bless') + ' ' + String(d.label).replace(/^(Lv|Job)\s+/i, '');
           o.style.cssText = 'background:#1f2937;color:#f3f4f6;font-size:14px';
           sel.appendChild(o);
         });
