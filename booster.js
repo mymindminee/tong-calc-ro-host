@@ -498,7 +498,94 @@
     };
   }
 
-  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); }
+  // Read-only preset import: merge checked, class-compatible wearable slots only.
+  function mountCopyEquipment() {
+    var preset = document.querySelector('p-dropdown[placeholder="Presets"]');
+    if (!preset || document.getElementById('copy-equipment')) return;
+    var button = document.createElement('button');
+    button.id = 'copy-equipment'; button.type = 'button';
+    button.className = 'p-button p-component p-button-sm p-button-outlined';
+    button.textContent = 'Copy equipment'; button.style.cssText = 'width:auto;margin:3px 0;padding:4px 8px';
+    preset.parentElement.insertAdjacentElement('afterend', button);
+    button.onclick = function () {
+      var existing = document.getElementById('copy-equipment-dialog');
+      if (existing) { if (existing.open) return existing.focus(); existing.remove(); }
+      var c = window.__roCalc, choices = c.preSets || [];
+      if (!choices.length) return c.messageService.add({severity:'warn',summary:'ยังไม่มี Preset ให้คัดลอก'});
+      var dialog = document.createElement('dialog'); dialog.id = 'copy-equipment-dialog';
+      dialog.style.cssText = 'background:#1f2937;color:#e5e7eb;border:1px solid #64748b;border-radius:6px;width:600px;max-width:92vw;max-height:85vh;padding:14px';
+      var title = document.createElement('h3'); title.textContent = 'คัดลอกเฉพาะของสวมใส่'; title.style.margin = '0 0 8px';
+      var note = document.createElement('p'); note.textContent = 'เลือก Preset และช่องที่จะนำมา • ข้ามของที่อาชีพปัจจุบันใส่ไม่ได้ • ไม่เปลี่ยนอาชีพ สเตตัส สกิล หรือยา'; note.style.fontSize = '12px';
+      var select = document.createElement('select'); select.setAttribute('aria-label','Preset ต้นทาง'); select.style.cssText = 'width:100%;padding:6px;background:#111827;color:#e5e7eb;border:1px solid #64748b';
+      choices.forEach(function (p) { var o = document.createElement('option'); o.value = p.value; o.textContent = p.label; select.appendChild(o); });
+      if (choices.some(function (p) { return String(p.value) === String(c.selectedPreset); })) select.value = c.selectedPreset;
+      var list = document.createElement('div'); list.style.cssText = 'display:grid;gap:5px;padding:10px 0;max-height:52vh;overflow:auto';
+      var status = document.createElement('p'); status.setAttribute('role','status'); status.style.fontSize = '12px';
+      var apply = document.createElement('button'); apply.type = 'button'; apply.textContent = 'คัดลอกช่องที่เลือก'; apply.className = 'p-button p-component p-button-sm';
+      var close = document.createElement('button'); close.type = 'button'; close.textContent = 'ยกเลิก'; close.className = 'p-button p-component p-button-sm p-button-outlined'; close.style.marginLeft = '8px'; close.onclick = function () { dismiss(); };
+      function dismiss() { dialog.close(); dialog.remove(); button.focus(); }
+      dialog.addEventListener('cancel',function (event) { event.preventDefault(); dismiss(); });
+      dialog.addEventListener('close',function () { dialog.remove(); });
+      dialog.append(title,note,select,list,status,apply,close); document.body.appendChild(dialog); dialog.showModal();
+      var source, destinationClass, rows = [], request = 0;
+      var aliases = {costumeEnchantUpper:'costumeEnhUpperList',costumeEnchantUpper2:'costumeEnhUpper2List',costumeEnchantUpper3:'costumeEnhUpper3List',costumeEnchantMiddle:'costumeEnhMiddleList',costumeEnchantLower:'costumeEnhLowerList',costumeEnchantGarment:'costumeEnhGarmentList',costumeEnchantGarment2:'costumeEnhGarment2List',costumeEnchantGarment4:'costumeEnhGarment4List'};
+      var slots = ['weapon','leftWeapon','ammo','shield','headUpper','headMiddle','headLower','armor','garment','boot','accRight','accLeft','costumeUpper','costumeMiddle','costumeLower','costumeGarment'].concat(c.compareItemList.filter(function (k) { return /^costumeEnchant|^shadow/.test(k); }));
+      function allowed(slot,id) { return (c[aliases[slot] || slot+'List'] || []).some(function (o) { return Number(o.value) === Number(id); }); }
+      function properties(slot) { return [slot,slot+'Refine',slot+'Grade',slot+'Card'].concat([1,2,3,4].map(function (n) { return slot+'Card'+n; }),[0,1,2,3].map(function (n) { return slot+'Enchant'+n; })); }
+      function show(model) {
+        if (typeof model === 'string') model = JSON.parse(model);
+        if (!model || typeof model !== 'object' || Array.isArray(model)) throw new Error('Preset ไม่มีข้อมูลอุปกรณ์');
+        source = JSON.parse(JSON.stringify(model)); destinationClass = c.model.class; rows = []; list.replaceChildren();
+        slots.forEach(function (slot) {
+          var id = Number(source[slot]); if (!Number.isInteger(id) || id <= 0) return;
+          var item = c.items[id], ok = !!item && allowed(slot,id);
+          var row = document.createElement('label'); row.style.cssText = 'display:flex;gap:6px;align-items:center;font-size:12px;opacity:'+(ok?'1':'0.5');
+          var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = ok; cb.disabled = !ok; cb.dataset.slot = slot;
+          var text = document.createElement('span'); text.textContent = slot+': '+(source[slot+'Refine']?'+'+source[slot+'Refine']+' ':'')+(item?item.name:'#'+id)+(ok?'':' — ข้าม: อาชีพนี้ใส่ไม่ได้/ไม่มีในรายการ');
+          row.append(cb,text); list.appendChild(row); rows.push({slot:slot,id:id,cb:cb});
+        });
+        status.textContent = 'ติ๊กเฉพาะช่องที่จะนำมา ช่องที่ไม่เลือกจะคงของเดิม'; apply.disabled = !rows.some(function (r) { return !r.cb.disabled; });
+      }
+      function load() {
+        var token = ++request; source = null; apply.disabled = true; list.replaceChildren(); status.textContent = 'กำลังอ่าน Preset…';
+        function fail(error) { if (token === request && dialog.isConnected) status.textContent = 'อ่าน Preset ไม่สำเร็จ: '+String(error.message || error); }
+        function accept(model) { if (token !== request || !dialog.isConnected) return; try { show(model); } catch (error) { fail(error); } }
+        try {
+          if (c.isLoggedIn) {
+            var found = choices.find(function (p) { return String(p.value) === select.value; });
+            run(function () { c.presetService.getPreset(found.value).subscribe({next:function (p) { accept(p.model); },error:fail}); });
+          } else {
+            var found = c.getPresetList().find(function (p) { return String(p.value) === select.value; });
+            if (!found) throw new Error('ไม่พบ Preset'); accept(found.model);
+          }
+        } catch (error) { fail(error); }
+      }
+      select.onchange = load;
+      apply.onclick = function () {
+        if (!source) return;
+        if (c.model.class !== destinationClass) { status.textContent = 'อาชีพเปลี่ยนแล้ว กรุณาเลือก Preset ใหม่'; apply.disabled = true; return; }
+        var chosen = rows.filter(function (r) { return r.cb.checked && !r.cb.disabled && allowed(r.slot,r.id); });
+        if (!chosen.length) { status.textContent = 'กรุณาเลือกอย่างน้อยหนึ่งช่อง'; return; }
+        var merged = JSON.parse(JSON.stringify(c.model));
+        chosen.forEach(function (r) {
+          properties(r.slot).forEach(function (key) { merged[key] = Object.prototype.hasOwnProperty.call(source,key) ? source[key] : null; });
+          (OPT[r.slot] || (r.slot === 'leftWeapon' ? [3,4,5] : [])).forEach(function (i) { merged.rawOptionTxts[i] = (source.rawOptionTxts || [])[i] || null; });
+        });
+        // Native loading prefers named maps; rebuild from current skill arrays to retain buffs.
+        [['skillBuffs',c.skillBuffs,'skillBuffMap'],['activeSkills',c.selectedCharacter.activeSkills,'activeSkillMap'],['passiveSkills',c.selectedCharacter.passiveSkills,'passiveSkillMap']].forEach(function (group) {
+          merged[group[2]] = {}; (group[1] || []).forEach(function (skill,i) { merged[group[2]][skill.name] = (c.model[group[0]] || [])[i] || 0; });
+        });
+        apply.disabled = true; select.disabled = true; status.textContent = 'กำลังคัดลอกอุปกรณ์…';
+        run(function () { c.loadItemSet(merged).subscribe({next:function () {
+          if (!dialog.isConnected) return;
+          c.messageService.add({severity:'success',summary:'คัดลอกอุปกรณ์แล้ว '+chosen.length+' ช่อง'}); dismiss();
+        },error:function (error) { status.textContent = 'คัดลอกไม่สำเร็จ: '+String(error.message || error); apply.disabled = false; select.disabled = false; }}); });
+      };
+      load();
+    };
+  }
+
+  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
