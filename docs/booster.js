@@ -176,6 +176,17 @@
       b.className = 'p-button p-component p-button-sm p-button-outlined';
       b.style.cssText = 'padding:1px 2px;font-size:11px;justify-content:center;white-space:nowrap;overflow:hidden';
       b.textContent = t.label;
+      var itemId = t.consumable || t.aspd || (t.allInOne ? 100906 : null);
+      if (itemId) {
+        var img = document.createElement('img');
+        img.src = t.allInOne ? 'https://static.divine-pride.net/images/items/item/' + itemId + '.png' : 'assets/demo/images/items/' + itemId + '.png';
+        img.alt = '';
+        img.width = 16; img.height = 16;
+        img.style.cssText = 'object-fit:contain;flex:none;margin-right:3px';
+        img.onerror = function () { img.hidden = true; };
+        b.prepend(img);
+        b.style.minHeight = '22px';
+      }
       b.onclick = function () { run(function (c) { setOn(c, t, !isOn(c, t)); }); render(box); };
       box.appendChild(b);
     });
