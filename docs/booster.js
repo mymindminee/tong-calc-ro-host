@@ -30,10 +30,17 @@
       var missing = [];
       var enchByName = {};
       if (ench) c.mapEnchant.forEach(function (e) { enchByName[e.name] = e.id; });
+      // remember enchants per slot so a set without enchant slots (Booster) doesn't lose them for later sets
+      var mem = JSON.parse(localStorage.getItem('shadowEnchMem') || '{}');
       SLOTS.forEach(function (k) {
         var pick = (c[k + 'List'] || []).find(function (o) { return re(k).test(o.label); });
         if (!pick) return missing.push(k);
         var ref = refine == null ? (c.model[k + 'Refine'] || 0) : refine;
+        [1, 2, 3].forEach(function (n) {
+          var key = k + 'Enchant' + n;
+          if (c.model[key]) mem[key] = c.model[key];
+          else if (mem[key]) c.model[key] = mem[key]; // the item component drops it again if invalid for the new item
+        });
         c.model[k] = pick.value;
         c.model[k + 'Refine'] = ref;
         c.onSelectItem(k, pick.value, ref);
@@ -44,7 +51,15 @@
           c.onSelectItem(k + 'Enchant1', id, ref);
         }
       });
+      localStorage.setItem('shadowEnchMem', JSON.stringify(mem));
       if (missing.length) c.messageService.add({ severity: 'warn', summary: 'No ' + name + ' for this class: ' + missing.join(', ') });
+    });
+  }
+
+  function isSetActive(c, re, refine) {
+    return SLOTS.every(function (k) {
+      var it = c.items[c.model[k]];
+      return it && re(k).test(it.name) && (refine == null || Number(c.model[k + 'Refine']) === refine);
     });
   }
 
@@ -133,16 +148,31 @@
       var x = nsv(t[1]);
       sets.push(['MP ' + t[0] + ' +10', x.re, 10, x.ench, '#60a5fa']);
     });
-    sets.forEach(function (s) {
+    var btns = sets.map(function (s) {
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'p-button p-component p-button-sm p-button-outlined';
       btn.style.cssText = 'white-space:nowrap;width:auto;flex:none';
-      if (s[4]) { btn.style.color = s[4]; btn.style.borderColor = s[4]; }
       btn.textContent = s[0];
       btn.onclick = function () { applySet(s[0], s[1], s[2], s[3]); };
       row.appendChild(btn);
+      return btn;
     });
+    // active set = filled button (theme green, or blue for MP); inactive = outlined
+    function paint() {
+      var c = window.__roCalc;
+      if (!c) return;
+      sets.forEach(function (s, i) {
+        var on = isSetActive(c, s[1], s[2]), b = btns[i], col = s[4];
+        b.classList.toggle('p-button-outlined', !on);
+        b.style.fontWeight = on ? '700' : '';
+        b.style.borderColor = col || '';
+        b.style.background = on && col ? col : '';
+        b.style.color = col ? (on ? '#0b1220' : col) : '';
+      });
+    }
+    paint();
+    setInterval(paint, 500);
     first.parentElement.insertAdjacentElement('beforebegin', row);
   }
 
