@@ -9,16 +9,24 @@
     getAllAngularTestabilities()[0]._ngZone.run(function () { fn(c); });
   }
 
-  function applyBooster() {
+  // Lists <slot>List are already filtered by the selected class, so class lock comes for free.
+  var BOOSTER = function () { return /Booster Shadow/; };
+  var MASTER = function (k) {
+    return k === 'shadowWeapon' ? /^Master Shadow Weapon$/ : k === 'shadowShield' ? /^Master Shadow Shield$/ : /^M\. .*Shadow/;
+  };
+
+  function applySet(name, re, refine) {
     run(function (c) {
       var missing = [];
       SLOTS.forEach(function (k) {
-        var pick = (c[k + 'List'] || []).find(function (o) { return /Booster Shadow/.test(o.label); });
+        var pick = (c[k + 'List'] || []).find(function (o) { return re(k).test(o.label); });
         if (!pick) return missing.push(k);
+        var ref = refine == null ? (c.model[k + 'Refine'] || 0) : refine;
         c.model[k] = pick.value;
-        c.onSelectItem(k, pick.value, c.model[k + 'Refine'] || 0);
+        c.model[k + 'Refine'] = ref;
+        c.onSelectItem(k, pick.value, ref);
       });
-      if (missing.length) c.messageService.add({ severity: 'warn', summary: 'No booster for: ' + missing.join(', ') });
+      if (missing.length) c.messageService.add({ severity: 'warn', summary: 'No ' + name + ' for this class: ' + missing.join(', ') });
     });
   }
 
@@ -99,14 +107,19 @@
   function mountBooster() {
     var first = document.querySelector('app-equipment-shadow');
     if (!first || document.getElementById('booster-set-btn')) return;
-    var btn = document.createElement('button');
-    btn.id = 'booster-set-btn';
-    btn.type = 'button';
-    btn.className = 'p-button p-component p-button-sm p-button-outlined';
-    btn.style.margin = '4px 0';
-    btn.textContent = 'Booster Set';
-    btn.onclick = applyBooster;
-    first.parentElement.insertAdjacentElement('beforebegin', btn);
+    var row = document.createElement('div');
+    row.id = 'booster-set-btn';
+    row.style.cssText = 'display:flex;gap:4px;margin:4px 0';
+    [['Booster Set', BOOSTER, null], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]].forEach(function (s) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'p-button p-component p-button-sm p-button-outlined';
+      btn.style.whiteSpace = 'nowrap';
+      btn.textContent = s[0];
+      btn.onclick = function () { applySet(s[0], s[1], s[2]); };
+      row.appendChild(btn);
+    });
+    first.parentElement.insertAdjacentElement('beforebegin', row);
   }
 
   // --- compare: duplicate main item into the compare row when a slot is enabled ----
