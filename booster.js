@@ -455,7 +455,39 @@
     var timer = setInterval(function () { if (!select.isConnected) return clearInterval(timer); sync(); }, 500);
   }
 
-  function mount() { mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); }
+  // Keep same-class set switching intact, but never restore another class's shadow options.
+  function hookShadowClassChange() {
+    var c = window.__roCalc;
+    if (!c || c.__shadowClassHook) return;
+    c.__shadowClassHook = true;
+    var previous = c.selectedCharacter && c.selectedCharacter.className;
+    var original = c.setClassInstant.bind(c);
+    c.setClassInstant = function () {
+      var result = original();
+      var next = c.selectedCharacter && c.selectedCharacter.className;
+      if (previous && next && next !== previous) {
+        localStorage.removeItem('shadowEnchMem');
+        localStorage.removeItem('shadowOptMem');
+        [c.model, c.model2].forEach(function (model) {
+          if (!model) return;
+          SLOTS.forEach(function (slot) {
+            [1, 2, 3].forEach(function (n) { model[slot + 'Enchant' + n] = null; });
+            if (model.rawOptionTxts) model.rawOptionTxts[SHADOW_OPT[slot]] = null;
+          });
+        });
+        SLOTS.forEach(function (slot) {
+          [1, 2, 3].forEach(function (n) {
+            if (c.equipItemMap) c.equipItemMap.delete(slot + 'Enchant' + n);
+            if (c.equipCompareItemIdItemTypeMap) c.equipCompareItemIdItemTypeMap.delete(slot + 'Enchant' + n);
+          });
+        });
+      }
+      previous = next;
+      return result;
+    };
+  }
+
+  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
