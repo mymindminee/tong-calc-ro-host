@@ -69,8 +69,11 @@
   // --- toggles -------------------------------------------------------------
   // skill: on = highest level in dropdown, off = 0. consumable: model.consumables. aspd: stack selection.
   var TOGGLES = [
+    { label: 'VIP', skill: 'VIP' },
     { label: 'Agi Up', skill: 'Cantocandidus' },
     { label: 'Bless', skill: 'Clementia' },
+    { label: 'Myst.Amp', skill: 'Mystical Amplification' },
+    { label: 'Spell Ench', skill: 'Spell Enchanting' },
     { label: 'Almighty', consumable: 12883 },
     { label: 'P.Booster', consumable: 14766 },
     { label: 'Unl.Drink', consumable: 23475 },
@@ -145,7 +148,7 @@
     box.className = 'col-12';
     box.style.cssText = 'display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px 0';
     TOGGLES.forEach(function (t, i) {
-      if (t.skill) {
+      if (t.skill && entry(window.__roCalc, t.skill).skill.inputType === 'dropdown') {
         var e = entry(window.__roCalc, t.skill);
         if (!e) return;
         var sel = document.createElement('select');
@@ -156,7 +159,7 @@
         e.skill.dropdown.forEach(function (d) {
           var o = document.createElement('option');
           o.value = d.value;
-          o.textContent = (t.skill === 'Cantocandidus' ? 'Agi' : 'Bless') + ' ' + String(d.label).replace(/^(Lv|Job)\s+/i, '');
+          o.textContent = (t.skill === 'Cantocandidus' ? 'Agi' : t.label) + ' ' + String(d.label).replace(/^(Lv\.?|Job)\s+/i, '');
           o.style.cssText = 'background:#1f2937;color:#f3f4f6;font-size:14px';
           sel.appendChild(o);
         });
