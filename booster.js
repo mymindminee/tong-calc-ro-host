@@ -15,9 +15,21 @@
     return k === 'shadowWeapon' ? /^Master Shadow Weapon$/ : k === 'shadowShield' ? /^Master Shadow Shield$/ : /^M\. .*Shadow/;
   };
 
-  function applySet(name, re, refine) {
+  // Nebula / Snow Flower / Varmundt +10 sets with their main enchant ("<prefix> of <Type>") in slot 1.
+  var NSV_PREFIX = { shadowWeapon: 'Nebula', shadowShield: 'Nebula', shadowArmor: 'Snow Flower', shadowBoot: 'Snow Flower', shadowEarring: 'Varmundt', shadowPendant: 'Varmundt' };
+  var NSV_ENCH = { Nebula: 'Nebula', 'Snow Flower': 'Snow Flower', Varmundt: 'Bio Energy' };
+  function nsv(type) {
+    return {
+      re: function (k) { return new RegExp('^' + NSV_PREFIX[k] + ' ' + type + ' Shadow'); },
+      ench: function (k) { return NSV_ENCH[NSV_PREFIX[k]] + ' of ' + type; },
+    };
+  }
+
+  function applySet(name, re, refine, ench) {
     run(function (c) {
       var missing = [];
+      var enchByName = {};
+      if (ench) c.mapEnchant.forEach(function (e) { enchByName[e.name] = e.id; });
       SLOTS.forEach(function (k) {
         var pick = (c[k + 'List'] || []).find(function (o) { return re(k).test(o.label); });
         if (!pick) return missing.push(k);
@@ -25,6 +37,12 @@
         c.model[k] = pick.value;
         c.model[k + 'Refine'] = ref;
         c.onSelectItem(k, pick.value, ref);
+        if (ench) {
+          var id = enchByName[ench(k)];
+          if (!id) return missing.push(k + ' enchant');
+          c.model[k + 'Enchant1'] = id;
+          c.onSelectItem(k + 'Enchant1', id, ref);
+        }
       });
       if (missing.length) c.messageService.add({ severity: 'warn', summary: 'No ' + name + ' for this class: ' + missing.join(', ') });
     });
@@ -109,14 +127,19 @@
     if (!first || document.getElementById('booster-set-btn')) return;
     var row = document.createElement('div');
     row.id = 'booster-set-btn';
-    row.style.cssText = 'display:flex;gap:4px;margin:4px 0';
-    [['Booster Set', BOOSTER, null], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]].forEach(function (s) {
+    row.style.cssText = 'display:flex;flex-wrap:wrap;gap:4px;margin:4px 0';
+    var sets = [['Booster Set', BOOSTER, null], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]];
+    [['Melee', 'Melee'], ['Magic', 'Magic'], ['Range', 'Range']].forEach(function (t) {
+      var x = nsv(t[1]);
+      sets.push([t[0] + ' +10', x.re, 10, x.ench]);
+    });
+    sets.forEach(function (s) {
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'p-button p-component p-button-sm p-button-outlined';
-      btn.style.whiteSpace = 'nowrap';
+      btn.style.cssText = 'white-space:nowrap;width:auto;flex:none';
       btn.textContent = s[0];
-      btn.onclick = function () { applySet(s[0], s[1], s[2]); };
+      btn.onclick = function () { applySet(s[0], s[1], s[2], s[3]); };
       row.appendChild(btn);
     });
     first.parentElement.insertAdjacentElement('beforebegin', row);
