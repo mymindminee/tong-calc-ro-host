@@ -44,6 +44,9 @@
         c.model[k] = pick.value;
         c.model[k + 'Refine'] = ref;
         c.onSelectItem(k, pick.value, ref);
+        // bring back the option Booster wiped (see lockBooster)
+        var oi = SHADOW_OPT[k], om = JSON.parse(localStorage.getItem('shadowOptMem') || '{}');
+        if (!/Booster Shadow/.test(pick.label) && !c.model.rawOptionTxts[oi] && om[oi]) c.model.rawOptionTxts[oi] = om[oi];
         if (ench) {
           var id = enchByName[ench(k)];
           if (!id) return missing.push(k + ' enchant');
@@ -203,7 +206,7 @@
     var row = document.createElement('div');
     row.id = 'booster-set-btn';
     row.style.cssText = 'display:flex;flex-wrap:wrap;gap:4px;margin:4px 0';
-    var sets = [['Booster Set', BOOSTER, null], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]];
+    var sets = [['Booster Set', BOOSTER, 0], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]];
     [['Melee', 'Melee'], ['Magic', 'Magic'], ['Range', 'Range']].forEach(function (t) {
       var x = nsv(t[1]);
       sets.push(['MP ' + t[0] + ' +10', x.re, 10, x.ench, '#60a5fa']);
@@ -232,8 +235,42 @@
       });
     }
     paint();
-    setInterval(paint, 500);
+    setInterval(function () { paint(); lockBooster(); }, 500);
     first.parentElement.insertAdjacentElement('beforebegin', row);
+  }
+
+  // Booster Shadow items are always +0 with no random option: force it and grey out those controls.
+  var SHADOW_OPT = { shadowWeapon: 20, shadowArmor: 21, shadowShield: 22, shadowBoot: 23, shadowEarring: 24, shadowPendant: 25 };
+  var DOM_ORDER = ['shadowWeapon', 'shadowShield', 'shadowArmor', 'shadowBoot', 'shadowEarring', 'shadowPendant'];
+  function lockBooster() {
+    var c = window.__roCalc;
+    if (!c) return;
+    var rows = document.querySelectorAll('app-equipment-shadow');
+    var dirty = false;
+    DOM_ORDER.forEach(function (k, i) {
+      var it = c.items[c.model[k]];
+      var lock = !!it && /Booster Shadow/.test(it.name);
+      if (lock && (Number(c.model[k + 'Refine']) || c.model.rawOptionTxts[SHADOW_OPT[k]])) {
+        var om = JSON.parse(localStorage.getItem('shadowOptMem') || '{}');
+        if (c.model.rawOptionTxts[SHADOW_OPT[k]]) om[SHADOW_OPT[k]] = c.model.rawOptionTxts[SHADOW_OPT[k]];
+        localStorage.setItem('shadowOptMem', JSON.stringify(om));
+        run(function (c) {
+          c.model[k + 'Refine'] = 0;
+          c.model.rawOptionTxts[SHADOW_OPT[k]] = null;
+          c.onSelectItem(k, c.model[k], 0);
+        });
+        dirty = true;
+      }
+      var row = rows[i];
+      if (!row) return;
+      var ctl = [row.querySelectorAll('p-dropdown')[1], row.querySelector('p-cascadeselect')];
+      ctl.forEach(function (el) {
+        if (!el) return;
+        el.style.pointerEvents = lock ? 'none' : '';
+        el.style.opacity = lock ? '0.35' : '';
+      });
+    });
+    if (dirty) run(function (c) { c.updateItemEvent.next(1); });
   }
 
   // --- compare: duplicate main item into the compare row when a slot is enabled ----
