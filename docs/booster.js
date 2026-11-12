@@ -246,7 +246,7 @@
     var sets = [['Booster Set', BOOSTER, 0], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]];
     [['Melee', 'Melee'], ['Magic', 'Magic'], ['Range', 'Range']].forEach(function (t) {
       var x = nsv(t[1]);
-      sets.push(['MP ' + t[0] + ' +10', x.re, 10, x.ench, '#60a5fa']);
+      sets.push(['MP ' + t[0] + ' +10', x.re, 10, x.ench, { Melee: '#f87171', Magic: '#60a5fa', Range: '#81c784' }[t[0]]]);
     });
     var btns = sets.map(function (s) {
       var btn = document.createElement('button');
