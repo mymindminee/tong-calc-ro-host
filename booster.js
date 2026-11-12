@@ -176,9 +176,19 @@
     heading.style.cssText = 'grid-column:1/-1;font-size:12px';
     bar.appendChild(heading);
     var entries = active ? (c.selectedCharacter.activeSkills || []).map(function (s, i) { return {skill:s,index:i}; }) : c.skillBuffEntries.filter(function (e) { return e.skill.isDebuff; });
+    var elements = ['Lightning Loader', 'Flame Launcher', 'Frost Weapon', 'Seismic Weapon'];
+    var elementColors = ['#81c784', '#ff8055', '#69c9ff', '#d69a57'];
+    if (active) entries = entries.filter(function (e) { return e.skill.name !== 'Skill Version'; }).sort(function (a, b) {
+      var ai = elements.indexOf(a.skill.name), bi = elements.indexOf(b.skill.name);
+      return (ai < 0 ? 4 + a.index : ai) - (bi < 0 ? 4 + b.index : bi);
+    });
     var field = active ? 'activeSkills' : 'skillBuffs';
     entries.forEach(function (e) {
       var dd = e.skill.dropdown, label = e.skill.label;
+      var ei = elements.indexOf(e.skill.name);
+      var idle = active ? (ei < 0 ? '#b8c4ef' : elementColors[ei]) : RED;
+      var selected = active ? '#60a5fa' : GREEN;
+      var base = active ? '#29354a' : 'transparent';
       function set(v) { run(function (c) { c.model[field][e.index] = v; c.onSkillClassChange(); }); paint(); }
       if (e.skill.inputType === 'selectButton') {
         var yes = dd.find(function (d) { return d.isUse; }).value;
@@ -186,23 +196,25 @@
         b.type = 'button';
         b.className = 'p-button p-component p-button-sm';
         b.style.cssText = 'width:100%;justify-content:center;padding:4px 6px;font-size:13px;white-space:nowrap;overflow:hidden;border-color:' + RED;
-        b.textContent = label;
+        b.textContent = label; b.title = label;
+        if (active) b.style.cssText += ';padding:3px 5px;font-size:12px;min-height:27px;border-radius:4px';
         b.onclick = function () { set(Number(c.model[field][e.index]) > 0 ? 0 : yes); };
         bar.appendChild(b);
         ctrls.push(function (c) {
           var on = Number(c.model[field][e.index]) > 0;
-          b.style.background = on ? GREEN : 'transparent'; b.style.borderColor = on ? GREEN : RED;
-          b.style.color = on ? '#0b1220' : RED;
+          b.style.background = on ? selected : base; b.style.borderColor = on ? selected : idle;
+          b.style.color = on ? '#0b1220' : idle;
           b.style.fontWeight = on ? '700' : '';
         });
       } else {
         var s = document.createElement('select');
         s.title = label;
         s.style.cssText = 'width:100%;font-size:13px;padding:4px 4px;background:transparent;border:1px solid ' + RED + ';border-radius:4px;color:' + RED;
+        if (active) s.style.cssText += ';padding:3px 5px;font-size:12px;min-height:27px';
         dd.forEach(function (d) {
           var o = document.createElement('option');
           o.value = d.value;
-          o.textContent = d.value !== 0 ? label + ' ' + d.label : label + ' ' + d.label;
+          o.textContent = label + ' ' + d.label;
           o.style.background = '#1f2937'; o.style.color = '#f3f4f6'; o.style.fontSize = '14px';
           s.appendChild(o);
         });
@@ -212,8 +224,8 @@
           var v = String(Number(c.model[field][e.index]) || 0);
           if (s.value !== v) s.value = v;
           var on = v !== '0';
-          s.style.background = on ? GREEN : 'transparent'; s.style.borderColor = on ? GREEN : RED;
-          s.style.color = on ? '#0b1220' : RED;
+          s.style.background = on ? selected : base; s.style.borderColor = on ? selected : idle;
+          s.style.color = on ? '#0b1220' : idle;
           s.style.fontWeight = on ? '700' : '';
         });
       }
