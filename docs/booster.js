@@ -67,16 +67,15 @@
   // skill: on = highest level in dropdown, off = 0. consumable: model.consumables. aspd: stack selection.
   var TOGGLES = [
     { label: 'Agi Up', skill: 'Cantocandidus' },
-    { label: 'Blessing', skill: 'Clementia' },
-    { label: 'Comet Amp', skill: 'Comet Amp' },
+    { label: 'Bless', skill: 'Clementia' },
     { label: 'Almighty', consumable: 12883 },
-    { label: 'Power Booster', consumable: 14766 },
-    { label: 'Unlimited Drink', consumable: 23475 },
-    { label: 'Concentration', aspd: 645 },
-    { label: 'Awakening', aspd: 656 },
+    { label: 'P.Booster', consumable: 14766 },
+    { label: 'Unl.Drink', consumable: 23475 },
+    { label: 'Conc', aspd: 645 },
+    { label: 'Awake', aspd: 656 },
     { label: 'Berserk', aspd: 657 },
     { label: 'Celermine', aspd: 12437 },
-    { label: 'ASPD Potion', aspd: 12684 },
+    { label: 'ASPD Pot', aspd: 12684 },
   ];
 
   function entry(c, name) {
@@ -120,13 +119,13 @@
     var box = document.createElement('div');
     box.id = 'quick-toggles';
     box.className = 'col-12';
-    box.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:4px 0';
+    box.style.cssText = 'display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px 0';
     TOGGLES.forEach(function (t, i) {
       var b = document.createElement('button');
       b.type = 'button';
       b.dataset.i = i;
       b.className = 'p-button p-component p-button-sm p-button-outlined';
-      b.style.padding = '2px 8px';
+      b.style.cssText = 'padding:1px 2px;font-size:11px;justify-content:center;white-space:nowrap;overflow:hidden';
       b.textContent = t.label;
       b.onclick = function () { run(function (c) { setOn(c, t, !isOn(c, t)); }); render(box); };
       box.appendChild(b);
@@ -135,6 +134,64 @@
     render(box);
     // keep buttons in sync when the user changes the same things elsewhere
     setInterval(function () { render(box); }, 1000);
+  }
+
+  // --- debuffs: app's isDebuff skill buffs, mirrored at the top of Battle Summary ----
+  var RED = '#f87171';
+  function mountDebuffs() {
+    var bs = document.querySelector('.battle_summary');
+    var c = window.__roCalc;
+    if (!bs || !c || document.getElementById('debuff-bar')) return;
+    var bar = document.createElement('div');
+    bar.id = 'debuff-bar';
+    bar.className = 'col-12';
+    bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:3px;align-items:center;padding:2px 0 6px';
+    var ctrls = [];
+    c.skillBuffEntries.filter(function (e) { return e.skill.isDebuff; }).forEach(function (e) {
+      var dd = e.skill.dropdown, label = e.skill.label;
+      function set(v) { run(function (c) { c.model.skillBuffs[e.index] = v; c.onSkillClassChange(); }); paint(); }
+      if (e.skill.inputType === 'selectButton') {
+        var yes = dd.find(function (d) { return d.isUse; }).value;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'p-button p-component p-button-sm';
+        b.style.cssText = 'padding:1px 6px;font-size:11px;white-space:nowrap;width:auto;flex:none;border-color:' + RED;
+        b.textContent = label;
+        b.onclick = function () { set(Number(c.model.skillBuffs[e.index]) > 0 ? 0 : yes); };
+        bar.appendChild(b);
+        ctrls.push(function (c) {
+          var on = Number(c.model.skillBuffs[e.index]) > 0;
+          b.style.background = on ? RED : 'transparent';
+          b.style.color = on ? '#0b1220' : RED;
+          b.style.fontWeight = on ? '700' : '';
+        });
+      } else {
+        var s = document.createElement('select');
+        s.title = label;
+        s.style.cssText = 'width:auto;flex:none;font-size:11px;padding:1px 2px;background:transparent;border:1px solid ' + RED + ';border-radius:4px;color:' + RED;
+        dd.forEach(function (d) {
+          var o = document.createElement('option');
+          o.value = d.value;
+          o.textContent = d.isUse ? label + ' ' + d.label : label;
+          o.style.background = '#1f2937';
+          s.appendChild(o);
+        });
+        s.onchange = function () { set(Number(s.value)); };
+        bar.appendChild(s);
+        ctrls.push(function (c) {
+          var v = String(Number(c.model.skillBuffs[e.index]) || 0);
+          if (s.value !== v) s.value = v;
+          var on = v !== '0';
+          s.style.background = on ? RED : 'transparent';
+          s.style.color = on ? '#0b1220' : RED;
+          s.style.fontWeight = on ? '700' : '';
+        });
+      }
+    });
+    function paint() { var c = window.__roCalc; if (c) ctrls.forEach(function (f) { f(c); }); }
+    bs.insertAdjacentElement('afterbegin', bar);
+    paint();
+    setInterval(paint, 1000);
   }
 
   function mountBooster() {
@@ -229,7 +286,7 @@
     wrap.insertAdjacentElement('afterbegin', lbl);
   }
 
-  function mount() { mountBooster(); mountToggles(); hookCompare(); mountDupCheckbox(); }
+  function mount() { mountBooster(); mountToggles(); mountDebuffs(); hookCompare(); mountDupCheckbox(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
