@@ -137,7 +137,7 @@
   }
 
   // --- debuffs: app's isDebuff skill buffs, mirrored at the top of Battle Summary ----
-  var RED = '#f87171';
+  var RED = '#f87171', GREEN = '#81c784';
   function mountDebuffs() {
     var bs = document.querySelector('.battle_summary');
     var c = window.__roCalc;
@@ -164,7 +164,7 @@
         bar.appendChild(b);
         ctrls.push(function (c) {
           var on = Number(c.model.skillBuffs[e.index]) > 0;
-          b.style.background = on ? RED : 'transparent';
+          b.style.background = on ? GREEN : 'transparent'; b.style.borderColor = on ? GREEN : RED;
           b.style.color = on ? '#0b1220' : RED;
           b.style.fontWeight = on ? '700' : '';
         });
@@ -176,7 +176,7 @@
           var o = document.createElement('option');
           o.value = d.value;
           o.textContent = d.isUse ? label + ' ' + d.label : label;
-          o.style.background = '#1f2937';
+          o.style.background = '#1f2937'; o.style.color = '#f3f4f6'; o.style.fontSize = '14px';
           s.appendChild(o);
         });
         s.onchange = function () { set(Number(s.value)); };
@@ -185,7 +185,7 @@
           var v = String(Number(c.model.skillBuffs[e.index]) || 0);
           if (s.value !== v) s.value = v;
           var on = v !== '0';
-          s.style.background = on ? RED : 'transparent';
+          s.style.background = on ? GREEN : 'transparent'; s.style.borderColor = on ? GREEN : RED;
           s.style.color = on ? '#0b1220' : RED;
           s.style.fontWeight = on ? '700' : '';
         });
