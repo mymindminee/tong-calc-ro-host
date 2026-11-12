@@ -127,6 +127,14 @@
       b.title = locked ? 'Included in All-in-One (no stacking)' : t.label;
       b.classList.toggle('p-button-outlined', locked || !isOn(c, t));
     });
+    box.querySelectorAll('select[data-i]').forEach(function (s) {
+      var t = TOGGLES[s.dataset.i], e = entry(c, t.skill);
+      if (!e) return;
+      var v = Number(c.model.skillBuffs[e.index]) || 0;
+      s.value = String(v);
+      s.style.background = v ? '#81c784' : '#1f2937';
+      s.style.color = v ? '#0b1220' : '#81c784';
+    });
   }
 
   function mountToggles() {
@@ -137,6 +145,28 @@
     box.className = 'col-12';
     box.style.cssText = 'display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px 0';
     TOGGLES.forEach(function (t, i) {
+      if (t.skill) {
+        var e = entry(window.__roCalc, t.skill);
+        if (!e) return;
+        var sel = document.createElement('select');
+        sel.dataset.i = i;
+        sel.title = e.skill.label;
+        sel.setAttribute('aria-label', e.skill.label);
+        sel.style.cssText = 'width:100%;min-width:0;padding:1px 2px;font-size:11px;border:1px solid #81c784;border-radius:3px';
+        e.skill.dropdown.forEach(function (d) {
+          var o = document.createElement('option');
+          o.value = d.value;
+          o.textContent = t.label + ' ' + d.label;
+          o.style.cssText = 'background:#1f2937;color:#f3f4f6;font-size:14px';
+          sel.appendChild(o);
+        });
+        sel.onchange = function () {
+          run(function (c) { var current = entry(c, t.skill); if (current) { c.model.skillBuffs[current.index] = Number(sel.value); c.onSkillClassChange(); } });
+          render(box);
+        };
+        box.appendChild(sel);
+        return;
+      }
       var b = document.createElement('button');
       b.type = 'button';
       b.dataset.i = i;
