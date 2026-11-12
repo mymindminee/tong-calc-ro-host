@@ -145,7 +145,10 @@
     var bar = document.createElement('div');
     bar.id = 'debuff-bar';
     bar.className = 'col-12';
-    bar.style.cssText = 'display:flex;flex-wrap:wrap;gap:3px;align-items:center;padding:2px 0 6px';
+    bar.style.cssText = 'display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:2px 0 8px';
+    var st = document.createElement('style');
+    st.textContent = '.battle_summary > .col-5{padding-right:10px}';
+    document.head.appendChild(st);
     var ctrls = [];
     c.skillBuffEntries.filter(function (e) { return e.skill.isDebuff; }).forEach(function (e) {
       var dd = e.skill.dropdown, label = e.skill.label;
@@ -155,7 +158,7 @@
         var b = document.createElement('button');
         b.type = 'button';
         b.className = 'p-button p-component p-button-sm';
-        b.style.cssText = 'padding:1px 6px;font-size:11px;white-space:nowrap;width:auto;flex:none;border-color:' + RED;
+        b.style.cssText = 'width:100%;justify-content:center;padding:4px 6px;font-size:13px;white-space:nowrap;overflow:hidden;border-color:' + RED;
         b.textContent = label;
         b.onclick = function () { set(Number(c.model.skillBuffs[e.index]) > 0 ? 0 : yes); };
         bar.appendChild(b);
@@ -168,7 +171,7 @@
       } else {
         var s = document.createElement('select');
         s.title = label;
-        s.style.cssText = 'width:auto;flex:none;font-size:11px;padding:1px 2px;background:transparent;border:1px solid ' + RED + ';border-radius:4px;color:' + RED;
+        s.style.cssText = 'width:100%;font-size:13px;padding:4px 4px;background:transparent;border:1px solid ' + RED + ';border-radius:4px;color:' + RED;
         dd.forEach(function (d) {
           var o = document.createElement('option');
           o.value = d.value;
