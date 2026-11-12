@@ -6229,7 +6229,7 @@
     "name": "Turtle General Card",
     "unidName": "Turtle General Card",
     "resName": "이름없는카드",
-    "description": "ATK +20%\nมีโอกาสที่จะร่าย Level 10 Magnum Break ใส่คู่ต่อสู้ เมื่อโจมตีด้วย Physical Damage\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Weapon^000000\nน้ำหนัก : ^7777771^000000",
+    "description": "เพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 20%\nมีโอกาสที่จะร่าย Level 10 Magnum Break ใส่คู่ต่อสู้ เมื่อโจมตีด้วย Physical Damage\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Weapon^000000\nน้ำหนัก : ^7777771^000000",
     "slots": 0,
     "itemTypeId": 6,
     "itemSubTypeId": 0,
@@ -24495,6 +24495,9 @@
       ],
       "aspd": [
         "9===1"
+      ],
+      "drop": [
+        "5"
       ]
     }
   },
@@ -245578,11 +245581,11 @@
     "compositionPos": 65535,
     "script": {
       "melee": [
-        "LEARN_SKILL[Cart Remodeling==1]---0.1",
+        "LEARN_SKILL[Cart Remodeling==1]---1",
         "EQUIP[Genetic Stone II (Garment)]===10"
       ],
       "range": [
-        "LEARN_SKILL[Cart Remodeling==1]---0.1"
+        "LEARN_SKILL[Cart Remodeling==1]---1"
       ],
       "Cart Cannon": [
         "EQUIP[Genetic Stone (Garment)]===15"
@@ -301228,6 +301231,35 @@
       ],
       "chance__Talisman of Four Bearing God": [
         "EQUIP[Furious Spirit Stick]GRADE[weapon==B]===60"
+      ]
+    }
+  },
+  "9162": {
+    "id": 9162,
+    "aegisName": "FumiHausu_Egg",
+    "flavorText": null,
+    "name": "Fumi Hausu Egg",
+    "unidName": null,
+    "resName": "FumiHausu_Egg",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nไข่ที่มี Q-Pet Fumi Hausu หลับไหลอยู่ สามารถปลุกให้ตื่นขึ้นมาได้ด้วย [Pet Incubator]\nหากความสัมพันธ์อยู่ในระดับไม่คุ้นเคยหรือเขินอาย\nเพิ่มอัตราดรอปไอเท็ม 1%\n\nหากความสัมพันธ์อยู่ในระดับปกติ\nเพิ่มอัตราดรอปไอเท็ม 2%\n\nหากความสัมพันธ์อยู่ในระดับเป็นมิตร\nเพิ่มอัตราดรอปไอเท็ม 3%\n\nหากความสัมพันธ์อยู่ในระดับสนิทสนม\nPerfect Dodge + 5\nเพิ่มอัตราดรอปไอเท็ม 4%\n\nประเภท : Monster Egg\n\n(C) President Bakery Public Co. ltd",
+    "slots": 0,
+    "itemTypeId": 2,
+    "itemSubTypeId": 518,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "script": {
+      "perfectDodge": [
+        "20"
+      ],
+      "drop": [
+        "4"
       ]
     }
   }
