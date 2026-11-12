@@ -131,13 +131,14 @@
     var sets = [['Booster Set', BOOSTER, null], ['Master +9', MASTER, 9], ['Master +10', MASTER, 10]];
     [['Melee', 'Melee'], ['Magic', 'Magic'], ['Range', 'Range']].forEach(function (t) {
       var x = nsv(t[1]);
-      sets.push([t[0] + ' +10', x.re, 10, x.ench]);
+      sets.push(['MP ' + t[0] + ' +10', x.re, 10, x.ench, '#60a5fa']);
     });
     sets.forEach(function (s) {
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'p-button p-component p-button-sm p-button-outlined';
       btn.style.cssText = 'white-space:nowrap;width:auto;flex:none';
+      if (s[4]) { btn.style.color = s[4]; btn.style.borderColor = s[4]; }
       btn.textContent = s[0];
       btn.onclick = function () { applySet(s[0], s[1], s[2], s[3]); };
       row.appendChild(btn);

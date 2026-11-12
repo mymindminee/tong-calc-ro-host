@@ -13,6 +13,9 @@ fi
 grep -q 'window.__roCalc=this' "$chunk"
 
 # 2) load booster.js
-grep -q 'booster.js' index.html || sed -i 's#</body>#<script src="booster.js"></script></body>#' index.html
-grep -q 'booster.js' index.html
+# versioned by content hash so browsers drop the cached copy (Pages caches 10 min)
+v=$(md5sum booster.js | cut -c1-8)
+sed -i -E 's#<script src="booster\.js[^"]*"></script>##' index.html
+sed -i "s#</body>#<script src=\"booster.js?v=$v\"></script></body>#" index.html
+grep -q "booster.js?v=$v" index.html
 echo patched
