@@ -505,7 +505,7 @@
     var button = document.createElement('button');
     button.id = 'copy-equipment'; button.type = 'button';
     button.className = 'p-button p-component p-button-sm p-button-outlined';
-    button.textContent = 'Copy equipment'; button.style.cssText = 'width:auto;margin:3px 0;padding:4px 8px';
+    button.textContent = 'Copy equipment / stat'; button.style.cssText = 'width:auto;margin:3px 0;padding:4px 8px';
     preset.parentElement.insertAdjacentElement('afterend', button);
     button.onclick = function () {
       var existing = document.getElementById('copy-equipment-dialog');
@@ -514,8 +514,8 @@
       if (!choices.length) return c.messageService.add({severity:'warn',summary:'ยังไม่มี Preset ให้คัดลอก'});
       var dialog = document.createElement('dialog'); dialog.id = 'copy-equipment-dialog';
       dialog.style.cssText = 'background:#1f2937;color:#e5e7eb;border:1px solid #64748b;border-radius:6px;width:600px;max-width:92vw;max-height:85vh;padding:14px';
-      var title = document.createElement('h3'); title.textContent = 'คัดลอกเฉพาะของสวมใส่'; title.style.margin = '0 0 8px';
-      var note = document.createElement('p'); note.textContent = 'เลือก Preset และช่องที่จะนำมา • ข้ามของที่อาชีพปัจจุบันใส่ไม่ได้ • ไม่เปลี่ยนอาชีพ สเตตัส สกิล หรือยา'; note.style.fontSize = '12px';
+      var title = document.createElement('h3'); title.textContent = 'Copy equipment / stat'; title.style.margin = '0 0 8px';
+      var note = document.createElement('p'); note.textContent = 'เลือกช่องที่จะคัดลอก • Master Shadow เปลี่ยนเป็นของอาชีพปัจจุบัน • Stat คัดลอกเมื่อเลือกเท่านั้น • ไม่เปลี่ยนอาชีพ เลเวล สกิล หรือยา'; note.style.fontSize = '12px';
       var select = document.createElement('select'); select.setAttribute('aria-label','Preset ต้นทาง'); select.style.cssText = 'width:100%;padding:6px;background:#111827;color:#e5e7eb;border:1px solid #64748b';
       choices.forEach(function (p) { var o = document.createElement('option'); o.value = p.value; o.textContent = p.label; select.appendChild(o); });
       if (choices.some(function (p) { return String(p.value) === String(c.selectedPreset); })) select.value = c.selectedPreset;
@@ -527,24 +527,50 @@
       dialog.addEventListener('cancel',function (event) { event.preventDefault(); dismiss(); });
       dialog.addEventListener('close',function () { dialog.remove(); });
       dialog.append(title,note,select,list,status,apply,close); document.body.appendChild(dialog); dialog.showModal();
-      var source, destinationClass, rows = [], request = 0;
+      var source, destinationClass, rows = [], statRows = [], request = 0;
       var aliases = {costumeEnchantUpper:'costumeEnhUpperList',costumeEnchantUpper2:'costumeEnhUpper2List',costumeEnchantUpper3:'costumeEnhUpper3List',costumeEnchantMiddle:'costumeEnhMiddleList',costumeEnchantLower:'costumeEnhLowerList',costumeEnchantGarment:'costumeEnhGarmentList',costumeEnchantGarment2:'costumeEnhGarment2List',costumeEnchantGarment4:'costumeEnhGarment4List'};
       var slots = ['weapon','leftWeapon','ammo','shield','headUpper','headMiddle','headLower','armor','garment','boot','accRight','accLeft','costumeUpper','costumeMiddle','costumeLower','costumeGarment'].concat(c.compareItemList.filter(function (k) { return /^costumeEnchant|^shadow/.test(k); }));
       function allowed(slot,id) { return (c[aliases[slot] || slot+'List'] || []).some(function (o) { return Number(o.value) === Number(id); }); }
+      function resolveItem(slot, id) {
+        var item = c.items[id];
+        if (item && /^shadow/.test(slot) && /^M\. .*Shadow/.test(item.name)) {
+          var match = (c[slot+'List'] || []).find(function (o) { return MASTER(slot).test(o.label); });
+          return match ? Number(match.value) : id;
+        }
+        return id;
+      }
       function properties(slot) { return [slot,slot+'Refine',slot+'Grade',slot+'Card'].concat([1,2,3,4].map(function (n) { return slot+'Card'+n; }),[0,1,2,3].map(function (n) { return slot+'Enchant'+n; })); }
+      function shadowEnchantAllowed(id) {
+        var item = c.items[id], soul = item && /^(.+) Soul(?:\s|\()/.exec(item.name);
+        if (!soul) return true;
+        var normalize = function (name) { return name.replace(/\s+/g,'').toLowerCase(); };
+        var owners = soul[1].split(/\s*&\s*/).map(normalize);
+        var known = c.characterList.some(function (job) { return owners.indexOf(normalize(job.label)) >= 0; });
+        return !known || owners.indexOf(normalize(c.selectedCharacter.className)) >= 0;
+      }
       function show(model) {
         if (typeof model === 'string') model = JSON.parse(model);
         if (!model || typeof model !== 'object' || Array.isArray(model)) throw new Error('Preset ไม่มีข้อมูลอุปกรณ์');
-        source = JSON.parse(JSON.stringify(model)); destinationClass = c.model.class; rows = []; list.replaceChildren();
+        source = JSON.parse(JSON.stringify(model)); destinationClass = c.model.class; rows = []; statRows = []; list.replaceChildren();
+        var heading = document.createElement('strong'); heading.textContent = 'Copy Stat'; list.appendChild(heading);
+        [['stat',['str','agi','vit','int','dex','luk'],c.mainStatusList,true],['trait',['pow','sta','wis','spl','con','crt'],c.traitStatusList,c.isAllowTraitStat]].forEach(function (group) {
+          var valid = !!group[3] && group[1].every(function (key) { return Number.isInteger(source[key]) && group[2].some(function (o) { return Number(o.value) === source[key]; }); });
+          var label = document.createElement('label'); label.style.cssText = 'display:flex;gap:6px;font-size:12px;opacity:'+(valid?'1':'0.5');
+          var cb = document.createElement('input'); cb.type = 'checkbox'; cb.dataset.copy = group[0]; cb.disabled = !valid;
+          var text = document.createElement('span'); text.textContent = group[1].map(function (key) { return key.toUpperCase()+' '+(source[key] == null ? '-' : source[key]); }).join(' / ') + (valid?'':' — ไม่มีข้อมูลหรืออาชีพนี้ใช้ไม่ได้');
+          label.append(cb,text); list.appendChild(label); statRows.push({cb:cb,fields:group[1]});
+        });
+        var equipmentHeading = document.createElement('strong'); equipmentHeading.textContent = 'Copy Equipment'; list.appendChild(equipmentHeading);
         slots.forEach(function (slot) {
           var id = Number(source[slot]); if (!Number.isInteger(id) || id <= 0) return;
+          var oldId = id; id = resolveItem(slot,id);
           var item = c.items[id], ok = !!item && allowed(slot,id);
           var row = document.createElement('label'); row.style.cssText = 'display:flex;gap:6px;align-items:center;font-size:12px;opacity:'+(ok?'1':'0.5');
           var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = ok; cb.disabled = !ok; cb.dataset.slot = slot;
-          var text = document.createElement('span'); text.textContent = slot+': '+(source[slot+'Refine']?'+'+source[slot+'Refine']+' ':'')+(item?item.name:'#'+id)+(ok?'':' — ข้าม: อาชีพนี้ใส่ไม่ได้/ไม่มีในรายการ');
+          var text = document.createElement('span'); text.textContent = slot+': '+(source[slot+'Refine']?'+'+source[slot+'Refine']+' ':'')+(item?item.name:'#'+id)+(oldId!==id?' (Master Shadow ของอาชีพปัจจุบัน)':'')+(ok?'':' — ข้าม: อาชีพนี้ใส่ไม่ได้/ไม่มีในรายการ');
           row.append(cb,text); list.appendChild(row); rows.push({slot:slot,id:id,cb:cb});
         });
-        status.textContent = 'ติ๊กเฉพาะช่องที่จะนำมา ช่องที่ไม่เลือกจะคงของเดิม'; apply.disabled = !rows.some(function (r) { return !r.cb.disabled; });
+        status.textContent = 'ติ๊กเฉพาะช่องที่จะนำมา ช่องที่ไม่เลือกจะคงของเดิม'; apply.disabled = !rows.concat(statRows).some(function (r) { return !r.cb.disabled; });
       }
       function load() {
         var token = ++request; source = null; apply.disabled = true; list.replaceChildren(); status.textContent = 'กำลังอ่าน Preset…';
@@ -565,10 +591,17 @@
         if (!source) return;
         if (c.model.class !== destinationClass) { status.textContent = 'อาชีพเปลี่ยนแล้ว กรุณาเลือก Preset ใหม่'; apply.disabled = true; return; }
         var chosen = rows.filter(function (r) { return r.cb.checked && !r.cb.disabled && allowed(r.slot,r.id); });
-        if (!chosen.length) { status.textContent = 'กรุณาเลือกอย่างน้อยหนึ่งช่อง'; return; }
+        var selectedStats = statRows.filter(function (r) { return r.cb.checked && !r.cb.disabled; });
+        if (!chosen.length && !selectedStats.length) { status.textContent = 'กรุณาเลือกอย่างน้อยหนึ่งช่อง'; return; }
         var merged = JSON.parse(JSON.stringify(c.model));
+        selectedStats.forEach(function (r) { r.fields.forEach(function (key) { merged[key] = source[key]; }); });
         chosen.forEach(function (r) {
           properties(r.slot).forEach(function (key) { merged[key] = Object.prototype.hasOwnProperty.call(source,key) ? source[key] : null; });
+          merged[r.slot] = r.id;
+          if (/^shadow/.test(r.slot)) [1,2,3].forEach(function (n) {
+            var key = r.slot+'Enchant'+n;
+            if (!shadowEnchantAllowed(merged[key])) merged[key] = null;
+          });
           (OPT[r.slot] || (r.slot === 'leftWeapon' ? [3,4,5] : [])).forEach(function (i) { merged.rawOptionTxts[i] = (source.rawOptionTxts || [])[i] || null; });
         });
         // Native loading prefers named maps; rebuild from current skill arrays to retain buffs.
@@ -578,7 +611,7 @@
         apply.disabled = true; select.disabled = true; status.textContent = 'กำลังคัดลอกอุปกรณ์…';
         run(function () { c.loadItemSet(merged).subscribe({next:function () {
           if (!dialog.isConnected) return;
-          c.messageService.add({severity:'success',summary:'คัดลอกอุปกรณ์แล้ว '+chosen.length+' ช่อง'}); dismiss();
+          c.messageService.add({severity:'success',summary:'คัดลอกอุปกรณ์ '+chosen.length+' ช่อง'+(selectedStats.length?' พร้อม Stat ที่เลือก':'')}); dismiss();
         },error:function (error) { status.textContent = 'คัดลอกไม่สำเร็จ: '+String(error.message || error); apply.disabled = false; select.disabled = false; }}); });
       };
       load();
