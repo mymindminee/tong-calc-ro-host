@@ -74,7 +74,7 @@
     { label: 'Almighty', consumable: 12883 },
     { label: 'P.Booster', consumable: 14766 },
     { label: 'Unl.Drink', consumable: 23475 },
-    { label: 'Conc', aspd: 645 },
+    { label: 'All-in-One', allInOne: true },
     { label: 'Awake', aspd: 656 },
     { label: 'Berserk', aspd: 657 },
     { label: 'Celermine', aspd: 12437 },
@@ -85,11 +85,19 @@
     return (c.skillBuffEntries || []).find(function (e) { return e.skill.name === name; });
   }
   function isOn(c, t) {
+    if (t.allInOne) return localStorage.getItem('allInOneOn') === '1';
     if (t.skill) { var e = entry(c, t.skill); return !!e && Number(c.model.skillBuffs[e.index]) > 0; }
     if (t.consumable) return (c.model.consumables || []).map(Number).indexOf(t.consumable) >= 0;
     return (c.model.aspdPotions || []).map(Number).indexOf(t.aspd) >= 0;
   }
   function setOn(c, t, on) {
+    if (t.allInOne) {
+      localStorage.setItem('allInOneOn', on ? '1' : '0');
+      var ids = c.allInOneConsumableIds || [];
+      c.model.consumables = c.normalizeIdList((c.model.consumables || []).filter(function (id) { return ids.indexOf(Number(id)) < 0; }).concat(on ? ids : []));
+      return c.onConsumableChange();
+    }
+    if (localStorage.getItem('allInOneOn') === '1' && (c.allInOneConsumableIds || []).indexOf(t.consumable) >= 0) return;
     if (t.skill) {
       var e = entry(c, t.skill);
       if (!e) return c.messageService.add({ severity: 'warn', summary: t.label + ' not available for this class' });
@@ -112,7 +120,12 @@
     var c = window.__roCalc;
     if (!c) return;
     box.querySelectorAll('button').forEach(function (b) {
-      b.classList.toggle('p-button-outlined', !isOn(c, TOGGLES[b.dataset.i]));
+      var t = TOGGLES[b.dataset.i];
+      var locked = localStorage.getItem('allInOneOn') === '1' && (c.allInOneConsumableIds || []).indexOf(t.consumable) >= 0;
+      b.disabled = locked;
+      b.style.opacity = locked ? '0.35' : '';
+      b.title = locked ? 'Included in All-in-One (no stacking)' : t.label;
+      b.classList.toggle('p-button-outlined', locked || !isOn(c, t));
     });
   }
 
@@ -141,21 +154,32 @@
 
   // --- debuffs: app's isDebuff skill buffs, mirrored at the top of Battle Summary ----
   var RED = '#f87171', GREEN = '#81c784';
-  function mountDebuffs() {
+  function mountDebuffs(active) {
     var bs = document.querySelector('.battle_summary');
     var c = window.__roCalc;
-    if (!bs || !c || document.getElementById('debuff-bar')) return;
+    if (!bs || !c) return;
+    var id = active ? 'active-skill-bar' : 'debuff-bar';
+    var signature = active ? c.selectedCharacter.className : 'debuff';
+    var old = document.getElementById(id);
+    if (old && old.dataset.signature === signature) return;
+    if (old) old.remove();
     var bar = document.createElement('div');
-    bar.id = 'debuff-bar';
+    bar.id = id; bar.dataset.signature = signature;
     bar.className = 'col-12';
-    bar.style.cssText = 'display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:2px 0 8px';
+    bar.style.cssText = 'display:grid;grid-template-columns:repeat(' + (active ? 4 : 6) + ',minmax(0,1fr));gap:4px;padding:2px 0 8px';
     var st = document.createElement('style');
     st.textContent = '.battle_summary > .col-5{padding-right:10px}';
     document.head.appendChild(st);
     var ctrls = [];
-    c.skillBuffEntries.filter(function (e) { return e.skill.isDebuff; }).forEach(function (e) {
+    var heading = document.createElement('strong');
+    heading.textContent = active ? 'สกิล / เอฟเฟกต์ที่ใช้งาน' : 'Debuff';
+    heading.style.cssText = 'grid-column:1/-1;font-size:12px';
+    bar.appendChild(heading);
+    var entries = active ? (c.selectedCharacter.activeSkills || []).map(function (s, i) { return {skill:s,index:i}; }) : c.skillBuffEntries.filter(function (e) { return e.skill.isDebuff; });
+    var field = active ? 'activeSkills' : 'skillBuffs';
+    entries.forEach(function (e) {
       var dd = e.skill.dropdown, label = e.skill.label;
-      function set(v) { run(function (c) { c.model.skillBuffs[e.index] = v; c.onSkillClassChange(); }); paint(); }
+      function set(v) { run(function (c) { c.model[field][e.index] = v; c.onSkillClassChange(); }); paint(); }
       if (e.skill.inputType === 'selectButton') {
         var yes = dd.find(function (d) { return d.isUse; }).value;
         var b = document.createElement('button');
@@ -163,10 +187,10 @@
         b.className = 'p-button p-component p-button-sm';
         b.style.cssText = 'width:100%;justify-content:center;padding:4px 6px;font-size:13px;white-space:nowrap;overflow:hidden;border-color:' + RED;
         b.textContent = label;
-        b.onclick = function () { set(Number(c.model.skillBuffs[e.index]) > 0 ? 0 : yes); };
+        b.onclick = function () { set(Number(c.model[field][e.index]) > 0 ? 0 : yes); };
         bar.appendChild(b);
         ctrls.push(function (c) {
-          var on = Number(c.model.skillBuffs[e.index]) > 0;
+          var on = Number(c.model[field][e.index]) > 0;
           b.style.background = on ? GREEN : 'transparent'; b.style.borderColor = on ? GREEN : RED;
           b.style.color = on ? '#0b1220' : RED;
           b.style.fontWeight = on ? '700' : '';
@@ -178,14 +202,14 @@
         dd.forEach(function (d) {
           var o = document.createElement('option');
           o.value = d.value;
-          o.textContent = d.isUse ? label + ' ' + d.label : label;
+          o.textContent = d.value !== 0 ? label + ' ' + d.label : label + ' ' + d.label;
           o.style.background = '#1f2937'; o.style.color = '#f3f4f6'; o.style.fontSize = '14px';
           s.appendChild(o);
         });
         s.onchange = function () { set(Number(s.value)); };
         bar.appendChild(s);
         ctrls.push(function (c) {
-          var v = String(Number(c.model.skillBuffs[e.index]) || 0);
+          var v = String(Number(c.model[field][e.index]) || 0);
           if (s.value !== v) s.value = v;
           var on = v !== '0';
           s.style.background = on ? GREEN : 'transparent'; s.style.borderColor = on ? GREEN : RED;
@@ -195,9 +219,10 @@
       }
     });
     function paint() { var c = window.__roCalc; if (c) ctrls.forEach(function (f) { f(c); }); }
-    bs.insertAdjacentElement('afterbegin', bar);
+    if (active && document.getElementById('debuff-bar')) bs.insertBefore(bar, document.getElementById('debuff-bar'));
+    else bs.insertAdjacentElement('afterbegin', bar);
     paint();
-    setInterval(paint, 1000);
+    var timer = setInterval(function () { if (!bar.isConnected) return clearInterval(timer); paint(); }, 1000);
   }
 
   function mountBooster() {
@@ -326,7 +351,19 @@
     wrap.insertAdjacentElement('afterbegin', lbl);
   }
 
-  function mount() { mountBooster(); mountToggles(); mountDebuffs(); hookCompare(); mountDupCheckbox(); }
+  function hookAllInOne() {
+    var c = window.__roCalc;
+    if (!c || c.__aioHooked) return;
+    c.__aioHooked = true;
+    var orig = c.onConsumableChange.bind(c);
+    c.onConsumableChange = function () {
+      if (localStorage.getItem('allInOneOn') === '1') c.model.consumables = c.normalizeIdList((c.model.consumables || []).concat(c.allInOneConsumableIds || []));
+      return orig();
+    };
+    if (localStorage.getItem('allInOneOn') === '1') c.onConsumableChange();
+  }
+
+  function mount() { mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); hookAllInOne(); hookCompare(); mountDupCheckbox(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
