@@ -408,7 +408,54 @@
     if (localStorage.getItem('allInOneOn') === '1') c.onConsumableChange();
   }
 
-  function mount() { mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); hookAllInOne(); hookCompare(); mountDupCheckbox(); }
+  // Use the calculator's native final damage multiplier, scoped to Training Dummy only.
+  function mountDummyDamage() {
+    var c = window.__roCalc;
+    if (!c) return;
+    if (!c.__dummyDamageHook) {
+      c.__dummyDamageHook = true;
+      var apply = c.applyCustomMonsterStats.bind(c);
+      c.applyCustomMonsterStats = function () {
+        var result = apply();
+        var monster = c.monsterDataMap[c.selectedMonster];
+        if (monster && /DUMMY/i.test(monster.dbname || '')) {
+          var saved = Number(localStorage.getItem('dummyDamage:' + c.selectedMonster));
+          if ([100, 10, 1, 0.1].indexOf(saved) >= 0) monster.stats.dmgtaken = saved;
+        }
+        return result;
+      };
+      c.applyCustomMonsterStats();
+    }
+    if (document.getElementById('dummy-damage')) return;
+    var label = Array.from(document.querySelectorAll('.battle_summary div')).find(function (el) {
+      return Array.from(el.childNodes).some(function (n) { return n.nodeType === 3 && /Dmg\.Taken/.test(n.textContent); });
+    });
+    if (!label) return;
+    var select = document.createElement('select');
+    select.id = 'dummy-damage';
+    select.setAttribute('aria-label', 'Dummy damage taken');
+    select.title = 'Damage received by Training Dummy';
+    select.style.cssText = 'margin-left:4px;background:#1f2937;color:#81c784;border:1px solid #64748b;border-radius:3px;font-size:12px';
+    [['100/100',100],['1/10',10],['1/100',1],['1/1000',0.1]].forEach(function (pair) {
+      var option = document.createElement('option'); option.textContent = pair[0]; option.value = pair[1]; select.appendChild(option);
+    });
+    select.onchange = function () {
+      var value = Number(select.value);
+      if ([100,10,1,0.1].indexOf(value) < 0) return;
+      localStorage.setItem('dummyDamage:' + c.selectedMonster, String(value));
+      run(function (c) { c.onCustomMonsterStatsChange(); });
+    };
+    label.appendChild(select);
+    function sync() {
+      var monster = c.monsterDataMap[c.selectedMonster];
+      select.hidden = !monster || !/DUMMY/i.test(monster.dbname || '');
+      if (!select.hidden) select.value = String(monster.stats.dmgtaken > 0 ? monster.stats.dmgtaken : 100);
+    }
+    sync();
+    var timer = setInterval(function () { if (!select.isConnected) return clearInterval(timer); sync(); }, 500);
+  }
+
+  function mount() { mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
