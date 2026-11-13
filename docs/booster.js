@@ -74,15 +74,19 @@
     { label: 'Bless', skill: 'Clementia' },
     { label: 'Myst.Amp', skill: 'Mystical Amplification' },
     { label: 'Spell Ench', skill: 'Spell Enchanting' },
-    { label: 'Almighty', consumable: 12883 },
-    { label: 'P.Booster', consumable: 14766 },
-    { label: 'Unl.Drink', consumable: 23475 },
     { label: 'All-in-One', allInOne: true },
+    { label: 'Conc', aspd: 645 },
     { label: 'Awake', aspd: 656 },
     { label: 'Berserk', aspd: 657 },
     { label: 'Celermine', aspd: 12437 },
     { label: 'ASPD Pot', aspd: 12684 },
   ];
+  // Conc < Awake < Berserk never stack: keep only the strongest one.
+  var ASPD_TIER = [645, 656, 657];
+  function topTier(ids) {
+    for (var i = ASPD_TIER.length - 1; i >= 0; i--) if (ids.indexOf(ASPD_TIER[i]) >= 0) return ASPD_TIER[i];
+    return null;
+  }
 
   function entry(c, name) {
     return (c.skillBuffEntries || []).find(function (e) { return e.skill.name === name; });
@@ -91,7 +95,9 @@
     if (t.allInOne) return localStorage.getItem('allInOneOn') === '1';
     if (t.skill) { var e = entry(c, t.skill); return !!e && Number(c.model.skillBuffs[e.index]) > 0; }
     if (t.consumable) return (c.model.consumables || []).map(Number).indexOf(t.consumable) >= 0;
-    return (c.model.aspdPotions || []).map(Number).indexOf(t.aspd) >= 0;
+    var ids = (c.aspdPotionStackSelection || c.model.aspdPotions || []).map(Number);
+    if (ASPD_TIER.indexOf(t.aspd) >= 0) return topTier(ids) === t.aspd;
+    return ids.indexOf(t.aspd) >= 0;
   }
   function setOn(c, t, on) {
     if (t.allInOne) {
@@ -114,7 +120,8 @@
       c.model.consumables = c.normalizeIdList(list);
       return c.onConsumableChange();
     }
-    var sel = (c.aspdPotionStackSelection || []).map(Number).filter(function (x) { return x !== t.aspd; });
+    var tier = ASPD_TIER.indexOf(t.aspd) >= 0;
+    var sel = (c.aspdPotionStackSelection || []).map(Number).filter(function (x) { return x !== t.aspd && !(tier && ASPD_TIER.indexOf(x) >= 0); });
     if (on) sel.push(t.aspd);
     c.onAspdPotionStackSelectionChange(sel);
   }
@@ -146,7 +153,11 @@
     var box = document.createElement('div');
     box.id = 'quick-toggles';
     box.className = 'col-12';
-    box.style.cssText = 'display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px 0';
+    box.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:5px;padding:6px 0';
+    // Every consumable from the app list, appended once.
+    if (!TOGGLES.some(function (t) { return t.fromList; })) (window.__roCalc.consumableList || []).forEach(function (o) {
+      TOGGLES.push({ label: o.label, consumable: Number(o.value), fromList: true });
+    });
     TOGGLES.forEach(function (t, i) {
       if (t.skill && entry(window.__roCalc, t.skill).skill.inputType === 'dropdown') {
         var e = entry(window.__roCalc, t.skill);
@@ -155,7 +166,7 @@
         sel.dataset.i = i;
         sel.title = e.skill.label;
         sel.setAttribute('aria-label', e.skill.label);
-        sel.style.cssText = 'width:100%;min-width:0;padding:1px 2px;font-size:11px;border:1px solid #81c784;border-radius:3px';
+        sel.style.cssText = 'width:100%;min-width:0;min-height:30px;padding:2px 4px;font-size:12px;border:1px solid #81c784;border-radius:4px';
         e.skill.dropdown.forEach(function (d) {
           var o = document.createElement('option');
           o.value = d.value;
@@ -174,18 +185,20 @@
       b.type = 'button';
       b.dataset.i = i;
       b.className = 'p-button p-component p-button-sm p-button-outlined';
-      b.style.cssText = 'padding:1px 2px;font-size:11px;justify-content:center;white-space:nowrap;overflow:hidden';
-      b.textContent = t.label;
+      b.style.cssText = 'min-width:0;min-height:30px;padding:3px 6px;font-size:12px;justify-content:flex-start;white-space:nowrap;overflow:hidden;gap:4px';
+      var text = document.createElement('span');
+      text.textContent = t.label;
+      text.style.cssText = 'overflow:hidden;text-overflow:ellipsis';
+      b.appendChild(text);
       var itemId = t.consumable || t.aspd || (t.allInOne ? 100906 : null);
       if (itemId) {
         var img = document.createElement('img');
         img.src = t.allInOne ? 'https://static.divine-pride.net/images/items/item/' + itemId + '.png' : 'assets/demo/images/items/' + itemId + '.png';
         img.alt = '';
-        img.width = 16; img.height = 16;
-        img.style.cssText = 'object-fit:contain;flex:none;margin-right:3px';
+        img.width = 20; img.height = 20;
+        img.style.cssText = 'object-fit:contain;flex:none';
         img.onerror = function () { img.hidden = true; };
         b.prepend(img);
-        b.style.minHeight = '22px';
       }
       b.onclick = function () { run(function (c) { setOn(c, t, !isOn(c, t)); }); render(box); };
       box.appendChild(b);
