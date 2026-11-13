@@ -83,6 +83,8 @@
   ];
   // Conc < Awake < Berserk never stack: keep only the strongest one.
   var ASPD_TIER = [645, 656, 657];
+  var PILL_TIER = [12791, 12792]; // Battle Pill < Suprem Battle Pill, never stack
+  var AIO_ORDER = [12883, 14766, 23475, 14601]; // shown right after All-in-One
   function topTier(ids) {
     for (var i = ASPD_TIER.length - 1; i >= 0; i--) if (ids.indexOf(ASPD_TIER[i]) >= 0) return ASPD_TIER[i];
     return null;
@@ -94,7 +96,11 @@
   function isOn(c, t) {
     if (t.allInOne) return localStorage.getItem('allInOneOn') === '1';
     if (t.skill) { var e = entry(c, t.skill); return !!e && Number(c.model.skillBuffs[e.index]) > 0; }
-    if (t.consumable) return (c.model.consumables || []).map(Number).indexOf(t.consumable) >= 0;
+    if (t.consumable) {
+      var cons = (c.model.consumables || []).map(Number);
+      if (PILL_TIER.indexOf(t.consumable) >= 0) return cons.indexOf(PILL_TIER[1]) >= 0 ? t.consumable === PILL_TIER[1] : cons.indexOf(t.consumable) >= 0;
+      return cons.indexOf(t.consumable) >= 0;
+    }
     var ids = (c.aspdPotionStackSelection || c.model.aspdPotions || []).map(Number);
     if (ASPD_TIER.indexOf(t.aspd) >= 0) return topTier(ids) === t.aspd;
     return ids.indexOf(t.aspd) >= 0;
@@ -115,7 +121,8 @@
       return c.onSkillClassChange();
     }
     if (t.consumable) {
-      var list = (c.model.consumables || []).map(Number).filter(function (x) { return x !== t.consumable; });
+      var pill = PILL_TIER.indexOf(t.consumable) >= 0;
+      var list = (c.model.consumables || []).map(Number).filter(function (x) { return x !== t.consumable && !(pill && PILL_TIER.indexOf(x) >= 0); });
       if (on) list.push(t.consumable);
       c.model.consumables = c.normalizeIdList(list);
       return c.onConsumableChange();
@@ -155,9 +162,13 @@
     box.className = 'col-12';
     box.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:5px;padding:6px 0';
     // Every consumable from the app list, appended once.
-    if (!TOGGLES.some(function (t) { return t.fromList; })) (window.__roCalc.consumableList || []).forEach(function (o) {
-      TOGGLES.push({ label: o.label, consumable: Number(o.value), fromList: true });
-    });
+    if (!TOGGLES.some(function (t) { return t.fromList; })) {
+      var list = (window.__roCalc.consumableList || []).map(function (o) { return { label: o.label, consumable: Number(o.value), fromList: true }; });
+      var first = AIO_ORDER.map(function (id) { return list.find(function (t) { return t.consumable === id; }); }).filter(Boolean);
+      var at = TOGGLES.findIndex(function (t) { return t.allInOne; }) + 1;
+      TOGGLES.splice.apply(TOGGLES, [at, 0].concat(first));
+      list.forEach(function (t) { if (first.indexOf(t) < 0) TOGGLES.push(t); });
+    }
     TOGGLES.forEach(function (t, i) {
       if (t.skill && entry(window.__roCalc, t.skill).skill.inputType === 'dropdown') {
         var e = entry(window.__roCalc, t.skill);
