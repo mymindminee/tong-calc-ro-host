@@ -623,6 +623,7 @@
     if (!document.getElementById('ux-headings')) {
       var style = document.createElement('style'); style.id = 'ux-headings';
       style.textContent = '.ux-heading{font-weight:600;font-size:15px;padding:10px 0 4px;border-top:1px solid #334155;margin-top:8px}' +
+        'div:has(>app-equipment){margin-bottom:8px}' +
         '.p-datatable .p-datatable-tbody>tr>td,.p-datatable .p-datatable-thead>tr>th{font-size:15px;padding-top:6px;padding-bottom:6px}';
       document.head.appendChild(style);
     }
