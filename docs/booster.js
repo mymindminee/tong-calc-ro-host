@@ -69,7 +69,7 @@
   // --- toggles -------------------------------------------------------------
   // skill: on = highest level in dropdown, off = 0. consumable: model.consumables. aspd: stack selection.
   var TOGGLES = [
-    { label: 'VIP', skill: 'VIP' },
+    { label: 'VIP Buff', skill: 'VIP' },
     { label: 'Agi Up', skill: 'Cantocandidus' },
     { label: 'Bless', skill: 'Clementia' },
     { label: 'Myst.Amp', skill: 'Mystical Amplification' },
@@ -215,6 +215,28 @@
       box.appendChild(b);
     });
     sec.insertAdjacentElement('afterend', box);
+    var head = document.createElement('div');
+    head.className = 'col-12';
+    head.style.cssText = 'display:flex;align-items:baseline;justify-content:space-between;padding:8px 0 0';
+    var title = document.createElement('span');
+    title.textContent = 'Consumable';
+    title.style.cssText = 'font-weight:600;font-size:15px';
+    var clear = document.createElement('button');
+    clear.type = 'button';
+    clear.textContent = 'Clear all';
+    clear.title = 'Remove all consumables and ASPD potions (buff skills stay)';
+    clear.style.cssText = 'background:none;border:0;padding:0;color:#f87171;font-size:12px;cursor:pointer;text-decoration:underline';
+    clear.onclick = function () {
+      run(function (c) {
+        localStorage.setItem('allInOneOn', '0');
+        c.model.consumables = [];
+        c.onConsumableChange();
+        c.onAspdPotionStackSelectionChange([]);
+      });
+      render(box);
+    };
+    head.append(title, clear);
+    box.insertAdjacentElement('beforebegin', head);
     render(box);
     // keep buttons in sync when the user changes the same things elsewhere
     setInterval(function () { render(box); }, 1000);
