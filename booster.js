@@ -618,7 +618,25 @@
     };
   }
 
-  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); }
+  // UX: group headings (same look as native "Rune Tablet") + slightly larger table text.
+  function mountGroupHeadings() {
+    if (!document.getElementById('ux-headings')) {
+      var style = document.createElement('style'); style.id = 'ux-headings';
+      style.textContent = '.ux-heading{font-weight:600;font-size:15px;padding:10px 0 4px;border-top:1px solid #334155;margin-top:8px}' +
+        '.p-datatable .p-datatable-tbody>tr>td,.p-datatable .p-datatable-thead>tr>th{font-size:15px;padding-top:6px;padding-bottom:6px}';
+      document.head.appendChild(style);
+    }
+    function heading(text, before) {
+      if (!before || before.previousElementSibling?.classList.contains('ux-heading')) return;
+      var h = document.createElement('div'); h.className = 'col-12 ux-heading'; h.textContent = text;
+      before.parentElement.insertBefore(h, before);
+    }
+    heading('Equipment', document.querySelector('.item_label_weapon_main'));
+    heading('Costume', document.querySelector('.item_label_costume')?.parentElement);
+    heading('Shadow', document.getElementById('booster-set-btn')?.parentElement);
+  }
+
+  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); mountGroupHeadings(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
