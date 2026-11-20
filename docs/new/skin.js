@@ -78,7 +78,16 @@
       more.onclick = function () { localStorage.setItem('skinMore', localStorage.getItem('skinMore') === '1' ? '0' : '1'); compactSide(side); };
       head.lastChild.before(more);
     }
-    var open = localStorage.getItem('skinMore') === '1', n = qt.querySelectorAll('.sk-extra').length;
+    var n = qt.querySelectorAll('.sk-extra').length, stored = localStorage.getItem('skinMore');
+    var open = stored === '1';
+    if (stored === null && btns.length) {
+      // No explicit choice yet: show everything when the column has room for it.
+      var cols = getComputedStyle(qt).gridTemplateColumns.split(' ').length || 1;
+      var need = Math.ceil(n / cols) * (btns[0].offsetHeight + 4);
+      var last = side.lastElementChild.getBoundingClientRect().bottom - side.getBoundingClientRect().top;
+      var shown = qt.classList.contains('sk-collapsed') ? 0 : need;
+      open = side.clientHeight - last + shown > need + 8;
+    }
     qt.classList.toggle('sk-collapsed', !open);
     var label = open ? '− ซ่อน' : '+ อื่นๆ (' + n + ')';
     var m = document.getElementById('sk-more');

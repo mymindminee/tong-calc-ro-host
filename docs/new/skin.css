@@ -1,7 +1,7 @@
 /* New-look skin (only loaded from /new/). Layout + colours only; no calculator logic. */
 html[data-skin=dark]{--sk-bg:#0b1120;--sk-card:#121b2e;--sk-card2:#18233a;--sk-border:#26344f;--sk-text:#e6ebf5;--sk-muted:#94a3b8;--sk-accent:#60a5fa;--sk-on-accent:#0b1120;--sk-shadow:0 1px 2px rgba(0,0,0,.4)}
 html[data-skin=light]{--sk-bg:#f1f4f9;--sk-card:#ffffff;--sk-card2:#f6f8fc;--sk-border:#dfe5ee;--sk-text:#1e293b;--sk-muted:#64748b;--sk-accent:#2563eb;--sk-on-accent:#ffffff;--sk-shadow:0 1px 3px rgba(15,23,42,.08)}
-html[data-skin]{--sk-r:14px;scroll-padding-top:64px}
+html[data-skin]{--sk-r:14px;--sk-in:.3rem;--sk-row:2px;scroll-padding-top:64px}
 html[data-skin] body{background:var(--sk-bg);color:var(--sk-text);font-family:Inter,"Noto Sans Thai","Segoe UI",system-ui,-apple-system,sans-serif;overflow-x:hidden}
 
 /* top bar: sticky, wraps instead of forcing 1500px */
@@ -81,14 +81,15 @@ html[data-skin] .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-
 
 /* ---------- desktop: whole calculator in one screen, columns scroll on their own if needed ---------- */
 @media (min-width:1101px) and (min-height:600px){
-  html[data-skin]{font-size:13px}
+  /* density follows screen height: tight on 1080p, roomy on 1440p+ */
+  html[data-skin]{font-size:clamp(13px,calc(.75vh + 5px),16px)!important;--sk-in:clamp(.2rem,calc(.85vh - 5px),.65rem);--sk-row:clamp(1px,calc(1.3vh - 11.5px),10px)}
   html[data-skin],html[data-skin] body{height:100%;overflow:hidden}
   html[data-skin] .layout-main{padding:10px 12px}
   html[data-skin] .layout-footer{display:none}
   html[data-skin] .layout-topbar{min-height:44px;padding:4px 12px}
   html[data-skin] .layout-topbar .p-button{height:30px}
   html[data-skin] app-ro-calculator>.grid{gap:12px;height:calc(100vh - var(--sk-top,52px) - 20px)}
-  html[data-skin] app-ro-calculator>.grid>:is(.col-7,.col-5,#sk-side){height:100%;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding-right:4px}
+  html[data-skin] app-ro-calculator>.grid>:is(.col-7,.col-5,#sk-side){height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding-right:4px}
   html[data-skin] .sk-charcard,html[data-skin] .sk-card,html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3,
   html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:has(>div:not([hidden])){padding:6px 10px;margin:0 0 6px!important;border-radius:10px}
   html[data-skin] .detached-panel-launchers{flex-direction:row}
@@ -99,10 +100,10 @@ html[data-skin] .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-
 }
 
 /* compact left column */
-#sk-side .p-inputtext,#sk-side .p-dropdown .p-dropdown-label{padding:.3rem .5rem}
-#sk-side .p-inputgroup-addon{padding:.3rem .5rem}
+#sk-side .p-inputtext,#sk-side .p-dropdown .p-dropdown-label{padding:var(--sk-in) .5rem}
+#sk-side .p-inputgroup-addon{padding:var(--sk-in) .5rem}
 #sk-side .p-button{padding:.3rem .6rem}
-#sk-side .sk-charcard .col-12,#sk-side .sk-charcard .col,#sk-side .sk-charcard .col-fixed{padding-top:2px;padding-bottom:2px}
+#sk-side .sk-charcard .col-12,#sk-side .sk-charcard .col,#sk-side .sk-charcard .col-fixed{padding-top:var(--sk-row);padding-bottom:var(--sk-row)}
 #sk-side .col-12:has(>#copy-equipment){display:flex;gap:4px;align-items:stretch}
 #sk-side .col-12:has(>#copy-equipment)>.p-inputgroup{flex:1;min-width:0}
 #copy-equipment{margin:0!important;white-space:nowrap}
@@ -115,7 +116,7 @@ html[data-skin] .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-
 #sk-more+button{margin-left:0!important}
 .sk-consumable #quick-toggles.sk-collapsed>.sk-extra.p-button-outlined{display:none}
 .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))!important;gap:4px!important;padding:4px 0 0!important}
-.sk-consumable #quick-toggles>*{min-height:26px!important;padding:2px 6px!important}
+.sk-consumable #quick-toggles>*{min-height:calc(1.4rem + var(--sk-in))!important;padding:2px 6px!important}
 .sk-consumable #quick-toggles img{width:16px;height:16px}
 
 /* item + refine on one line (halves each equipment row) */
@@ -126,11 +127,11 @@ html[data-skin] app-equipment>.grid>.col-3{width:44%;flex:0 0 44%}
 html[data-skin] app-equipment>.grid>.col-9{width:56%;flex:0 0 56%}
 
 /* equipment column: flat rows with dividers instead of one card per slot, shorter controls */
-html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(.sk-compare):has(>div:not([hidden])){background:transparent!important;border:0!important;border-bottom:1px solid var(--sk-border)!important;border-radius:0!important;box-shadow:none!important;padding:1px 2px!important;margin:0!important}
+html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(.sk-compare):has(>div:not([hidden])){background:transparent!important;border:0!important;border-bottom:1px solid var(--sk-border)!important;border-radius:0!important;box-shadow:none!important;padding:var(--sk-row) 2px!important;margin:0!important}
 html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3{padding:2px 8px!important;margin:4px 0 0!important}
-html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3:has(>.item_label_pet){background:none!important;border:0!important;box-shadow:none!important;padding:1px 2px!important;margin:0!important}
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3:has(>.item_label_pet){background:none!important;border:0!important;box-shadow:none!important;padding:var(--sk-row) 2px!important;margin:0!important}
 html[data-skin] .sk-compare{padding:3px 8px!important;margin-bottom:4px!important}
-html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown .p-dropdown-label,.p-inputtext,.p-cascadeselect .p-cascadeselect-label,.p-multiselect .p-multiselect-label){padding:.22rem .45rem;font-size:12.5px}
+html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown .p-dropdown-label,.p-inputtext,.p-cascadeselect .p-cascadeselect-label,.p-multiselect .p-multiselect-label){padding:var(--sk-in) .45rem;font-size:.95rem}
 html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown-trigger,.p-cascadeselect-trigger,.p-multiselect-trigger){width:1.6rem}
 html[data-skin] app-ro-calculator>.grid>.col-7 .item_label_shadow{padding-top:1px;padding-bottom:1px}
 
