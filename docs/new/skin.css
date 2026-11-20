@@ -102,6 +102,33 @@ html[data-skin] .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-
   html[data-skin] .p-accordion .p-accordion-content{padding:8px}
 }
 
+/* compact left column */
+#sk-side .p-inputtext,#sk-side .p-dropdown .p-dropdown-label{padding:.3rem .5rem}
+#sk-side .p-inputgroup-addon{padding:.3rem .5rem}
+#sk-side .p-button{padding:.3rem .6rem}
+#sk-side .sk-charcard .col-12,#sk-side .sk-charcard .col,#sk-side .sk-charcard .col-fixed{padding-top:2px;padding-bottom:2px}
+#sk-side .col-12:has(>#copy-equipment){display:flex;gap:4px;align-items:stretch}
+#sk-side .col-12:has(>#copy-equipment)>.p-inputgroup{flex:1;min-width:0}
+#copy-equipment{margin:0!important;white-space:nowrap}
+/* Level | Up Class | Job on one line */
+#sk-side .sk-charcard .col-fixed+.col-12{flex:0 0 40%;width:40%;padding-left:4px}
+#sk-side .sk-charcard .col-fixed+.col-12+.col-12 .p-inputgroup-addon{background:none;border:0;justify-content:flex-start;font-size:12px;color:var(--sk-muted);padding:0 .2rem}
+#sk-side .sk-charcard>.col-8>.grid>.col-7{font-size:12px;line-height:1.35;margin-top:6px;padding-top:6px}
+#sk-side .sk-charcard>.col-8>.grid>.col-7 .p-inputtext,#sk-side .sk-charcard .p-checkbox+label{font-size:12px}
+#sk-more{background:none;border:0;padding:0 10px 0 0;color:var(--sk-accent);font-size:12px;cursor:pointer;margin-left:auto}
+#sk-more+button{margin-left:0!important}
+.sk-consumable #quick-toggles.sk-collapsed>.sk-extra.p-button-outlined{display:none}
+.sk-consumable #quick-toggles{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))!important;gap:4px!important;padding:4px 0 0!important}
+.sk-consumable #quick-toggles>*{min-height:26px!important;padding:2px 6px!important}
+.sk-consumable #quick-toggles img{width:16px;height:16px}
+
+/* item + refine on one line (halves each equipment row) */
+html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child){flex-direction:row;flex-wrap:nowrap;gap:4px}
+html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child)>.col-12{flex:1 1 auto;width:auto;min-width:0}
+html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child)>.col-4{flex:0 0 64px;width:64px;min-width:0!important}
+html[data-skin] app-equipment>.grid>.col-3{width:44%;flex:0 0 44%}
+html[data-skin] app-equipment>.grid>.col-9{width:56%;flex:0 0 56%}
+
 /* mobile jump bar */
 #skin-jump{display:none}
 

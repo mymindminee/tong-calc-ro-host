@@ -60,6 +60,7 @@
       var box = document.createElement('div'); box.className = 'sk-card sk-consumable';
       box.append(qt.previousElementSibling, qt); side.appendChild(box);
     }
+    compactSide(side);
     if (!document.getElementById('sk-tabs')) {
       var tabs = document.createElement('div');
       tabs.id = 'sk-tabs'; tabs.setAttribute('role', 'tablist');
@@ -96,6 +97,29 @@
     }
     var bar = document.querySelector('.layout-topbar'), top = (bar ? bar.offsetHeight : 52) + 'px';
     if (document.documentElement.style.getPropertyValue('--sk-top') !== top) document.documentElement.style.setProperty('--sk-top', top);
+  }
+
+  // Rarely used consumables fold away; anything switched on stays visible.
+  function compactSide(side) {
+    var copy = document.getElementById('copy-equipment');
+    if (copy && copy.textContent !== '⧉ Copy') { copy.textContent = '⧉ Copy'; copy.title = 'Copy equipment / stat จาก Preset'; }
+    var qt = side.querySelector('#quick-toggles');
+    if (!qt) return;
+    var btns = [].slice.call(qt.querySelectorAll(':scope > button'));
+    var cut = btns.findIndex(function (b) { return b.textContent.trim() === 'ASPD Pot'; });
+    btns.forEach(function (b, i) { b.classList.toggle('sk-extra', cut >= 0 && i > cut); });
+    var head = qt.previousElementSibling;
+    if (head && !document.getElementById('sk-more')) {
+      var more = document.createElement('button');
+      more.id = 'sk-more'; more.type = 'button';
+      more.onclick = function () { localStorage.setItem('skinMore', localStorage.getItem('skinMore') === '1' ? '0' : '1'); compactSide(side); };
+      head.lastChild.before(more);
+    }
+    var open = localStorage.getItem('skinMore') === '1', n = qt.querySelectorAll('.sk-extra').length;
+    qt.classList.toggle('sk-collapsed', !open);
+    var label = open ? '− ซ่อน' : '+ อื่นๆ (' + n + ')';
+    var m = document.getElementById('sk-more');
+    if (m && m.textContent !== label) m.textContent = label;
   }
 
   function mount() {
