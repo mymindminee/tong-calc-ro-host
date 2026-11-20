@@ -27,23 +27,6 @@
     };
   });
 
-  var GROUPS = [
-    ['equip', 'อุปกรณ์', ['weapon', 'leftWeapon', 'shield', 'headUpper', 'headMiddle', 'headLower', 'armor', 'garment', 'boot', 'accRight', 'accLeft', 'pet']],
-    ['costume', 'Costume', ['costumeUpper', 'costumeMiddle', 'costumeLower', 'costumeGarment']],
-    ['shadow', 'Shadow', ['shadowWeapon', 'shadowArmor', 'shadowShield', 'shadowBoot', 'shadowEarring', 'shadowPendant']],
-  ];
-  function groupOf(el) {
-    if (el.id === 'sk-tabs') return null;
-    if (el.querySelector('#booster-set-btn, .item_label_shadow')) return 'shadow';
-    if (el.querySelector('.item_label_costume')) return 'costume';
-    if (el.classList.contains('ux-heading')) return /Costume/.test(el.textContent) ? 'costume' : /Shadow/.test(el.textContent) ? 'shadow' : 'equip';
-    return 'equip';
-  }
-  function setTab(col7, tab) {
-    localStorage.setItem('skinTab', tab);
-    col7.dataset.skTab = tab;
-    document.querySelectorAll('#sk-tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.tab === tab)); });
-  }
   // Three columns: character + consumables | equipment tabs | results. Only our own nodes and the static
   // character card move; Angular-managed lists stay where the app renders them.
   function layout(col7, col5) {
@@ -61,29 +44,9 @@
       box.append(qt.previousElementSibling, qt); side.appendChild(box);
     }
     compactSide(side);
-    if (!document.getElementById('sk-tabs')) {
-      var tabs = document.createElement('div');
-      tabs.id = 'sk-tabs'; tabs.setAttribute('role', 'tablist');
-      GROUPS.forEach(function (g) {
-        var b = document.createElement('button');
-        b.type = 'button'; b.dataset.tab = g[0]; b.setAttribute('role', 'tab');
-        b.innerHTML = '<span></span><small></small>';
-        b.firstChild.textContent = g[1];
-        b.onclick = function () { setTab(col7, g[0]); col7.scrollTop = 0; };
-        tabs.appendChild(b);
-      });
-      col7.prepend(tabs);
-      setTab(col7, localStorage.getItem('skinTab') || 'equip');
-      setInterval(function () {
-        var c = window.__roCalc; if (!c) return;
-        tabs.querySelectorAll('button').forEach(function (b, i) {
-          var g = GROUPS[i], n = g[2].filter(function (k) { return Number(c.model[k]) > 0; }).length;
-          var t = n + '/' + g[2].length;
-          if (b.lastChild.textContent !== t) b.lastChild.textContent = t;
-        });
-      }, 1000);
-    }
-    [].forEach.call(col7.children, function (el) { var g = groupOf(el); if (g && el.dataset.skGroup !== g) el.dataset.skGroup = g; });
+    // Compare controls belong to the equipment column, not the character stats.
+    var cmp = document.querySelector('.item_label_compare');
+    if (cmp && cmp.parentElement !== col7) { cmp.classList.add('sk-card', 'sk-compare'); col7.prepend(cmp); }
     if (!document.getElementById('skin-jump')) {
       var nav = document.createElement('nav');
       nav.id = 'skin-jump'; nav.setAttribute('aria-label', 'ไปยังส่วน');

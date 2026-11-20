@@ -28,7 +28,7 @@ html[data-skin] app-ro-calculator>.grid>:is([class*="col-"],#sk-side){width:auto
 html[data-skin] .sk-charcard,html[data-skin] .sk-card,
 html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3,
 html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:has(>div:not([hidden])){background:var(--sk-card);border:1px solid var(--sk-border);border-radius:var(--sk-r);box-shadow:var(--sk-shadow);padding:10px 12px;margin:0 0 10px!important}
-html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(:has(>div:not([hidden]))){display:none}
+html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(.sk-compare):not(:has(>div:not([hidden]))){display:none}
 html[data-skin] div:has(>app-equipment){margin-bottom:0}
 html[data-skin] .ux-heading{border:0;margin:14px 2px 6px;padding:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sk-muted);font-weight:700}
 html[data-skin] .grid.mt-3 .ux-heading{margin-top:0}
@@ -71,16 +71,12 @@ html[data-skin=light] app-ro-calculator :is([class*="item_label_"] :is(.p-dropdo
 html[data-skin=light] app-ro-calculator :is([class*="item_label_"] .p-dropdown-label,[class*="summary_"]) img{filter:invert(1) hue-rotate(180deg)}
 html[data-skin=light] .item_label_pet{background:transparent!important}
 
-/* equipment tabs replace the section headings */
-#sk-tabs{display:flex;gap:6px;position:sticky;top:0;z-index:5;background:var(--sk-bg);padding:0 0 8px}
-#sk-tabs button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--sk-border);background:var(--sk-card);color:var(--sk-text);border-radius:10px;padding:7px 8px;font:inherit;font-weight:600;cursor:pointer}
-#sk-tabs button small{font-weight:500;color:var(--sk-muted);font-size:11px}
-#sk-tabs button[aria-selected=true]{background:var(--sk-accent);border-color:var(--sk-accent);color:var(--sk-on-accent)}
-#sk-tabs button[aria-selected=true] small{color:inherit;opacity:.8}
-html[data-skin] app-ro-calculator .col-7 .ux-heading{display:none}
-html[data-skin] .col-7[data-sk-tab=equip]>[data-sk-group]:not([data-sk-group=equip]),
-html[data-skin] .col-7[data-sk-tab=costume]>[data-sk-group]:not([data-sk-group=costume]),
-html[data-skin] .col-7[data-sk-tab=shadow]>[data-sk-group]:not([data-sk-group=shadow]){display:none!important}
+/* all equipment groups in one column: slim headings, tight cards */
+html[data-skin] app-ro-calculator>.grid>.col-7 .ux-heading{margin:6px 2px 3px;font-size:11px}
+html[data-skin] .sk-compare{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+html[data-skin] .sk-compare{flex-wrap:nowrap!important}
+html[data-skin] .sk-compare>label{margin:0!important;flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-skin] .sk-compare>:not(label){flex:1 1 200px;min-width:0}
 html[data-skin] .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-fill,minmax(108px,1fr))!important}
 
 /* ---------- desktop: whole calculator in one screen, columns scroll on their own if needed ---------- */
@@ -128,6 +124,17 @@ html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]
 html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child)>.col-4{flex:0 0 64px;width:64px;min-width:0!important}
 html[data-skin] app-equipment>.grid>.col-3{width:44%;flex:0 0 44%}
 html[data-skin] app-equipment>.grid>.col-9{width:56%;flex:0 0 56%}
+
+/* equipment column: flat rows with dividers instead of one card per slot, shorter controls */
+html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(.sk-compare):has(>div:not([hidden])){background:transparent!important;border:0!important;border-bottom:1px solid var(--sk-border)!important;border-radius:0!important;box-shadow:none!important;padding:1px 2px!important;margin:0!important}
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3{padding:2px 8px!important;margin:4px 0 0!important}
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3:has(>.item_label_pet){background:none!important;border:0!important;box-shadow:none!important;padding:1px 2px!important;margin:0!important}
+html[data-skin] .sk-compare{padding:3px 8px!important;margin-bottom:4px!important}
+html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown .p-dropdown-label,.p-inputtext,.p-cascadeselect .p-cascadeselect-label,.p-multiselect .p-multiselect-label){padding:.22rem .45rem;font-size:12.5px}
+html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown-trigger,.p-cascadeselect-trigger,.p-multiselect-trigger){width:1.6rem}
+html[data-skin] app-ro-calculator>.grid>.col-7 .item_label_shadow{padding-top:1px;padding-bottom:1px}
+
+html[data-skin] app-ro-calculator>.grid>.col-7 .item_label_acc label.item_float_label{display:none}
 
 /* mobile jump bar */
 #skin-jump{display:none}
