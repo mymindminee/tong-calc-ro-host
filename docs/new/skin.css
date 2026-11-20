@@ -1,182 +1,102 @@
-/* New-look skin (only loaded from /new/). Layout + colours only; no calculator logic. */
-html[data-skin=dark]{--sk-bg:#0b1120;--sk-card:#121b2e;--sk-card2:#18233a;--sk-border:#26344f;--sk-text:#e6ebf5;--sk-muted:#94a3b8;--sk-accent:#60a5fa;--sk-on-accent:#0b1120;--sk-shadow:0 1px 2px rgba(0,0,0,.4)}
-html[data-skin=light]{--sk-bg:#f1f4f9;--sk-card:#ffffff;--sk-card2:#f6f8fc;--sk-border:#dfe5ee;--sk-text:#1e293b;--sk-muted:#64748b;--sk-accent:#2563eb;--sk-on-accent:#ffffff;--sk-shadow:0 1px 3px rgba(15,23,42,.08)}
-html[data-skin]{--sk-r:14px;--sk-in:.3rem;--sk-row:2px;scroll-padding-top:64px}
+/* New-look skin (only loaded from /new/). Native layout, minimal styling; no calculator logic. */
+html[data-skin=dark]{--sk-bg:#0d1117;--sk-panel:#141a23;--sk-field:#19202b;--sk-border:#262f3d;--sk-line:#1e2633;--sk-text:#e6edf3;--sk-muted:#8b97a8;--sk-accent:#5b9dff;--sk-on-accent:#0d1117}
+html[data-skin=light]{--sk-bg:#f6f7f9;--sk-panel:#ffffff;--sk-field:#ffffff;--sk-border:#d9dee5;--sk-line:#e8ebf0;--sk-text:#1f2733;--sk-muted:#6b7686;--sk-accent:#2f6fec;--sk-on-accent:#ffffff}
+html[data-skin]{--sk-r:10px;scroll-padding-top:64px}
 html[data-skin] body{background:var(--sk-bg);color:var(--sk-text);font-family:Inter,"Noto Sans Thai","Segoe UI",system-ui,-apple-system,sans-serif;overflow-x:hidden}
 
-/* top bar: sticky, wraps instead of forcing 1500px */
-html[data-skin] .layout-topbar{min-width:0!important;position:sticky;top:0;height:auto;min-height:52px;flex-wrap:wrap;gap:6px 8px;padding:6px 16px;background:color-mix(in srgb,var(--sk-card) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--sk-border);box-shadow:none;z-index:900}
-html[data-skin] .layout-topbar>span.px-2{font-weight:700;font-size:16px;color:var(--sk-accent)}
+/* top bar: flat, sticky, ghost buttons */
+html[data-skin] .layout-topbar{min-width:0!important;position:sticky;top:0;height:auto;min-height:52px;flex-wrap:wrap;gap:6px 10px;padding:6px 20px;background:color-mix(in srgb,var(--sk-bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--sk-line);box-shadow:none;z-index:900}
+html[data-skin] .layout-topbar>span.px-2{font-weight:700;font-size:15px;color:var(--sk-text)}
 html[data-skin] .layout-topbar .router-link{top:0!important;padding:0!important}
 html[data-skin] .layout-topbar .layout-topbar-menu{margin-left:auto;flex-wrap:wrap;gap:6px;height:auto;position:static;display:flex;background:none;box-shadow:none;border:0;padding:0;min-width:0;width:auto}
 html[data-skin] .layout-topbar .p-button{box-shadow:none;height:34px}
-html[data-skin] .layout-topbar .p-button.p-button-rounded{background:transparent;border:1px solid var(--sk-border);color:var(--sk-text);font-weight:600}
-html[data-skin] .layout-topbar .p-button.p-button-rounded:hover{border-color:var(--sk-accent);color:var(--sk-accent)}
+html[data-skin] .layout-topbar .p-button.p-button-rounded,html[data-skin] .layout-topbar a.p-button{background:transparent!important;border:1px solid var(--sk-border)!important;color:var(--sk-text)!important;font-weight:600;border-radius:999px}
+html[data-skin] .layout-topbar .p-button.p-button-rounded:hover,html[data-skin] .layout-topbar a.p-button:hover{border-color:var(--sk-accent)!important;color:var(--sk-accent)!important}
 html[data-skin] .p-tabmenu .p-tabmenu-nav,html[data-skin] .p-tabmenu .p-tabmenu-nav .p-menuitem-link{background:transparent;border-color:transparent}
-#skin-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--sk-border);background:var(--sk-card2);cursor:pointer;font-size:16px;line-height:1;margin-left:auto}
+#skin-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--sk-border);background:transparent;cursor:pointer;font-size:15px;line-height:1;margin-left:auto}
 #skin-toggle+.layout-topbar-menu{margin-left:0!important}
 html[data-skin] .layout-config-button{display:none}
 html[data-skin] .layout-main-container{padding:0!important;min-height:0}
-html[data-skin] .layout-main{padding:16px}
-html[data-skin] .layout-footer{padding:16px;color:var(--sk-muted)}
+html[data-skin] .layout-main{padding:20px 24px}
+html[data-skin] .layout-footer{padding:16px 24px;color:var(--sk-muted);border-top:1px solid var(--sk-line)}
 
-/* two fluid columns instead of a fixed 1500px canvas */
-html[data-skin] app-ro-calculator>.grid{min-width:0!important;display:grid;grid-template-columns:minmax(280px,25fr) minmax(0,42fr) minmax(0,33fr);gap:16px;align-items:start;margin:0}
-html[data-skin] app-ro-calculator>.grid>:is([class*="col-"],#sk-side){width:auto;max-width:none;padding:0;min-width:0}
-
-/* cards */
-html[data-skin] .sk-charcard,html[data-skin] .sk-card,
-html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3,
-html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:has(>div:not([hidden])){background:var(--sk-card);border:1px solid var(--sk-border);border-radius:var(--sk-r);box-shadow:var(--sk-shadow);padding:10px 12px;margin:0 0 10px!important}
-html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(.sk-compare):not(:has(>div:not([hidden]))){display:none}
-html[data-skin] div:has(>app-equipment){margin-bottom:0}
-html[data-skin] .ux-heading{border:0;margin:14px 2px 6px;padding:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sk-muted);font-weight:700}
-html[data-skin] .grid.mt-3 .ux-heading{margin-top:0}
-
-/* wider item name next to its cards/enchants; headline damage numbers stand out */
-html[data-skin] app-equipment>.grid>.col-3{width:36%;flex:0 0 36%}
-html[data-skin] app-equipment>.grid>.col-9{width:64%;flex:0 0 64%}
-html[data-skin] .battle_summary .text-lg{font-size:1.3rem;font-weight:700}
-
-/* results column */
-html[data-skin] .detached-panel-launchers{gap:8px}
-html[data-skin] .detached-launch-button,html[data-skin] .p-accordion .p-accordion-header .p-accordion-header-link{border-radius:var(--sk-r)!important;border:1px solid var(--sk-border)!important;background:var(--sk-card)!important;color:var(--sk-text)!important;box-shadow:var(--sk-shadow)}
-html[data-skin] .p-accordion p-accordiontab{display:block;margin-bottom:8px}
-html[data-skin] .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{background:var(--sk-accent)!important;border-color:var(--sk-accent)!important;color:var(--sk-on-accent)!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
-html[data-skin] .p-accordion .p-accordion-content{background:var(--sk-card);border:1px solid var(--sk-border);border-top:0;border-radius:0 0 var(--sk-r) var(--sk-r);color:var(--sk-text);padding:12px}
-html[data-skin] .p-datatable,html[data-skin] .damage_table{max-width:100%;min-width:0;overflow-x:auto}
+/* native two-column layout, fluid instead of a fixed 1500px canvas */
+html[data-skin] app-ro-calculator>.grid{min-width:0!important;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px;align-items:start;margin:0}
+html[data-skin] app-ro-calculator>.grid>[class*="col-"]{width:auto;max-width:none;padding:0;min-width:0}
 html[data-skin] app-ro-calculator .grid>[class*="col-"]:not(.col){min-width:0}
-html[data-skin] .json_display pre{white-space:pre-wrap;word-break:break-word}
 
-/* inputs: softer corners */
-html[data-skin] .p-dropdown,html[data-skin] .p-inputtext,html[data-skin] .p-multiselect,html[data-skin] .p-cascadeselect,html[data-skin] .p-button{border-radius:8px}
+/* sections: whitespace + hairline dividers, no boxes */
+html[data-skin] .ux-heading{border:0;margin:26px 0 8px;padding:0 0 6px;border-bottom:1px solid var(--sk-line);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sk-muted);font-weight:700}
+html[data-skin] .grid.mt-3 .ux-heading{margin-top:8px}
+html[data-skin] div:has(>app-equipment){margin-bottom:0}
+html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:has(>div:not([hidden])){padding:5px 0;border-bottom:1px solid var(--sk-line)}
+html[data-skin] .item_label_shadow{padding-top:3px;padding-bottom:3px}
+html[data-skin] #booster-set-btn{margin:4px 0 8px}
+
+/* fields: one quiet surface, native colour coding kept on the text */
+html[data-skin] .p-dropdown,html[data-skin] .p-inputtext,html[data-skin] .p-multiselect,html[data-skin] .p-cascadeselect{background:var(--sk-field)!important;border:1px solid var(--sk-border)!important;border-radius:8px;box-shadow:none!important;transition:border-color .15s}
+html[data-skin] .p-dropdown .p-inputtext,html[data-skin] .p-multiselect .p-multiselect-label,html[data-skin] .p-cascadeselect .p-inputtext{border:0!important;background:transparent!important}
+html[data-skin] :is(.p-dropdown,.p-multiselect,.p-cascadeselect,.p-inputtext):not(.p-disabled):hover{border-color:color-mix(in srgb,var(--sk-accent) 55%,var(--sk-border))!important}
+html[data-skin] :is(.p-dropdown,.p-multiselect,.p-cascadeselect).p-focus,html[data-skin] .p-inputtext:focus{border-color:var(--sk-accent)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--sk-accent) 22%,transparent)!important}
+html[data-skin] app-ro-calculator :is([class*="item_label_"] :is(.p-dropdown-label,.p-cascadeselect-label),[class*="item-position-"],[class*="summary_"],.monster_hilight_label,.skill_hilight_label,.battle_row_health,.item_label_pet){background:transparent!important}
+html[data-skin] .p-inputtext,html[data-skin] .p-dropdown .p-dropdown-label,html[data-skin] .p-multiselect .p-multiselect-label,html[data-skin] .p-cascadeselect .p-cascadeselect-label{padding:.45rem .6rem}
+html[data-skin] .p-dropdown .p-dropdown-trigger,html[data-skin] .p-multiselect .p-multiselect-trigger,html[data-skin] .p-cascadeselect .p-cascadeselect-trigger{width:1.9rem;color:var(--sk-muted)}
+html[data-skin] .p-inputgroup-addon{background:transparent!important;border-color:var(--sk-border)!important;color:var(--sk-muted);padding:.45rem .6rem;min-width:0}
 html[data-skin] .p-inputgroup>*{border-radius:0}
 html[data-skin] .p-inputgroup>:first-child{border-radius:8px 0 0 8px}
 html[data-skin] .p-inputgroup>:last-child{border-radius:0 8px 8px 0}
+html[data-skin] .p-button{border-radius:8px;padding:.45rem .85rem;box-shadow:none!important}
 
-/* compact controls: the calculator is dense, lara's default padding truncates values */
-html[data-skin] .p-inputtext,html[data-skin] .p-dropdown .p-dropdown-label,html[data-skin] .p-multiselect .p-multiselect-label,html[data-skin] .p-cascadeselect .p-cascadeselect-label{padding:.45rem .55rem}
-html[data-skin] .p-dropdown .p-dropdown-trigger,html[data-skin] .p-multiselect .p-multiselect-trigger,html[data-skin] .p-cascadeselect .p-cascadeselect-trigger{width:1.9rem}
-html[data-skin] .p-button{padding:.45rem .8rem}
-html[data-skin] .p-inputgroup-addon{padding:.45rem .55rem;min-width:0}
+/* results: light panels, flat headers */
+html[data-skin] .detached-panel-launchers{gap:8px}
+html[data-skin] .detached-launch-button,html[data-skin] .p-accordion .p-accordion-header .p-accordion-header-link{border-radius:var(--sk-r)!important;border:1px solid var(--sk-line)!important;background:var(--sk-panel)!important;color:var(--sk-text)!important;box-shadow:none!important;font-weight:600}
+html[data-skin] .p-accordion p-accordiontab{display:block;margin-bottom:8px}
+html[data-skin] .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{color:var(--sk-accent)!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important;border-bottom-color:transparent!important}
+html[data-skin] .p-accordion .p-accordion-content{background:var(--sk-panel);border:1px solid var(--sk-line);border-top:0;border-radius:0 0 var(--sk-r) var(--sk-r);color:var(--sk-text);padding:14px}
+html[data-skin] .p-datatable,html[data-skin] .damage_table{max-width:100%;min-width:0;overflow-x:auto}
+html[data-skin] .p-datatable .p-datatable-thead>tr>th{background:transparent;border-color:var(--sk-line);color:var(--sk-muted);font-weight:600}
+html[data-skin] .p-datatable .p-datatable-tbody>tr{background:transparent}
+html[data-skin] .p-datatable .p-datatable-tbody>tr>td{border-color:var(--sk-line)}
+html[data-skin] .json_display pre{white-space:pre-wrap;word-break:break-word}
+html[data-skin] .battle_summary .text-lg{font-size:1.3rem;font-weight:700}
 
-/* class/stat card: class block + stat inputs on one line, computed stats full width below */
-html[data-skin] .sk-charcard>.col-8,html[data-skin] .sk-charcard>.col-8>.grid{display:contents}
-html[data-skin] .sk-charcard>.col-4{width:100%;flex:0 0 100%}
-html[data-skin] .sk-charcard>.col-8>.grid>.col-5{width:100%;flex:0 0 100%;margin-top:8px}
-html[data-skin] .sk-charcard>.col-8>.grid>.col-7{width:100%;flex:0 0 100%;margin-top:10px;padding-top:10px;border-top:1px solid var(--sk-border)}
-
-/* light mode: the app hard-codes #121212 chips with pastel text; invert keeps each slot's colour code readable */
+/* light mode: native pastel text was made for dark chips; invert keeps each slot's colour code readable */
 html[data-skin=light] app-ro-calculator :is([class*="item_label_"] :is(.p-dropdown-label,.p-cascadeselect-label,.p-multiselect-label),[class*="item-position-"],[class*="summary_"],.item_float_label,.monster_hilight_label,.skill_hilight_label,.battle_row_health,.monster-custom-toggle,.monster-custom-reset,#debuff-bar select,#active-skill-bar select,#quick-toggles select,#dummy-damage select){filter:invert(1) hue-rotate(180deg)}
 html[data-skin=light] app-ro-calculator :is([class*="item_label_"] .p-dropdown-label,[class*="summary_"]) img{filter:invert(1) hue-rotate(180deg)}
-html[data-skin=light] .item_label_pet{background:transparent!important}
 
-/* all equipment groups in one column: slim headings, tight cards */
-html[data-skin] app-ro-calculator>.grid>.col-7 .ux-heading{margin:6px 2px 3px;font-size:11px}
-html[data-skin] .sk-compare{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
-html[data-skin] .sk-compare{flex-wrap:nowrap!important}
-html[data-skin] .sk-compare>label{margin:0!important;flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-html[data-skin] .sk-compare>:not(label){flex:1 1 200px;min-width:0}
-html[data-skin] .sk-consumable #quick-toggles{grid-template-columns:repeat(auto-fill,minmax(108px,1fr))!important}
-
-/* ---------- desktop: whole calculator in one screen, columns scroll on their own if needed ---------- */
-@media (min-width:1101px) and (min-height:600px){
-  /* density follows screen height: tight on 1080p, roomy on 1440p+ */
-  html[data-skin]{font-size:clamp(13px,calc(.75vh + 5px),16px)!important;--sk-in:clamp(.2rem,calc(.85vh - 5px),.65rem);--sk-row:clamp(1px,calc(1.3vh - 11.5px),10px)}
-  html[data-skin],html[data-skin] body{height:100%;overflow:hidden}
-  html[data-skin] .layout-main{padding:10px 12px}
-  html[data-skin] .layout-footer{display:none}
-  html[data-skin] .layout-topbar{min-height:44px;padding:4px 12px}
-  html[data-skin] .layout-topbar .p-button{height:30px}
-  html[data-skin] app-ro-calculator>.grid{gap:12px;height:calc(100vh - var(--sk-top,52px) - 20px)}
-  html[data-skin] app-ro-calculator>.grid>:is(.col-7,.col-5,#sk-side){height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;padding-right:4px}
-  html[data-skin] .sk-charcard,html[data-skin] .sk-card,html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3,
-  html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:has(>div:not([hidden])){padding:6px 10px;margin:0 0 6px!important;border-radius:10px}
-  html[data-skin] .detached-panel-launchers{flex-direction:row}
-  html[data-skin] .detached-launch-button{flex:1;min-height:0;padding:6px 10px}
-  html[data-skin] .p-accordion p-accordiontab{margin-bottom:6px}
-  html[data-skin] .p-accordion .p-accordion-header .p-accordion-header-link{padding:.6rem .9rem}
-  html[data-skin] .p-accordion .p-accordion-content{padding:8px}
-}
-
-/* compact left column */
-#sk-side .p-inputtext,#sk-side .p-dropdown .p-dropdown-label{padding:var(--sk-in) .5rem}
-#sk-side .p-inputgroup-addon{padding:var(--sk-in) .5rem}
-#sk-side .p-button{padding:.3rem .6rem}
-#sk-side .sk-charcard .col-12,#sk-side .sk-charcard .col,#sk-side .sk-charcard .col-fixed{padding-top:var(--sk-row);padding-bottom:var(--sk-row)}
-#sk-side .col-12:has(>#copy-equipment){display:flex;gap:4px;align-items:stretch}
-#sk-side .col-12:has(>#copy-equipment)>.p-inputgroup{flex:1;min-width:0}
-#copy-equipment{margin:0!important;white-space:nowrap}
-/* Level | Up Class | Job on one line */
-#sk-side .sk-charcard .col-fixed+.col-12{flex:0 0 40%;width:40%;padding-left:4px}
-#sk-side .sk-charcard .col-fixed+.col-12+.col-12 .p-inputgroup-addon{background:none;border:0;justify-content:flex-start;font-size:12px;color:var(--sk-muted);padding:0 .2rem}
-#sk-side .sk-charcard>.col-8>.grid>.col-7{font-size:12px;line-height:1.35;margin-top:6px;padding-top:6px}
-#sk-side .sk-charcard>.col-8>.grid>.col-7 .p-inputtext,#sk-side .sk-charcard .p-checkbox+label{font-size:12px}
-#sk-more{background:none;border:0;padding:0 10px 0 0;color:var(--sk-accent);font-size:12px;cursor:pointer;margin-left:auto}
-#sk-more+button{margin-left:0!important}
-.sk-consumable #quick-toggles.sk-collapsed>.sk-extra.p-button-outlined{display:none}
-.sk-consumable #quick-toggles{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))!important;gap:4px!important;padding:4px 0 0!important}
-.sk-consumable #quick-toggles>*{min-height:calc(1.4rem + var(--sk-in))!important;padding:2px 6px!important}
-.sk-consumable #quick-toggles img{width:16px;height:16px}
-
-/* item + refine on one line (halves each equipment row) */
-html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child){flex-direction:row;flex-wrap:nowrap;gap:4px}
-html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child)>.col-12{flex:1 1 auto;width:auto;min-width:0}
-html[data-skin] app-equipment>.grid>.col-3>.flex-row-reverse:has(>.col-6[hidden]):has(>.col-4:last-child)>.col-4{flex:0 0 64px;width:64px;min-width:0!important}
-html[data-skin] app-equipment>.grid>.col-3{width:44%;flex:0 0 44%}
-html[data-skin] app-equipment>.grid>.col-9{width:56%;flex:0 0 56%}
-
-/* equipment column: flat rows with dividers instead of one card per slot, shorter controls */
-html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(.sk-compare):has(>div:not([hidden])){background:transparent!important;border:0!important;border-bottom:1px solid var(--sk-border)!important;border-radius:0!important;box-shadow:none!important;padding:var(--sk-row) 2px!important;margin:0!important}
-html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3{padding:2px 8px!important;margin:4px 0 0!important}
-html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3:has(>.item_label_pet){background:none!important;border:0!important;box-shadow:none!important;padding:var(--sk-row) 2px!important;margin:0!important}
-html[data-skin] .sk-compare{padding:3px 8px!important;margin-bottom:4px!important}
-html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown .p-dropdown-label,.p-inputtext,.p-cascadeselect .p-cascadeselect-label,.p-multiselect .p-multiselect-label){padding:var(--sk-in) .45rem;font-size:.95rem}
-html[data-skin] app-ro-calculator>.grid>.col-7 :is(.p-dropdown-trigger,.p-cascadeselect-trigger,.p-multiselect-trigger){width:1.6rem}
-html[data-skin] app-ro-calculator>.grid>.col-7 .item_label_shadow{padding-top:1px;padding-bottom:1px}
-
-html[data-skin] app-ro-calculator>.grid>.col-7 .item_label_acc label.item_float_label{display:none}
-
-/* mobile jump bar */
 #skin-jump{display:none}
 
 /* ---------- tablet: single column ---------- */
 @media (max-width:1100px){
   html[data-skin] app-ro-calculator>.grid{grid-template-columns:minmax(0,1fr)}
   html[data-skin] body{padding-bottom:64px}
-  #skin-jump{display:flex;position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:950;background:var(--sk-card);border:1px solid var(--sk-border);border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:4px;gap:4px}
+  #skin-jump{display:flex;position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:950;background:var(--sk-panel);border:1px solid var(--sk-border);border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:4px;gap:4px}
   #skin-jump button{border:0;background:transparent;color:var(--sk-text);font:inherit;font-weight:600;padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
   #skin-jump button:active{background:var(--sk-accent);color:var(--sk-on-accent)}
 }
 /* ---------- phone ---------- */
 @media (max-width:700px){
-  html[data-skin] .layout-main{padding:10px}
+  html[data-skin] .layout-main{padding:12px}
   html[data-skin] .layout-topbar{padding:6px 10px;position:static}
   html[data-skin]{scroll-padding-top:8px}
   html[data-skin] .layout-topbar .p-button .p-button-label{display:none}
   html[data-skin] .layout-topbar .p-button .p-button-icon{margin:0}
   html[data-skin] .layout-topbar .router-link{order:9;width:100%;overflow-x:auto}
-  /* class/stat block, stat inputs and stat summary stack */
-  html[data-skin] .sk-charcard>.col-4,
-  html[data-skin] .sk-charcard>.col-8>.grid>.col-5{width:100%;flex:0 0 100%;max-width:100%;padding-right:0}
-  html[data-skin] .sk-charcard>.col-8>.grid>.col-5{margin-top:10px}
-  /* equipment row: item on its own line, cards/enchants two per line */
+  html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>[class*="col-"],html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8>.grid>[class*="col-"]{width:100%;flex:0 0 100%;max-width:100%}
+  html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8{margin-top:10px}
   html[data-skin] app-equipment>.grid>.col-3,html[data-skin] app-equipment>.grid>.col-9{width:100%;flex:0 0 100%;max-width:100%}
   html[data-skin] app-equipment>.grid>.col-9>.grid>.col-4,html[data-skin] app-equipment>.grid>.col-9 .col-3{width:50%;flex:0 0 50%;max-width:50%}
-  /* shadow row: item + refine, then options two per line */
   html[data-skin] app-equipment-shadow .col-12>.col-3{width:72%;flex:0 0 72%;max-width:72%}
   html[data-skin] app-equipment-shadow .col-12>.col-1{width:28%;flex:0 0 28%;max-width:28%}
   html[data-skin] app-equipment-shadow .col-12>.col-8{width:100%;flex:0 0 100%;max-width:100%}
   html[data-skin] app-equipment-shadow .col-12>.col-8>.col-3{width:50%;flex:0 0 50%;max-width:50%}
   html[data-skin] .item_label_shadow{margin-bottom:8px}
   html[data-skin] .item_label_shadow.lg\:col-6{width:100%}
-  /* costume + pet: two per line */
   html[data-skin] .item_label_costume{width:100%!important;flex:0 0 100%!important;max-width:100%}
   html[data-skin] .item_label_costume>[class*="col-"]{width:50%;flex:0 0 50%;max-width:50%}
   html[data-skin] app-ro-calculator [class*="col-offset-"]{margin-left:0!important}
   html[data-skin] .item_label_pet,html[data-skin] app-ro-calculator .col-9.col-offset-3{width:100%;flex:0 0 100%;max-width:100%}
   html[data-skin] #booster-set-btn{flex-wrap:wrap}
-  /* battle summary: monster block above skill block */
   html[data-skin] .battle_summary>.col-5,html[data-skin] .battle_summary>.col-7{width:100%;flex:0 0 100%;max-width:100%}
   html[data-skin] #debuff-bar{grid-template-columns:repeat(3,minmax(0,1fr))!important}
   html[data-skin] #active-skill-bar{grid-template-columns:repeat(2,minmax(0,1fr))!important}

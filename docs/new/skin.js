@@ -1,4 +1,4 @@
-// New-look skin for /new/: theme switch, URL keeper, mobile jump bar. Calculator engine is untouched.
+// New-look skin for /new/: theme switch, URL keeper, mobile jump bar. Layout and engine stay native.
 (function () {
   var KEY = 'skinTheme';
   var THEME = { dark: 'assets/layout/styles/theme/lara-dark-blue/theme.css', light: 'new/lara-light-blue.css' };
@@ -27,73 +27,6 @@
     };
   });
 
-  // Three columns: character + consumables | equipment tabs | results. Only our own nodes and the static
-  // character card move; Angular-managed lists stay where the app renders them.
-  function layout(col7, col5) {
-    var side = document.getElementById('sk-side');
-    if (!side) {
-      side = document.createElement('div');
-      side.id = 'sk-side'; side.className = 'col-sk';
-      col7.before(side);
-    }
-    var card = col7.querySelector(':scope > .grid:has(.dropdown-joblist)');
-    if (card) { card.classList.add('sk-charcard'); side.prepend(card); }
-    var qt = document.getElementById('quick-toggles');
-    if (qt && !qt.closest('#sk-side')) {
-      var box = document.createElement('div'); box.className = 'sk-card sk-consumable';
-      box.append(qt.previousElementSibling, qt); side.appendChild(box);
-    }
-    compactSide(side);
-    // Compare controls belong to the equipment column, not the character stats.
-    var cmp = document.querySelector('.item_label_compare');
-    if (cmp && cmp.parentElement !== col7) { cmp.classList.add('sk-card', 'sk-compare'); col7.prepend(cmp); }
-    if (!document.getElementById('skin-jump')) {
-      var nav = document.createElement('nav');
-      nav.id = 'skin-jump'; nav.setAttribute('aria-label', 'ไปยังส่วน');
-      [['👤 ตัวละคร', '#sk-side'], ['🛡️ อุปกรณ์', 'app-ro-calculator > .grid > .col-7'], ['⚔️ ผลลัพธ์', 'app-ro-calculator > .grid > .col-5']].forEach(function (x) {
-        var a = document.createElement('button');
-        a.type = 'button'; a.textContent = x[0];
-        a.onclick = function () { var t = document.querySelector(x[1]); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
-        nav.appendChild(a);
-      });
-      document.body.appendChild(nav);
-    }
-    var bar = document.querySelector('.layout-topbar'), top = (bar ? bar.offsetHeight : 52) + 'px';
-    if (document.documentElement.style.getPropertyValue('--sk-top') !== top) document.documentElement.style.setProperty('--sk-top', top);
-  }
-
-  // Rarely used consumables fold away; anything switched on stays visible.
-  function compactSide(side) {
-    var copy = document.getElementById('copy-equipment');
-    if (copy && copy.textContent !== '⧉ Copy') { copy.textContent = '⧉ Copy'; copy.title = 'Copy equipment / stat จาก Preset'; }
-    var qt = side.querySelector('#quick-toggles');
-    if (!qt) return;
-    var btns = [].slice.call(qt.querySelectorAll(':scope > button'));
-    var cut = btns.findIndex(function (b) { return b.textContent.trim() === 'ASPD Pot'; });
-    btns.forEach(function (b, i) { b.classList.toggle('sk-extra', cut >= 0 && i > cut); });
-    var head = qt.previousElementSibling;
-    if (head && !document.getElementById('sk-more')) {
-      var more = document.createElement('button');
-      more.id = 'sk-more'; more.type = 'button';
-      more.onclick = function () { localStorage.setItem('skinMore', localStorage.getItem('skinMore') === '1' ? '0' : '1'); compactSide(side); };
-      head.lastChild.before(more);
-    }
-    var n = qt.querySelectorAll('.sk-extra').length, stored = localStorage.getItem('skinMore');
-    var open = stored === '1';
-    if (stored === null && btns.length) {
-      // No explicit choice yet: show everything when the column has room for it.
-      var cols = getComputedStyle(qt).gridTemplateColumns.split(' ').length || 1;
-      var need = Math.ceil(n / cols) * (btns[0].offsetHeight + 4);
-      var last = side.lastElementChild.getBoundingClientRect().bottom - side.getBoundingClientRect().top;
-      var shown = qt.classList.contains('sk-collapsed') ? 0 : need;
-      open = side.clientHeight - last + shown > need + 8;
-    }
-    qt.classList.toggle('sk-collapsed', !open);
-    var label = open ? '− ซ่อน' : '+ อื่นๆ (' + n + ')';
-    var m = document.getElementById('sk-more');
-    if (m && m.textContent !== label) m.textContent = label;
-  }
-
   function mount() {
     var bar = document.querySelector('.layout-topbar');
     if (bar && !document.getElementById('skin-toggle')) {
@@ -103,9 +36,17 @@
       bar.insertBefore(b, bar.querySelector('.layout-topbar-menu'));
       apply(mode);
     }
-    var col7 = document.querySelector('app-ro-calculator > .grid > .col-7');
-    var col5 = document.querySelector('app-ro-calculator > .grid > .col-5');
-    if (col7 && col5) layout(col7, col5);
+    if (document.querySelector('app-ro-calculator > .grid > .col-5') && !document.getElementById('skin-jump')) {
+      var nav = document.createElement('nav');
+      nav.id = 'skin-jump'; nav.setAttribute('aria-label', 'ไปยังส่วน');
+      [['🛡️ อุปกรณ์', '.col-7'], ['⚔️ ผลลัพธ์', '.col-5']].forEach(function (x) {
+        var a = document.createElement('button');
+        a.type = 'button'; a.textContent = x[0];
+        a.onclick = function () { var t = document.querySelector('app-ro-calculator > .grid > ' + x[1]); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+        nav.appendChild(a);
+      });
+      document.body.appendChild(nav);
+    }
     // The app re-applies its own theme file after boot; keep ours.
     var link = document.getElementById('theme-css');
     if (link && link.getAttribute('href') !== THEME[mode]) link.setAttribute('href', THEME[mode]);
