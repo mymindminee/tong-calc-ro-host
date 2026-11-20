@@ -1,0 +1,118 @@
+/* New-look skin (only loaded from /new/). Layout + colours only; no calculator logic. */
+html[data-skin=dark]{--sk-bg:#0b1120;--sk-card:#121b2e;--sk-card2:#18233a;--sk-border:#26344f;--sk-text:#e6ebf5;--sk-muted:#94a3b8;--sk-accent:#60a5fa;--sk-on-accent:#0b1120;--sk-shadow:0 1px 2px rgba(0,0,0,.4)}
+html[data-skin=light]{--sk-bg:#f1f4f9;--sk-card:#ffffff;--sk-card2:#f6f8fc;--sk-border:#dfe5ee;--sk-text:#1e293b;--sk-muted:#64748b;--sk-accent:#2563eb;--sk-on-accent:#ffffff;--sk-shadow:0 1px 3px rgba(15,23,42,.08)}
+html[data-skin]{--sk-r:14px;scroll-padding-top:64px}
+html[data-skin] body{background:var(--sk-bg);color:var(--sk-text);font-family:Inter,"Noto Sans Thai","Segoe UI",system-ui,-apple-system,sans-serif;overflow-x:hidden}
+
+/* top bar: sticky, wraps instead of forcing 1500px */
+html[data-skin] .layout-topbar{min-width:0!important;position:sticky;top:0;height:auto;min-height:52px;flex-wrap:wrap;gap:6px 8px;padding:6px 16px;background:color-mix(in srgb,var(--sk-card) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--sk-border);box-shadow:none;z-index:900}
+html[data-skin] .layout-topbar>span.px-2{font-weight:700;font-size:16px;color:var(--sk-accent)}
+html[data-skin] .layout-topbar .router-link{top:0!important;padding:0!important}
+html[data-skin] .layout-topbar .layout-topbar-menu{margin-left:auto;flex-wrap:wrap;gap:6px;height:auto;position:static;display:flex;background:none;box-shadow:none;border:0;padding:0;min-width:0;width:auto}
+html[data-skin] .layout-topbar .p-button{box-shadow:none;height:34px}
+html[data-skin] .layout-topbar .p-button.p-button-rounded{background:transparent;border:1px solid var(--sk-border);color:var(--sk-text);font-weight:600}
+html[data-skin] .layout-topbar .p-button.p-button-rounded:hover{border-color:var(--sk-accent);color:var(--sk-accent)}
+html[data-skin] .p-tabmenu .p-tabmenu-nav,html[data-skin] .p-tabmenu .p-tabmenu-nav .p-menuitem-link{background:transparent;border-color:transparent}
+#skin-toggle{width:34px;height:34px;border-radius:50%;border:1px solid var(--sk-border);background:var(--sk-card2);cursor:pointer;font-size:16px;line-height:1;margin-left:auto}
+#skin-toggle+.layout-topbar-menu{margin-left:0!important}
+html[data-skin] .layout-config-button{display:none}
+html[data-skin] .layout-main-container{padding:0!important;min-height:0}
+html[data-skin] .layout-main{padding:16px}
+html[data-skin] .layout-footer{padding:16px;color:var(--sk-muted)}
+
+/* two fluid columns instead of a fixed 1500px canvas */
+html[data-skin] app-ro-calculator>.grid{min-width:0!important;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:16px;align-items:start;margin:0}
+html[data-skin] app-ro-calculator>.grid>[class*="col-"]{width:auto;max-width:none;padding:0}
+
+/* cards */
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child,
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid.mt-3,
+html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:has(>div:not([hidden])){background:var(--sk-card);border:1px solid var(--sk-border);border-radius:var(--sk-r);box-shadow:var(--sk-shadow);padding:10px 12px;margin:0 0 10px!important}
+html[data-skin] app-ro-calculator>.grid>.col-7>[class*="item_label_"]:not(:has(>div:not([hidden]))){display:none}
+html[data-skin] div:has(>app-equipment){margin-bottom:0}
+html[data-skin] .ux-heading{border:0;margin:14px 2px 6px;padding:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--sk-muted);font-weight:700}
+html[data-skin] .grid.mt-3 .ux-heading{margin-top:0}
+
+/* wider item name next to its cards/enchants; headline damage numbers stand out */
+html[data-skin] app-equipment>.grid>.col-3{width:36%;flex:0 0 36%}
+html[data-skin] app-equipment>.grid>.col-9{width:64%;flex:0 0 64%}
+html[data-skin] .battle_summary .text-lg{font-size:1.3rem;font-weight:700}
+
+/* results column */
+html[data-skin] .detached-panel-launchers{gap:8px}
+html[data-skin] .detached-launch-button,html[data-skin] .p-accordion .p-accordion-header .p-accordion-header-link{border-radius:var(--sk-r)!important;border:1px solid var(--sk-border)!important;background:var(--sk-card)!important;color:var(--sk-text)!important;box-shadow:var(--sk-shadow)}
+html[data-skin] .p-accordion p-accordiontab{display:block;margin-bottom:8px}
+html[data-skin] .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link{background:var(--sk-accent)!important;border-color:var(--sk-accent)!important;color:var(--sk-on-accent)!important;border-bottom-left-radius:0!important;border-bottom-right-radius:0!important}
+html[data-skin] .p-accordion .p-accordion-content{background:var(--sk-card);border:1px solid var(--sk-border);border-top:0;border-radius:0 0 var(--sk-r) var(--sk-r);color:var(--sk-text);padding:12px}
+html[data-skin] .p-datatable,html[data-skin] .damage_table{max-width:100%;min-width:0;overflow-x:auto}
+html[data-skin] app-ro-calculator .grid>[class*="col-"]:not(.col){min-width:0}
+html[data-skin] .json_display pre{white-space:pre-wrap;word-break:break-word}
+
+/* inputs: softer corners */
+html[data-skin] .p-dropdown,html[data-skin] .p-inputtext,html[data-skin] .p-multiselect,html[data-skin] .p-cascadeselect,html[data-skin] .p-button{border-radius:8px}
+html[data-skin] .p-inputgroup>*{border-radius:0}
+html[data-skin] .p-inputgroup>:first-child{border-radius:8px 0 0 8px}
+html[data-skin] .p-inputgroup>:last-child{border-radius:0 8px 8px 0}
+
+/* compact controls: the calculator is dense, lara's default padding truncates values */
+html[data-skin] .p-inputtext,html[data-skin] .p-dropdown .p-dropdown-label,html[data-skin] .p-multiselect .p-multiselect-label,html[data-skin] .p-cascadeselect .p-cascadeselect-label{padding:.45rem .55rem}
+html[data-skin] .p-dropdown .p-dropdown-trigger,html[data-skin] .p-multiselect .p-multiselect-trigger,html[data-skin] .p-cascadeselect .p-cascadeselect-trigger{width:1.9rem}
+html[data-skin] .p-button{padding:.45rem .8rem}
+html[data-skin] .p-inputgroup-addon{padding:.45rem .55rem;min-width:0}
+
+/* class/stat card: class block + stat inputs on one line, computed stats full width below */
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8,html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8>.grid{display:contents}
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-4{width:44%;flex:0 0 44%;padding-right:12px}
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8>.grid>.col-5{width:56%;flex:0 0 56%}
+html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8>.grid>.col-7{width:100%;flex:0 0 100%;margin-top:10px;padding-top:10px;border-top:1px solid var(--sk-border)}
+
+/* light mode: the app hard-codes #121212 chips with pastel text; invert keeps each slot's colour code readable */
+html[data-skin=light] app-ro-calculator :is([class*="item_label_"] :is(.p-dropdown-label,.p-cascadeselect-label,.p-multiselect-label),[class*="item-position-"],[class*="summary_"],.item_float_label,.monster_hilight_label,.skill_hilight_label,.battle_row_health,.monster-custom-toggle,.monster-custom-reset,#debuff-bar select,#active-skill-bar select,#quick-toggles select,#dummy-damage select){filter:invert(1) hue-rotate(180deg)}
+html[data-skin=light] app-ro-calculator :is([class*="item_label_"] .p-dropdown-label,[class*="summary_"]) img{filter:invert(1) hue-rotate(180deg)}
+html[data-skin=light] .item_label_pet{background:transparent!important}
+
+/* mobile jump bar */
+#skin-jump{display:none}
+
+/* ---------- tablet: single column ---------- */
+@media (max-width:1100px){
+  html[data-skin] app-ro-calculator>.grid{grid-template-columns:minmax(0,1fr)}
+  html[data-skin] body{padding-bottom:64px}
+  #skin-jump{display:flex;position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:950;background:var(--sk-card);border:1px solid var(--sk-border);border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:4px;gap:4px}
+  #skin-jump button{border:0;background:transparent;color:var(--sk-text);font:inherit;font-weight:600;padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+  #skin-jump button:active{background:var(--sk-accent);color:var(--sk-on-accent)}
+}
+/* ---------- phone ---------- */
+@media (max-width:700px){
+  html[data-skin] .layout-main{padding:10px}
+  html[data-skin] .layout-topbar{padding:6px 10px;position:static}
+  html[data-skin]{scroll-padding-top:8px}
+  html[data-skin] .layout-topbar .p-button .p-button-label{display:none}
+  html[data-skin] .layout-topbar .p-button .p-button-icon{margin:0}
+  html[data-skin] .layout-topbar .router-link{order:9;width:100%;overflow-x:auto}
+  /* class/stat block, stat inputs and stat summary stack */
+  html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-4,
+  html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8>.grid>.col-5{width:100%;flex:0 0 100%;max-width:100%;padding-right:0}
+  html[data-skin] app-ro-calculator>.grid>.col-7>.grid:first-child>.col-8>.grid>.col-5{margin-top:10px}
+  /* equipment row: item on its own line, cards/enchants two per line */
+  html[data-skin] app-equipment>.grid>.col-3,html[data-skin] app-equipment>.grid>.col-9{width:100%;flex:0 0 100%;max-width:100%}
+  html[data-skin] app-equipment>.grid>.col-9>.grid>.col-4,html[data-skin] app-equipment>.grid>.col-9 .col-3{width:50%;flex:0 0 50%;max-width:50%}
+  /* shadow row: item + refine, then options two per line */
+  html[data-skin] app-equipment-shadow .col-12>.col-3{width:72%;flex:0 0 72%;max-width:72%}
+  html[data-skin] app-equipment-shadow .col-12>.col-1{width:28%;flex:0 0 28%;max-width:28%}
+  html[data-skin] app-equipment-shadow .col-12>.col-8{width:100%;flex:0 0 100%;max-width:100%}
+  html[data-skin] app-equipment-shadow .col-12>.col-8>.col-3{width:50%;flex:0 0 50%;max-width:50%}
+  html[data-skin] .item_label_shadow{margin-bottom:8px}
+  html[data-skin] .item_label_shadow.lg\:col-6{width:100%}
+  /* costume + pet: two per line */
+  html[data-skin] .item_label_costume{width:100%!important;flex:0 0 100%!important;max-width:100%}
+  html[data-skin] .item_label_costume>[class*="col-"]{width:50%;flex:0 0 50%;max-width:50%}
+  html[data-skin] app-ro-calculator [class*="col-offset-"]{margin-left:0!important}
+  html[data-skin] .item_label_pet,html[data-skin] app-ro-calculator .col-9.col-offset-3{width:100%;flex:0 0 100%;max-width:100%}
+  html[data-skin] #booster-set-btn{flex-wrap:wrap}
+  /* battle summary: monster block above skill block */
+  html[data-skin] .battle_summary>.col-5,html[data-skin] .battle_summary>.col-7{width:100%;flex:0 0 100%;max-width:100%}
+  html[data-skin] #debuff-bar{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  html[data-skin] #active-skill-bar{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  html[data-skin] #copy-equipment-dialog{width:96vw!important}
+}

@@ -32,4 +32,12 @@ grep -q "modulepreload\" href=\"$calc\"" index.html && ! grep -q pagead2 index.h
 # 4) snappier recalculation: debounce 250ms -> 80ms, spinner 100ms -> 30ms (calc itself ~12ms)
 sed -i -E 's/(isCalculating=!0(,c\.add\(A\))?\}?\)),Gt\(250\)\)/\1,Gt(80))/g; s/isCalculatingEvent\.pipe\(Gt\(100\)\)/isCalculatingEvent.pipe(Gt(30))/' "$calc"
 [ "$(grep -o 'isCalculating=!0[^G]*Gt(80))' "$calc" | wc -l)" = 3 ] || { echo "debounce patch count wrong"; exit 1; }
+
+# 5) /new/: the same engine and data with the new skin (theme switch, responsive). index.html stays as is.
+mkdir -p new && cp ../skin/* new/
+sv=$(cat ../skin/* | md5sum | cut -c1-8)
+sed -E -e 's#<base href="[^"]*">#<base href="../../tong-calc-ro-host/">#' \
+  -e "s#(<link id=\"theme-css\"[^>]*>)#\\1<script src=\"new/skin.js?v=$sv\"></script>#" \
+  -e "s#</head>#<link rel=\"stylesheet\" href=\"new/skin.css?v=$sv\"></head>#" index.html > new/index.html
+grep -q "new/skin.js?v=$sv" new/index.html && grep -q "new/skin.css?v=$sv" new/index.html && grep -q 'base href="../../tong-calc-ro-host/"' new/index.html
 echo patched
