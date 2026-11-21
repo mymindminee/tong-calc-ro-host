@@ -670,6 +670,11 @@
       var style = document.createElement('style'); style.id = 'ux-headings';
       style.textContent = '.ux-heading{font-weight:600;font-size:15px;padding:10px 0 4px;border-top:1px solid #334155;margin-top:8px}' +
         'div:has(>app-equipment){margin-bottom:8px}' +
+        // compare rows: amber band + VS badge, glued to the item they are compared with
+        '.grid.item_label_compare:has(app-equipment){position:relative;padding:4px 6px 4px 38px!important;margin:-4px 0 10px!important;background:rgba(245,158,11,.08)!important;border-left:3px solid #f59e0b!important;border-radius:0 0 8px 8px}' +
+        '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:6px;top:8px;font:700 10px/18px sans-serif;letter-spacing:.05em;color:#111;background:#f59e0b;border-radius:4px;padding:0 4px}' +
+        '[class*="item_label_"]:has(+ .grid.item_label_compare app-equipment){background:rgba(96,165,250,.07)!important;border-left:3px solid #60a5fa!important;border-bottom:0!important;border-radius:8px 8px 0 0;padding-left:35px!important;position:relative}' +
+        '[class*="item_label_"]:has(+ .grid.item_label_compare app-equipment)::before{content:"NOW";position:absolute;left:4px;top:8px;font:700 10px/18px sans-serif;color:#0b1220;background:#60a5fa;border-radius:4px;padding:0 3px}' +
         '.p-datatable .p-datatable-tbody>tr>td,.p-datatable .p-datatable-thead>tr>th{font-size:15px;padding-top:6px;padding-bottom:6px}';
       document.head.appendChild(style);
     }
