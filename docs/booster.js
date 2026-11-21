@@ -671,10 +671,10 @@
       style.textContent = '.ux-heading{font-weight:600;font-size:15px;padding:10px 0 4px;border-top:1px solid #334155;margin-top:8px}' +
         'div:has(>app-equipment){margin-bottom:8px}' +
         // compare rows: amber band + VS tag on the top edge (no padding, so columns stay aligned with the item above)
-        '.grid.item_label_compare:has(app-equipment){position:relative;margin:2px 0 12px!important;padding-top:6px!important;padding-bottom:4px!important;background:rgba(245,158,11,.08)!important;box-shadow:inset 3px 0 0 #f59e0b;border-radius:0 0 8px 8px}' +
-        '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:6px;top:-8px;z-index:2;font:700 10px/14px sans-serif;color:#111;background:#f59e0b;border-radius:4px;padding:0 5px;pointer-events:none}' +
-        '.cmp-now{position:relative;padding-top:8px!important;background:rgba(96,165,250,.07)!important;box-shadow:inset 3px 0 0 #60a5fa;border-bottom:0!important;border-radius:8px 8px 0 0}' +
-        '.cmp-now::before{content:"NOW";position:absolute;left:6px;top:-6px;z-index:2;font:700 10px/14px sans-serif;color:#0b1220;background:#60a5fa;border-radius:4px;padding:0 5px;pointer-events:none}' +
+        '.grid.item_label_compare:has(app-equipment){position:relative;margin:0 0 12px!important;padding:20px 8px 8px 12px!important;background:rgba(245,158,11,.08)!important;box-shadow:inset 3px 0 0 #f59e0b;border-radius:0 0 8px 8px}' +
+        '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:12px;top:4px;z-index:2;font:700 10px/14px sans-serif;color:#111;background:#f59e0b;border-radius:4px;padding:0 5px;pointer-events:none}' +
+        '.cmp-now{position:relative;padding:20px 8px 8px 12px!important;margin-top:6px!important;background:rgba(96,165,250,.07)!important;box-shadow:inset 3px 0 0 #60a5fa;border-bottom:0!important;border-radius:8px 8px 0 0}' +
+        '.cmp-now::before{content:"NOW";position:absolute;left:12px;top:4px;z-index:2;font:700 10px/14px sans-serif;color:#0b1220;background:#60a5fa;border-radius:4px;padding:0 5px;pointer-events:none}' +
         '.p-datatable .p-datatable-tbody>tr>td,.p-datatable .p-datatable-thead>tr>th{font-size:15px;padding-top:6px;padding-bottom:6px}';
       document.head.appendChild(style);
     }
