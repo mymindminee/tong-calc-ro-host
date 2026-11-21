@@ -714,6 +714,9 @@
       var style = document.createElement('style'); style.id = 'ux-headings';
       style.textContent = '.ux-heading{font-weight:600;font-size:15px;padding:10px 0 4px;border-top:1px solid #334155;margin-top:8px}' +
         'div:has(>app-equipment){margin-bottom:8px}' +
+        // wider item-name column; room for the clear (x) icon so long names end in "…" instead of under it
+        'app-equipment>.grid>.col-3{width:32%!important}app-equipment>.grid>.col-9{width:68%!important}' +
+        '.p-dropdown-clearable .p-dropdown-label{padding-right:2.4rem!important}' +
         // compare rows: amber band + VS tag on the top edge (no padding, so columns stay aligned with the item above)
         '.grid.item_label_compare:has(app-equipment){position:relative;margin:0 0 12px!important;padding:20px 8px 8px 12px!important;background:rgba(245,158,11,.08)!important;box-shadow:inset 3px 0 0 #f59e0b;border-radius:0 0 8px 8px}' +
         '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:12px;top:4px;z-index:2;font:700 10px/14px sans-serif;color:#111;background:#f59e0b;border-radius:4px;padding:0 5px;pointer-events:none}' +
