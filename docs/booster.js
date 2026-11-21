@@ -718,7 +718,7 @@
         'app-equipment>.grid>.col-3{width:32%!important}app-equipment>.grid>.col-9{width:68%!important}' +
         '.p-dropdown-clearable .p-dropdown-label{padding-right:2.4rem!important}' +
         // the label text sits in a flex .item_template that overflows into the padding; make it ellipsize itself
-        '.p-dropdown-label .item_template{min-width:0;overflow:hidden}.p-dropdown-label .item_template>img{flex:none}.p-dropdown-label .item_template>div{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+        '.p-dropdown-label .item_template{min-width:0}.p-dropdown-label .item_template>img{flex:none}.p-dropdown-label .item_template>div{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
         // compare rows: amber band + VS tag on the top edge (no padding, so columns stay aligned with the item above)
         '.grid.item_label_compare:has(app-equipment){position:relative;margin:0 0 12px!important;padding:20px 8px 8px 12px!important;background:rgba(245,158,11,.08)!important;box-shadow:inset 3px 0 0 #f59e0b;border-radius:0 0 8px 8px}' +
         '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:12px;top:4px;z-index:2;font:700 10px/14px sans-serif;color:#111;background:#f59e0b;border-radius:4px;padding:0 5px;pointer-events:none}' +
