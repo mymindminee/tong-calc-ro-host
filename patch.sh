@@ -33,6 +33,12 @@ grep -q "modulepreload\" href=\"$calc\"" index.html && ! grep -q pagead2 index.h
 sed -i -E 's/(isCalculating=!0(,c\.add\(A\))?\}?\)),Gt\(250\)\)/\1,Gt(80))/g; s/isCalculatingEvent\.pipe\(Gt\(100\)\)/isCalculatingEvent.pipe(Gt(30))/' "$calc"
 [ "$(grep -o 'isCalculating=!0[^G]*Gt(80))' "$calc" | wc -l)" = 3 ] || { echo "debounce patch count wrong"; exit 1; }
 
+# 4b) tab title + icon (both pages; /new/ is generated from this index.html)
+cp ../favicon.ico ../app-icon.png .
+sed -i -E 's#<title>[^<]*</title>#<title>Ragnarok Calculator</title>#; s#<link rel="(apple-touch-)?icon"[^>]*>##g' index.html
+sed -i 's#</title>#</title><link rel="icon" href="favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" href="app-icon.png?v=2"><link rel="apple-touch-icon" href="app-icon.png?v=2">#' index.html
+grep -q '<title>Ragnarok Calculator</title>' index.html && grep -q 'app-icon.png' index.html
+
 # 5) /new/: the same engine and data with the new skin (theme switch, responsive). index.html stays as is.
 mkdir -p new && cp ../skin/* new/
 sv=$(cat ../skin/* | md5sum | cut -c1-8)
