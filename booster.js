@@ -441,6 +441,50 @@
     };
   }
 
+  // "VS MP <type>": compare only the 6 shadow slots, compare row = MP set +10 with main enchant,
+  // other enchants/options copied from what is worn so the difference is the set itself.
+  function compareMP(type) {
+    run(function (c) {
+      var x = nsv(type), byName = {}, missing = [];
+      c.mapEnchant.forEach(function (e) { byName[e.name] = e.id; });
+      c.model2.rawOptionTxts = c.model2.rawOptionTxts || [];
+      SLOTS.forEach(function (k) {
+        copySlot(c, k);
+        var pick = (c[k + 'List'] || []).find(function (o) { return x.re(k).test(o.label); });
+        if (!pick) return missing.push(k);
+        c.model2[k] = pick.value;
+        c.model2[k + 'Refine'] = 10;
+        var id = byName[x.ench(k)];
+        if (id) c.model2[k + 'Enchant1'] = id; else missing.push(k + ' enchant');
+      });
+      c.compareItemNames = SLOTS.slice();
+      prevCompare = SLOTS.slice();
+      c.onListItemComparingChange();
+      setTimeout(function () { run(function (c) { SLOTS.forEach(function (k) { c[k + 'List'] = c[k + 'List'].slice(); }); c.onCompareItemChange(); }); }, 500);
+      if (missing.length) c.messageService.add({ severity: 'warn', summary: 'No MP ' + type + ' for this class: ' + missing.join(', ') });
+    });
+  }
+  function mountCompareMP() {
+    var lbl = document.getElementById('dup-compare');
+    if (!lbl || document.getElementById('cmp-mp')) return;
+    var row = document.createElement('div');
+    row.id = 'cmp-mp';
+    row.style.cssText = 'display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:2px 0 4px;font-size:12px';
+    var t = document.createElement('span'); t.textContent = 'Compare Shadow:'; t.style.opacity = '.75';
+    row.appendChild(t);
+    [['Melee', '#f87171'], ['Magic', '#60a5fa'], ['Range', '#81c784']].forEach(function (m) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'p-button p-component p-button-sm p-button-outlined';
+      b.style.cssText = 'width:auto;flex:none;white-space:nowrap;padding:3px 8px;font-size:12px;border-color:' + m[1] + ';color:' + m[1];
+      b.textContent = 'VS MP ' + m[0];
+      b.title = 'Compare worn shadow with MP ' + m[0] + ' +10 (shadow slots only)';
+      b.onclick = function () { compareMP(m[0]); };
+      row.appendChild(b);
+    });
+    lbl.parentElement.insertAdjacentElement('afterend', row);
+  }
+
   function mountDupCheckbox() {
     var wrap = document.querySelector('.item_label_compare');
     if (!wrap || document.getElementById('dup-compare')) return;
@@ -740,7 +784,7 @@
     d.appendChild(f);
   }
 
-  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); mountGroupHeadings(); mountChangelog(); }
+  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); mountGroupHeadings(); mountChangelog(); mountCompareMP(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
