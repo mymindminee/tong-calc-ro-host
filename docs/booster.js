@@ -670,11 +670,11 @@
       var style = document.createElement('style'); style.id = 'ux-headings';
       style.textContent = '.ux-heading{font-weight:600;font-size:15px;padding:10px 0 4px;border-top:1px solid #334155;margin-top:8px}' +
         'div:has(>app-equipment){margin-bottom:8px}' +
-        // compare rows: amber band + VS badge, glued to the item they are compared with
-        '.grid.item_label_compare:has(app-equipment){position:relative;padding:4px 6px 4px 38px!important;margin:-4px 0 10px!important;background:rgba(245,158,11,.08)!important;border-left:3px solid #f59e0b!important;border-radius:0 0 8px 8px}' +
-        '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:6px;top:8px;font:700 10px/18px sans-serif;letter-spacing:.05em;color:#111;background:#f59e0b;border-radius:4px;padding:0 4px}' +
-        '[class*="item_label_"]:has(+ .grid.item_label_compare app-equipment){background:rgba(96,165,250,.07)!important;border-left:3px solid #60a5fa!important;border-bottom:0!important;border-radius:8px 8px 0 0;padding-left:35px!important;position:relative}' +
-        '[class*="item_label_"]:has(+ .grid.item_label_compare app-equipment)::before{content:"NOW";position:absolute;left:4px;top:8px;font:700 10px/18px sans-serif;color:#0b1220;background:#60a5fa;border-radius:4px;padding:0 3px}' +
+        // compare rows: amber band + VS tag on the top edge (no padding, so columns stay aligned with the item above)
+        '.grid.item_label_compare:has(app-equipment){position:relative;margin:2px 0 12px!important;padding-top:6px!important;padding-bottom:4px!important;background:rgba(245,158,11,.08)!important;box-shadow:inset 3px 0 0 #f59e0b;border-radius:0 0 8px 8px}' +
+        '.grid.item_label_compare:has(app-equipment)::before{content:"VS";position:absolute;left:6px;top:-8px;z-index:2;font:700 10px/14px sans-serif;color:#111;background:#f59e0b;border-radius:4px;padding:0 5px;pointer-events:none}' +
+        '.cmp-now{position:relative;padding-top:8px!important;background:rgba(96,165,250,.07)!important;box-shadow:inset 3px 0 0 #60a5fa;border-bottom:0!important;border-radius:8px 8px 0 0}' +
+        '.cmp-now::before{content:"NOW";position:absolute;left:6px;top:-6px;z-index:2;font:700 10px/14px sans-serif;color:#0b1220;background:#60a5fa;border-radius:4px;padding:0 5px;pointer-events:none}' +
         '.p-datatable .p-datatable-tbody>tr>td,.p-datatable .p-datatable-thead>tr>th{font-size:15px;padding-top:6px;padding-bottom:6px}';
       document.head.appendChild(style);
     }
@@ -689,6 +689,17 @@
   }
 
   // Changelog dialog: taller list, new vs read entries in different colours, "don't show again".
+  // Mark the item row each compare row belongs to (nearest visible row above it).
+  setInterval(function () {
+    var want = [].map.call(document.querySelectorAll('.grid.item_label_compare'), function (row) {
+      if (!row.querySelector('app-equipment')) return null;
+      for (var p = row.previousElementSibling; p; p = p.previousElementSibling) if (p.offsetHeight) return p;
+      return null;
+    });
+    document.querySelectorAll('.cmp-now').forEach(function (e) { if (want.indexOf(e) < 0) e.classList.remove('cmp-now'); });
+    want.forEach(function (e) { if (e) e.classList.add('cmp-now'); });
+  }, 500);
+
   function mountChangelog() {
     if (!document.getElementById('cl-style')) {
       var st = document.createElement('style'); st.id = 'cl-style';
