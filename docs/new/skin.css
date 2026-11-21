@@ -5,7 +5,7 @@ html[data-skin]{--sk-r:10px;scroll-padding-top:64px}
 html[data-skin] body{background:var(--sk-bg);color:var(--sk-text);font-family:Inter,"Noto Sans Thai","Segoe UI",system-ui,-apple-system,sans-serif;overflow-x:hidden}
 
 /* top bar: flat, sticky, ghost buttons */
-html[data-skin] .layout-topbar{min-width:0!important;position:sticky;top:0;height:auto;min-height:52px;flex-wrap:wrap;gap:6px 10px;padding:6px 20px;background:color-mix(in srgb,var(--sk-bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--sk-line);box-shadow:none;z-index:900}
+html[data-skin] .layout-topbar{min-width:0!important;position:sticky;top:0;height:auto;min-height:52px;flex-wrap:wrap;gap:6px 10px;padding:6px 20px;background:var(--sk-bg);/* no backdrop-filter: it would trap the app's fixed dialogs inside the bar */border-bottom:1px solid var(--sk-line);box-shadow:none;z-index:900}
 html[data-skin] .layout-topbar>span.px-2{font-weight:700;font-size:15px;color:var(--sk-text)}
 html[data-skin] .layout-topbar .router-link{top:0!important;padding:0!important}
 html[data-skin] .layout-topbar .layout-topbar-menu{margin-left:auto;flex-wrap:wrap;gap:6px;height:auto;position:static;display:flex;background:none;box-shadow:none;border:0;padding:0;min-width:0;width:auto}

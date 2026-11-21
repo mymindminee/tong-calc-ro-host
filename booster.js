@@ -683,7 +683,48 @@
     heading('Shadow', document.getElementById('booster-set-btn')?.parentElement);
   }
 
-  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); mountGroupHeadings(); }
+  // Changelog dialog: taller list, new vs read entries in different colours, "don't show again".
+  function mountChangelog() {
+    if (!document.getElementById('cl-style')) {
+      var st = document.createElement('style'); st.id = 'cl-style';
+      st.textContent =
+        '.ro-changelog{width:min(920px,94vw)!important;height:auto!important;max-height:86vh!important}' +
+        '.ro-changelog .p-dialog-content{flex:1 1 auto;min-height:0;max-height:68vh;overflow:auto;padding:4px 20px 12px}' +
+        '.ro-changelog .p-dialog-content>div{color:var(--text-color)!important;border:1px solid color-mix(in srgb,var(--text-color) 14%,transparent);border-left:4px solid #64748b;border-radius:8px;padding:6px 12px;margin:0 0 8px;opacity:.7}' +
+        '.ro-changelog .p-dialog-content>div.cl-new{border-left-color:#22c55e;background:color-mix(in srgb,#22c55e 9%,transparent);opacity:1}' +
+        '.ro-changelog .p-dialog-content>div .p-col-12{justify-content:flex-start!important;gap:8px}' +
+        '.ro-changelog .p-dialog-content>div .pr-2{font-weight:700;color:#60a5fa}' +
+        '.ro-changelog .p-dialog-content>div.cl-new .pr-2{color:#22c55e}' +
+        '.ro-changelog .p-dialog-content>div .pr-2+span{font-size:12px;opacity:.7}' +
+        '.ro-changelog .p-dialog-content ul{margin:4px 0 2px;padding-left:20px;line-height:1.55}' +
+        '#cl-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 20px 14px;border-top:1px solid color-mix(in srgb,var(--text-color) 14%,transparent)}' +
+        '#cl-footer label{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px}';
+      document.head.appendChild(st);
+    }
+    var d = [].find.call(document.querySelectorAll('.p-dialog'), function (x) { var h = x.querySelector('.p-dialog-header'); return h && /CHANGELOG/i.test(h.textContent); });
+    if (!d) return;
+    d.classList.add('ro-changelog');
+    [].forEach.call(d.querySelectorAll('.p-dialog-content > div'), function (e) { e.classList.toggle('cl-new', e.style.color === 'white'); });
+    if (d.querySelector('#cl-footer')) return;
+    var latest = (d.querySelector('.p-dialog-content .pr-2') || {}).textContent;
+    if (!latest) return;
+    var before = localStorage.getItem('version');
+    var f = document.createElement('div'); f.id = 'cl-footer';
+    var lbl = document.createElement('label');
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.id = 'cl-dontshow';
+    cb.onchange = function () {
+      if (cb.checked) localStorage.setItem('version', latest);
+      else if (before == null) localStorage.removeItem('version'); else localStorage.setItem('version', before);
+    };
+    lbl.append(cb, document.createTextNode("Don't show again (จนกว่าจะมีอัปเดตใหม่)"));
+    var close = document.createElement('button');
+    close.type = 'button'; close.className = 'p-button p-component p-button-sm'; close.textContent = 'ปิด';
+    close.onclick = function () { var x = d.querySelector('.p-dialog-header-close'); if (x) x.click(); };
+    f.append(lbl, close);
+    d.appendChild(f);
+  }
+
+  function mount() { hookShadowClassChange(); mountBooster(); mountToggles(); mountDebuffs(); mountDebuffs(true); mountDummyDamage(); hookAllInOne(); hookCompare(); mountDupCheckbox(); mountCopyEquipment(); mountGroupHeadings(); mountChangelog(); }
   new MutationObserver(mount).observe(document.body, { childList: true, subtree: true });
   mount();
 })();
