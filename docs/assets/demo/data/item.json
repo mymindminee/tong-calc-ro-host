@@ -150397,7 +150397,8 @@
     "name": "Furious Crown (Windhawk) [1]",
     "unidName": "Headgear",
     "resName": "Flash_of_Lightning",
-    "description": "Every 2 refine rate, Atk + 10.\r\nEvery 3 refine rate, increases Gale Storm and Crescive Bolt damage by 4%.\r\nIf refine rate is 7 or higher, reduces variable casting time by 15%.\r\nIf refine rate is 9 or higher, increases long ranged physical damage by 10%.\r\nIf refine rate is 11 or higher, Atk + 5%, reduces fixed casting time by 0.3 seconds.\r\n\r\nWhen equipped with Furious Storm Bow, increases Gale Storm damage by 15%.\r\n\r\nWhen equipped with Furious Tornado Bow, increases Crescive Bolt damage by 15%.\r\n\r\n^CC3D3D[Bonus by grade]^000000\r\n[Grade D] POW + 5, CON + 5, P.Atk + 3.\r\n[Grade C] Increases long ranged physical damage by 10%.\r\n[Grade B] Atk + 5%, reduces fixed casting time by additional 0.2 seconds.\r\n[Grade A] C.Rate + 5, increases critical damage by 15%.\r\n\r\nClass: ^777777Headgear^000000 Defense: ^77777730^000000\r\nLocation: ^777777Upper^000000 Weight: ^77777730^000000\r\nArmor Level: ^7777772^000000\r\nRequired Level: ^777777235^000000\r\nJobs: ^777777Windhawk^000000",
+    "description": "Headgear ที่สั่นพ้องกับ Furious Weapon เพื่อปลุกพลังที่หลับใหลภายใน \n \nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Gale Storm, Crescive Bolt 4%\nเมื่ออัพเกรดถึงขั้น 7, ลดระยะเวลาร่ายแบบแปรผัน 15%\nเมื่ออัพเกรดถึงขั้น 9, เพิ่ม Damage ทางกายภาพระยะไกล 10%\nเมื่ออัพเกรดถึงขั้น 11, ATK + 5%, ลดระยะเวลาร่ายแบบคงที่ 0.3 วินาที\n \nเมื่อสวมใส่ร่วมกับ Furious Storm Bow, เพิ่ม Damage สกิล Gale Storm 15%\n \nเมื่อสวมใส่ร่วมกับ Furious Tornado Bow, เพิ่ม Damage สกิล Crescive Bolt 15%\n \n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] POW + 5, CON + 5, P.ATK + 3\n[Grade C] เพิ่ม Damage ทางกายภาพระยะไกล 10%\n[Grade B] ATK + 5%, ลดระยะเวลาร่ายแบบคงที่ลงอีก 0.2 วินาที\n[Grade A] C.RATE + 5, Critical Damage + 15%\n \nประเภท : ^777777Headgear^000000 พลังป้องกัน : ^77777730^000000\nตำแหน่ง : ^777777Upper^000000 น้ำหนัก : ^77777730^000000\nเลเวล Armor : ^7777772^000000\nเลเวลที่ต้องการ : ^777777235^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Every 2 refine rate, Atk + 10.\r\nEvery 3 refine rate, increases Gale Storm and Crescive Bolt damage by 4%.\r\nIf refine rate is 7 or higher, reduces variable casting time by 15%.\r\nIf refine rate is 9 or higher, increases long ranged physical damage by 10%.\r\nIf refine rate is 11 or higher, Atk + 5%, reduces fixed casting time by 0.3 seconds.\r\n\r\nWhen equipped with Furious Storm Bow, increases Gale Storm damage by 15%.\r\n\r\nWhen equipped with Furious Tornado Bow, increases Crescive Bolt damage by 15%.\r\n\r\n^CC3D3D[Bonus by grade]^000000\r\n[Grade D] POW + 5, CON + 5, P.Atk + 3.\r\n[Grade C] Increases long ranged physical damage by 10%.\r\n[Grade B] Atk + 5%, reduces fixed casting time by additional 0.2 seconds.\r\n[Grade A] C.Rate + 5, increases critical damage by 15%.\r\n\r\nClass: ^777777Headgear^000000 Defense: ^77777730^000000\r\nLocation: ^777777Upper^000000 Weight: ^77777730^000000\r\nArmor Level: ^7777772^000000\r\nRequired Level: ^777777235^000000\r\nJobs: ^777777Windhawk^000000",
     "slots": 1,
     "itemTypeId": 2,
     "itemSubTypeId": 512,
@@ -216604,7 +216605,8 @@
     "name": "Furious Storm Bow [2]",
     "unidName": "Bow",
     "resName": "StormBow_Furious",
-    "description": "Increases Gale Storm damage by 5%.\r\nIf the user's base level is 210 or higher, Atk + 7%, Atk + 70.\r\nIf the user's base level is 220 or higher, increases Gale Storm damage by 5%.\r\nIf the user's base level is 230 or higher, increases physical damage against all size enemies by 10%.\r\nIf refine rate is 7 or higher, increases critical damage by 10%.\r\nIf refine rate is 9 or higher, increases Gale Storm damage by additional 10%.\r\nIf refine rate is 10 or higher, Cri + 10.\r\nIf refine rate is 11 or higher, increases Gale Storm damage by additional 10%.\r\n\r\nWhen equipped with Furious Boots, reduces SP consumption of Gale Storm by 20.\r\n\r\n^CC3D3D[Bonus by grade]^000000\r\n[Grade D] Increases critical damage by 15%.\r\n[Grade C] Increases Gale Storm damage by 5%.\r\n[Grade B] Increases Gale Storm damage by additional 10%.\r\n[Grade A] Every 2 refine rate, Atk + 4%, P.Atk + 4.\r\n\r\nClass: ^777777Bow^000000 Attack: ^777777210^000000\r\nWeight: ^777777180^000000\r\nWeapon Level: ^7777775^000000\r\nRequired Level: ^777777205^000000\r\nJobs: ^777777Windhawk^000000",
+    "description": "Bow ซึ่งบรรจุพลังแห่งโทสะเอาไว้\n \nเพิ่ม Damage สกิล Gale Storm 5%\nเมื่อ Base Lv.210 ขึ้นไป, ATK + 7%, ATK + 70\nเมื่อ Base Lv.220 ขึ้นไป, เพิ่ม Damage สกิล Gale Storm 5%\nเมื่อ Base Lv.230 ขึ้นไป, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 10%\nเมื่ออัพเกรดถึงขั้น 7, Critical Damage + 10%\nเมื่ออัพเกรดถึงขั้น 9, เพิ่ม Damage สกิล Gale Storm ขึ้นอีก 10%\nเมื่ออัพเกรดถึงขั้น 10, CRI + 10\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Gale Storm ขึ้นอีก 10%\n \nเมื่อสวมใส่ร่วมกับ Furious Boots, ลด SP ที่ใช้เมื่อใช้สกิล Gale Storm 20\n \n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] Critical Damage + 15%\n[Grade C] เพิ่ม Damage สกิล Gale Storm 5%\n[Grade B] เพิ่ม Damage สกิล Gale Storm ขึ้นอีก 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น, ATK + 4%, P.ATK + 4\n \nประเภท : ^777777Bow^000000 พลังโจมตี : ^777777210^000000\nน้ำหนัก : ^777777180^000000\nเลเวล Weapon : ^7777775^000000\nเลเวลที่ต้องการ : ^777777205^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Increases Gale Storm damage by 5%.\r\nIf the user's base level is 210 or higher, Atk + 7%, Atk + 70.\r\nIf the user's base level is 220 or higher, increases Gale Storm damage by 5%.\r\nIf the user's base level is 230 or higher, increases physical damage against all size enemies by 10%.\r\nIf refine rate is 7 or higher, increases critical damage by 10%.\r\nIf refine rate is 9 or higher, increases Gale Storm damage by additional 10%.\r\nIf refine rate is 10 or higher, Cri + 10.\r\nIf refine rate is 11 or higher, increases Gale Storm damage by additional 10%.\r\n\r\nWhen equipped with Furious Boots, reduces SP consumption of Gale Storm by 20.\r\n\r\n^CC3D3D[Bonus by grade]^000000\r\n[Grade D] Increases critical damage by 15%.\r\n[Grade C] Increases Gale Storm damage by 5%.\r\n[Grade B] Increases Gale Storm damage by additional 10%.\r\n[Grade A] Every 2 refine rate, Atk + 4%, P.Atk + 4.\r\n\r\nClass: ^777777Bow^000000 Attack: ^777777210^000000\r\nWeight: ^777777180^000000\r\nWeapon Level: ^7777775^000000\r\nRequired Level: ^777777205^000000\r\nJobs: ^777777Windhawk^000000",
     "slots": 2,
     "itemTypeId": 1,
     "itemSubTypeId": 267,
@@ -216656,7 +216658,8 @@
     "name": "Furious Tornado Bow [2]",
     "unidName": "Bow",
     "resName": "TornadoBow_Furious",
-    "description": "Increases Crescive Bolt damage by 5%.\r\nIf the user's base level is 210 or higher, Atk + 7%, Atk + 70.\r\nIf the user's base level is 220 or higher, increases Crescive Bolt damage by 5%.\r\nIf the user's base level is 230 or higher, increases physical damage against all size enemies by 10%.\r\nIf refine rate is 7 or higher, increases critical damage by 10%.\r\nIf refine rate is 9 or higher, increases Crescive Bolt damage by additional 10%.\r\nIf refine rate is 10 or higher, reduces variable casting time by 10%.\r\nIf refine rate is 11 or higher, increases Crescive Bolt damage by additional 10%.\r\n\r\nWhen equipped with Furious Boots, reduces global cooldown by 10%.\r\n\r\n^CC3D3D[Bonus by grade]^000000\r\n[Grade D] Increases critical damage by 15%.\r\n[Grade C] Increases Crescive Bolt damage by 5%.\r\n[Grade B] Increases Crescive Bolt damage by additional 10%.\r\n[Grade A] Every 2 refine rate, Atk + 4%, P.Atk + 4.\r\n\r\nClass: ^777777Bow^000000 Attack: ^777777210^000000\r\nWeight: ^777777180^000000\r\nWeapon Level: ^7777775^000000\r\nRequired Level: ^777777205^000000\r\nJobs: ^777777Windhawk^000000",
+    "description": "Bow ซึ่งบรรจุพลังแห่งโทสะเอาไว้\n \nเพิ่ม Damage สกิล Crescive Bolt 5%\nเมื่อ Base Lv.210 ขึ้นไป, ATK + 7%, ATK + 70\nเมื่อ Base Lv.220 ขึ้นไป, เพิ่ม Damage สกิล Crescive Bolt 5%\nเมื่อ Base Lv.230 ขึ้นไป, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 10%\nเมื่ออัพเกรดถึงขั้น 7, Critical Damage + 10%\nเมื่ออัพเกรดถึงขั้น 9, เพิ่ม Damage สกิล Crescive Bolt ขึ้นอีก 10%\nเมื่ออัพเกรดถึงขั้น 10, ลดระยะเวลาร่ายแบบแปรผัน 10%\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Crescive Bolt ขึ้นอีก 10%\n \nเมื่อสวมใส่ร่วมกับ Furious Boots, ลด Global Cooldown 10%\n \n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] Critical Damage + 15%\n[Grade C] เพิ่ม Damage สกิล Crescive Bolt 5%\n[Grade B] เพิ่ม Damage สกิล Crescive Bolt ขึ้นอีก 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น, ATK + 4%, P.ATK + 4\n \nประเภท : ^777777Bow^000000 พลังโจมตี : ^777777210^000000\nน้ำหนัก : ^777777180^000000\nเลเวล Weapon : ^7777775^000000\nเลเวลที่ต้องการ : ^777777205^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Increases Crescive Bolt damage by 5%.\r\nIf the user's base level is 210 or higher, Atk + 7%, Atk + 70.\r\nIf the user's base level is 220 or higher, increases Crescive Bolt damage by 5%.\r\nIf the user's base level is 230 or higher, increases physical damage against all size enemies by 10%.\r\nIf refine rate is 7 or higher, increases critical damage by 10%.\r\nIf refine rate is 9 or higher, increases Crescive Bolt damage by additional 10%.\r\nIf refine rate is 10 or higher, reduces variable casting time by 10%.\r\nIf refine rate is 11 or higher, increases Crescive Bolt damage by additional 10%.\r\n\r\nWhen equipped with Furious Boots, reduces global cooldown by 10%.\r\n\r\n^CC3D3D[Bonus by grade]^000000\r\n[Grade D] Increases critical damage by 15%.\r\n[Grade C] Increases Crescive Bolt damage by 5%.\r\n[Grade B] Increases Crescive Bolt damage by additional 10%.\r\n[Grade A] Every 2 refine rate, Atk + 4%, P.Atk + 4.\r\n\r\nClass: ^777777Bow^000000 Attack: ^777777210^000000\r\nWeight: ^777777180^000000\r\nWeapon Level: ^7777775^000000\r\nRequired Level: ^777777205^000000\r\nJobs: ^777777Windhawk^000000",
     "slots": 2,
     "itemTypeId": 1,
     "itemSubTypeId": 267,
@@ -222587,7 +222590,8 @@
     "unidName": "Shadow Earring",
     "resName": "SV_Earring_Shadow",
     "unidResName": "이어링쉐도우",
-    "description": "Increase Gale Storm damage by 5%.\n------------------------\nFor every 2 refine level, ATK + 10.\n------------------------\nFor every 3 refine level, increase Gale Storm damage by additional 1%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFGale Shadow Earring^000000\n^4D4DFFGale Shadow Pendant^000000\n          \nATK + 2%, P.ATK + 2.\n          \nWhen total refine level of set is 15 or higher, increase physical damage against all size enemies by 7%.\n          \nWhen total refine level of set is 18 or higher, ignore physical defense of all race enemies (except players) by 50%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFGale Shadow Earring^000000\n^4D4DFFGale Shadow Pendant^000000\n^4D4DFFMaster Shadow Weapon^000000\n          \nP.ATK + 2, increase physical damage against all property enemies by 3%.\n          \nWhen total refine level of set is 27 or higher, ignore physical resistance of all race enemies (except players) by 10%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Earring^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
+    "description": "ต่างหูศักดิ์สิทธิ์ที่เล่าขานกันว่าสามารถปกป้องผู้สวมใส่ได้ ช่วยดึงพลังที่หลับใหลอยู่ของผู้สวมใส่ออกมา\nเพิ่ม Damage สกิล Gale Storm 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Gale Storm ขึ้นอีก1%\n \nเมื่อสวมใส่ร่วมกับ Gale Shadow Pendant, ATK + 2%, P.ATK + 2, \nเมื่อค่าอัพเกรดรวมกันตั้งแต่ 15 ขึ้นไป, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 7%,\nเมื่อค่าอัพเกรดรวมกันตั้งแต่ 18 ขึ้นไป, เพิกเฉยต่อพลังป้องกันทางกายภาพของศัตรูทุกเผ่า 50% (ยกเว้น Player). \n \nเมื่อสวมใส่ร่วมกับ Gale Shadow Pendant, Master Shadow Weapon, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 3%, P.ATK + 2, \nเมื่อค่าอัพเกรดรวมกันตั้งแต่ 27 ขึ้นไป, เพิกเฉยต่อพลังต้านทานทางกายภาพของศัตรูทุกเผ่า 10% (ยกเว้น Player)\n \n^ffffff<NAVI>^4D4DFF[Shadow Spellbook]^000000<INFO>itemmall,41,63,0,100,0,0</INFO></NAVI>^000000 \nสามารถมอบ Random Option ด้วย Shadow Essence 2 ea ได้\nประเภท : ^777777Shadow Equipment^000000\nตำแหน่ง : ^777777Earring^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^777777200^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Increase Gale Storm damage by 5%.\n------------------------\nFor every 2 refine level, ATK + 10.\n------------------------\nFor every 3 refine level, increase Gale Storm damage by additional 1%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFGale Shadow Earring^000000\n^4D4DFFGale Shadow Pendant^000000\n          \nATK + 2%, P.ATK + 2.\n          \nWhen total refine level of set is 15 or higher, increase physical damage against all size enemies by 7%.\n          \nWhen total refine level of set is 18 or higher, ignore physical defense of all race enemies (except players) by 50%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFGale Shadow Earring^000000\n^4D4DFFGale Shadow Pendant^000000\n^4D4DFFMaster Shadow Weapon^000000\n          \nP.ATK + 2, increase physical damage against all property enemies by 3%.\n          \nWhen total refine level of set is 27 or higher, ignore physical resistance of all race enemies (except players) by 10%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Earring^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
     "slots": 0,
     "itemTypeId": 10,
     "itemSubTypeId": 529,
@@ -222639,7 +222643,8 @@
     "unidName": "Shadow Pendant",
     "resName": "SV_Pendant_Shadow",
     "unidResName": "펜던트쉐도우",
-    "description": "Increase Gale Storm damage by 5%.\n------------------------\nFor every 2 refine level, ATK + 10.\n------------------------\nFor every 3 refine level, increase Gale Storm damage by additional 1%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Pendant^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
+    "description": "สร้อยคอศักดิ์สิทธิ์ที่กล่าวกันว่าปกป้องผู้สวมใส่ ดึงศักยภาพของผู้สวมใส่ออกมา\nเพิ่ม Damage สกิล Gale Storm 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Gale Storm ขึ้นอีก 1%\n \n^ffffff<NAVI>^4D4DFF[Shadow Spellbook]^000000<INFO>itemmall,41,63,0,100,0,0</INFO></NAVI>^000000 \nสามารถมอบ Random Option ด้วย Shadow Essence 2 ea ได้\nประเภท : ^777777Shadow Equipment^000000\nตำแหน่ง : ^777777Pendant^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^777777200^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Increase Gale Storm damage by 5%.\n------------------------\nFor every 2 refine level, ATK + 10.\n------------------------\nFor every 3 refine level, increase Gale Storm damage by additional 1%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Pendant^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
     "slots": 0,
     "itemTypeId": 10,
     "itemSubTypeId": 530,
@@ -222672,7 +222677,8 @@
     "unidName": "Shadow Armor",
     "resName": "SV_Armor_Shadow",
     "unidResName": "아머쉐도우",
-    "description": "Increase Crescive Bolt damage by 5%.\n------------------------\nFor every 2 refine level, CRI + 1, ATK + 4.\n------------------------\nFor every 3 refine level, increase Crescive Bolt damage by additional 1%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFCrescive Shadow Armor^000000\n^4D4DFFCrescive Shadow Shoes^000000\n          \nATK + 2%, P.ATK + 2.\n          \nWhen total refine level of set is 15 or higher, increase physical damage against all size enemies by 7%.\n          \nWhen total refine level of set is 18 or higher, ignore physical defense of all race enemies (except players) by 50%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFCrescive Shadow Armor^000000\n^4D4DFFCrescive Shadow Shoes^000000\n^4D4DFFMaster Shadow Shield^000000\n          \nCRI + 3, C.RATE + 1.\n          \nWhen total refine level of set is 27 or higher, ignore physical resistance of all race enemies (except players) by 10%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Armor^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
+    "description": "เกราะที่สามารถสวมทับเกราะชิ้นอื่นเพื่อรับพลังป้องกันเพิ่มได้ สามารถใช้งานเดี่ยว ๆ ได้ แต่ผลลัพธ์จะน้อย\nเพิ่ม Damage สกิล Crescive Bolt 5%\nทุก ๆ การอัพเกรด 2 ขั้น CRI + 1, ATK + 4\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Crescive Bolt ขึ้นอีก 1%\n \nเมื่อสวมใส่ร่วมกับ Crescive Shadow Shoes, ATK + 2%, P.ATK + 2, \nเมื่อค่าอัพเกรดรวมกันตั้งแต่ 15 ขึ้นไป, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 7%,\nเมื่อค่าอัพเกรดรวมกันตั้งแต่ 18 ขึ้นไป, เพิกเฉยต่อพลังป้องกันทางกายภาพของศัตรูทุกเผ่า 50% (ยกเว้น Player)\n \nเมื่อสวมใส่ร่วมกับ Crescive Shadow Shoes, Crescive Shadow Shield, CRI + 3, C.RATE + 1, \nเมื่อค่าอัพเกรดรวมกันตั้งแต่ 27 ขึ้นไป, เพิกเฉยต่อพลังต้านทานทางกายภาพของศัตรูทุกเผ่า 10% (ยกเว้น Player)\n \n^ffffff<NAVI>^4D4DFF[Shadow Spellbook]^000000<INFO>itemmall,41,63,0,100,0,0</INFO></NAVI>^000000 \nสามารถมอบ Random Option ด้วย Shadow Essence 2 ea ได้\nประเภท : ^777777Shadow Equipment^000000\nตำแหน่ง : ^777777Armor^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^777777200^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Increase Crescive Bolt damage by 5%.\n------------------------\nFor every 2 refine level, CRI + 1, ATK + 4.\n------------------------\nFor every 3 refine level, increase Crescive Bolt damage by additional 1%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFCrescive Shadow Armor^000000\n^4D4DFFCrescive Shadow Shoes^000000\n          \nATK + 2%, P.ATK + 2.\n          \nWhen total refine level of set is 15 or higher, increase physical damage against all size enemies by 7%.\n          \nWhen total refine level of set is 18 or higher, ignore physical defense of all race enemies (except players) by 50%.\n------------------------\n^FF0000Set Bonus:^000000\n^4D4DFFCrescive Shadow Armor^000000\n^4D4DFFCrescive Shadow Shoes^000000\n^4D4DFFMaster Shadow Shield^000000\n          \nCRI + 3, C.RATE + 1.\n          \nWhen total refine level of set is 27 or higher, ignore physical resistance of all race enemies (except players) by 10%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Armor^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
     "itemTypeId": 10,
     "itemSubTypeId": 526,
     "itemLevel": null,
@@ -222727,7 +222733,8 @@
     "unidName": "Shadow Shoes",
     "resName": "SV_Shoes_Shadow",
     "unidResName": "슈즈쉐도우",
-    "description": "Increase Crescive Bolt damage by 5%.\n------------------------\nFor every 2 refine level, CRI + 1, ATK + 4.\n------------------------\nFor every 3 refine level, increase Crescive Bolt damage by additional 1%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Shoes^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
+    "description": "รองเท้าที่สามารถสวมทับกับรองเท้าคู่อื่นได้ สามารถใช้งานเดี่ยว ๆ ได้ แต่ผลลัพธ์จะน้อย\nเพิ่ม Damage สกิล Crescive Bolt 5%\nทุก ๆ การอัพเกรด 2 ขั้น CRI + 1, ATK + 4\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Crescive Bolt ขึ้นอีก 1%\n \n^ffffff<NAVI>^4D4DFF[Shadow Spellbook]^000000<INFO>itemmall,41,63,0,100,0,0</INFO></NAVI>^000000 \nสามารถมอบ Random Option ด้วย Shadow Essence 2 ea ได้\nประเภท : ^777777Shadow Equipment^000000\nตำแหน่ง : ^777777Shoes^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^777777200^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "description_en": "Increase Crescive Bolt damage by 5%.\n------------------------\nFor every 2 refine level, CRI + 1, ATK + 4.\n------------------------\nFor every 3 refine level, increase Crescive Bolt damage by additional 1%.\n------------------------\nType : ^777777Shadow Equipment^000000\nLocation : ^777777Shoes^000000\nWeight : ^7777770^000000\nRequired Level : ^777777200^000000\nClass : ^777777Windhawk^000000",
     "itemTypeId": 10,
     "itemSubTypeId": 528,
     "itemLevel": null,
@@ -267834,7 +267841,7 @@
     "description": "Wheel Shuriken ของนินจาผู้มีผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nMATK + 200, MATK + 3%,\nเพิ่ม Damage สกิล Cold Blooded Cannon 5%\nทุก ๆ การอัพเกรด 2 ขั้น MATK + 10, MATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Cold Blooded Cannon 5%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 15%\nเมื่ออัพเกรดถึงขั้น 9, ลดระยะเวลาร่ายแบบแปรผัน 10%, S.MATK + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Cold Blooded Cannon ขึ้นอีก 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shinkiro & Shiranui),\nเพิ่ม Damage สกิล Cold Blooded Cannon 10%,\nเพิ่ม Damage ทางเวทมนตร์ธาตุ Water 10%,\n\nเมื่อ Orrivane Crown (Shinkiro & Shiranui) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Cold Blooded Cannon 0.1 วินาที,\nเพิ่ม Damage สกิล Cold Blooded Cannon 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] S.MATK + 2\n[Grade C] เพิ่ม Damage สกิล Cold Blooded Cannon 10%\n[Grade B] เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น S.MATK + 2\nประเภท : ^777777Huuma Shuriken^000000 พลังโจมตี : ^777777120^000000\nน้ำหนัก : ^777777280^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shinkiro, Shiranui^000000",
     "slots": 3,
     "itemTypeId": 1,
-    "itemSubTypeId": 0,
+    "itemSubTypeId": 278,
     "itemLevel": 5,
     "attack": 120,
     "defense": null,
@@ -267895,7 +267902,7 @@
     "description": "Huuma Shuriken ของนินจาผู้ตัดขาดห่วงโซ่แห่งการเวียนว่าย ทอดทิ้งอดีตอันซ้ำซาก และก้าวสู่รุ่งอรุณของจุดเริ่มต้นใหม่\n^ffffff_^000000\nCRI + 5, เพิ่ม Damage สกิล Shadow Flash 5%\nทุก ๆ การอัพเกรด 2 ขั้น ATK + 10, ATK + 1%\nทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage สกิล Shadow Flash 2%\nเมื่ออัพเกรดถึงขั้น 7, เพิ่ม Critical Damage 15%\nเมื่ออัพเกรดถึงขั้น 9, CRI + 10, C.Rate + 3\nเมื่ออัพเกรดถึงขั้น 11, เพิ่ม Damage สกิล Shadow Flash 10%\n^ffffff_^000000\nเมื่อสวมใส่ร่วมกับ Orrivane Crown (Shinkiro & Shiranui),\nเพิ่ม Damage สกิล Shadow Flash 10%,\nเพิ่ม Damage ทางกายภาพระยะใกล้ 5%\n\nเมื่อ Orrivane Crown (Shinkiro & Shiranui) มี Grade A ขึ้นไป,\nเมื่อขั้นอัพเกรดของ Weapon และ Helm รวมกันตั้งแต่ 22 ขึ้นไป, \nลด Cooldown สกิล Shadow Flash 0.1 วินาที\nเพิ่ม Damage สกิล Shadow Flash 10%\n\n^CC3D3D[Option เพิ่มเติมตาม Grade]^000000\n[Grade D] P.ATK + 2\n[Grade C] เพิ่ม Damage สกิล Shadow Flash 10%\n[Grade B] เพิ่ม Damage ทางกายภาพระยะใกล้ 10%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น P.ATK + 2\nประเภท : ^777777Huuma Shuriken^000000 พลังโจมตี : ^777777370^000000\nน้ำหนัก : ^777777320^000000\nเลเวลอาวุธ : ^7777775^000000\nเลเวลที่ต้องการ : ^777777230^000000\nอาชีพที่ใส่ได้ : ^777777Shinkiro, Shiranui^000000",
     "slots": 3,
     "itemTypeId": 1,
-    "itemSubTypeId": 1026,
+    "itemSubTypeId": 278,
     "itemLevel": 5,
     "attack": 370,
     "defense": null,
@@ -301260,6 +301267,951 @@
       ],
       "drop": [
         "4"
+      ]
+    }
+  },
+  "108684": {
+    "id": 108684,
+    "aegisName": "Evt_Deep_Potion1_TH",
+    "flavorText": null,
+    "name": "[Event] Deep Fang Serum",
+    "unidName": null,
+    "resName": "Evt_Bless_Potion_3",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nสกัดจากเขี้ยวสิ่งมีชีวิตในชั้นลึกสุดของ Biosphere ที่วาร์มุนท์ไม่กล้าเปิดบันทึก สัญชาตญาณล่าเหยื่อพุ่งตรงจุดร้ายแรงทุกครั้ง\n\nเมื่อใช้งาน จะ All Trait + 4, CRI + 40, Critical Damage + 20%, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player) เป็นเวลา 30 นาที\n\n(ไอเท็มดังกล่าวจะถูกลบหลังจากปิดปรับปรุงเซิร์ฟเวอร์วันที่ 13 มกราคม 2570)\n\nน้ำหนัก : ^7777771^000000",
+    "slots": 0,
+    "itemTypeId": 3333,
+    "itemSubTypeId": 768,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 1,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "allTrait": [
+        "4"
+      ],
+      "cri": [
+        "40"
+      ],
+      "criDmg": [
+        "20"
+      ],
+      "p_race_all": [
+        "10"
+      ],
+      "m_race_all": [
+        "10"
+      ]
+    }
+  },
+  "108685": {
+    "id": 108685,
+    "aegisName": "Evt_Deep_Potion2_TH",
+    "flavorText": null,
+    "name": "[Event] Deep Catalyst",
+    "unidName": null,
+    "resName": "Evt_Bless_Potion_2",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nตัวเร่งปฏิกิริยาที่วาร์มุนท์คิดค้นให้กลไกเคลื่อนไหวสมบูรณ์แบบทุกครั้ง ไม่มีคำว่าพลาด\n\nเมื่อใช้งาน จะ All Trait + 4, Perfect Hit + 20% เพิ่ม Hit Damage ทางกายภาพ 10%, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player) เป็นเวลา 30 นาที\n\n(ไอเท็มดังกล่าวจะถูกลบหลังจากปิดปรับปรุงเซิร์ฟเวอร์วันที่ 13 มกราคม 2570)\n\nน้ำหนัก : ^7777771^000000",
+    "slots": 0,
+    "itemTypeId": 3333,
+    "itemSubTypeId": 768,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 1,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "allTrait": [
+        "4"
+      ],
+      "perfectHit": [
+        "20"
+      ],
+      "hitDmg": [
+        "10"
+      ],
+      "p_race_all": [
+        "10"
+      ],
+      "m_race_all": [
+        "10"
+      ]
+    }
+  },
+  "108686": {
+    "id": 108686,
+    "aegisName": "Evt_Deep_Potion3_TH",
+    "flavorText": null,
+    "name": "[Event] Deep Core Essence",
+    "unidName": null,
+    "resName": "Evt_Bless_Potion_1",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nเศษพลังงานรั่วไหลจากแกนเครื่องจักรชั้นลึกสุด อัดแน่นด้วยมนตร์ไม่เสถียรที่เร่งการร่ายเวทเกินขีดจำกัด\n\nเมื่อใช้งาน จะ All Trait + 4, ลดระยะเวลาร่ายแบบแปรผัน 20%, MATK + 10%, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 10% (ยกเว้น Player) เป็นเวลา 30 นาที\n\n(ไอเท็มดังกล่าวจะถูกลบหลังจากปิดปรับปรุงเซิร์ฟเวอร์วันที่ 13 มกราคม 2570)\n\nน้ำหนัก : ^7777771^000000",
+    "slots": 0,
+    "itemTypeId": 3333,
+    "itemSubTypeId": 768,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 1,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "allTrait": [
+        "4"
+      ],
+      "vct": [
+        "20"
+      ],
+      "matkPercent": [
+        "10"
+      ],
+      "p_race_all": [
+        "10"
+      ],
+      "m_race_all": [
+        "10"
+      ]
+    }
+  },
+  "301065": {
+    "id": 301065,
+    "aegisName": "CLB_Riko_Card",
+    "flavorText": null,
+    "name": "Riko Card",
+    "unidName": null,
+    "resName": "이름없는카드",
+    "unidResName": null,
+    "description": "ทุก ๆ 10 ผลรวมของ Base STR และ DEX, ATK + 5\nเมื่อ Base STR หรือ Base DEX มีค่าตั้งแต่ 120 ขึ้นไป, เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 30% (คุณสมบัตินี้ไม่แสดงผลทับซ้อนกัน)\n\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Garment^000000\nน้ำหนัก : ^7777771^000000",
+    "slots": 0,
+    "itemTypeId": 6,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 1,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 4,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "atk": [
+        "SUM[str,dex==10]---5"
+      ],
+      "melee": [
+        "str:120===30",
+        "dex:120===30",
+        "SUM[str==120]dex:120===-30"
+      ],
+      "range": [
+        "str:120===30",
+        "dex:120===30",
+        "SUM[str==120]dex:120===-30"
+      ]
+    }
+  },
+  "301066": {
+    "id": 301066,
+    "aegisName": "CLB_Vera_Card",
+    "flavorText": null,
+    "name": "Awaken Vera Card",
+    "unidName": null,
+    "resName": "이름없는카드",
+    "unidResName": null,
+    "description": "ทุก ๆ 10 ผลรวมของ Base  INT และ VIT , MATK + 5\nเมื่อ Base INT หรือ Base VIT มีค่าตั้งแต่ 120 ขึ้นไป, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 30%, MATK + 5%\n\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Garment^000000\nน้ำหนัก : ^7777771^000000",
+    "slots": 0,
+    "itemTypeId": 6,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 1,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 4,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "matk": [
+        "SUM[int,vit==10]---5"
+      ],
+      "m_my_element_all": [
+        "int:120===30",
+        "vit:120===30",
+        "SUM[int==120]vit:120===-30"
+      ],
+      "matkPercent": [
+        "int:120===5",
+        "vit:120===5",
+        "SUM[int==120]vit:120===-5"
+      ]
+    }
+  },
+  "301067": {
+    "id": 301067,
+    "aegisName": "27New_Year_Card",
+    "flavorText": null,
+    "name": "Auspicious Goat Card",
+    "unidName": null,
+    "resName": "이름없는카드",
+    "unidResName": null,
+    "description": "ปี 2027 เป็นปีแพะมงคลที่เป็นสัญลักษณ์แห่งความโชคดี ความรุ่งเรือง และความสำเร็จในปี 2027 ขอให้การผจญภัยของคุณเต็มไปด้วยโชคลาภและสิ่งดี ๆ ตลอดปี\n\nเพิ่ม Hit Damage ทางกายภาพ 10%\nCritical Damage + 20%\nMATK + 10%\nMHP +10%\n\nเมื่อสวมใส่ร่วมกับ Flame Earth Rune Armor หรือ Engraved Flame Earth Rune Armor,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 10%\n\nเมื่อสวมใส่ร่วมกับ Icy Storm Rune Suit หรือ Engraved Icy Storm Rune Suit,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 10%\n\nเมื่อสวมใส่ร่วมกับ Soul Purifying Rune Robe หรือ Engraved Soul Purifying Rune Robe,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกธาตุ 10%\n\nเมื่อสวมใส่ร่วมกับ Corrupted Venom Rune Cloth หรือ Engraved Corrupted Poison Rune Cloth,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 10%\n\n[ความสามารถพิเศษในช่วงระยะเวลากิจกรรม]\nเมื่อได้รับความเสียหายที่เกินกว่า 70% ของ Max HP ของตัวละคร ผู้ใช้จะได้รับความเสียหายเพียง 70% ของ MaxHP เท่านั้น\nการโจมตีแบบ Fixed damage จะไม่สามารถลดความเสียหายได้\n\n(โปรดระวังความสามารถนี้ไม่สามารถใช้งานร่วมกันกับ Sarah Card ได้)\n(ความสามารถในช่วงระยะเวลากิจกรรมจะถูกลบออกหลังปิดปรับปรุงเซิฟเวอร์วันที่ 17 กุมภาพันธ์ 2570)\n\nประเภท : ^777777Card^000000\nใช้กับ : ^777777Headgear^000000\nน้ำหนัก : ^7777770^000000",
+    "slots": 0,
+    "itemTypeId": 6,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 769,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "hitDmg": [
+        "10"
+      ],
+      "criDmg": [
+        "20"
+      ],
+      "matkPercent": [
+        "10"
+      ],
+      "hpPercent": [
+        "10"
+      ],
+      "p_element_all": [
+        "EQUIP[Fiery Earth Rune Armor||Engraved Fiery Earth Rune Armor]===10",
+        "EQUIP[Icy Storm Rune Suit||Engraved Icy Storm Rune Suit]===10",
+        "EQUIP[Corrupted Poison Rune Cloth||Engraved Corrupted Poison Rune Cloth]===10"
+      ],
+      "m_element_all": [
+        "EQUIP[Soul Purifying Rune Robe||Engraved Soul Purifying Rune Robe]===10"
+      ]
+    }
+  },
+  "315945": {
+    "id": 315945,
+    "aegisName": "Booster_27_Enc",
+    "flavorText": null,
+    "name": "2027 Booster Power Orb",
+    "unidName": null,
+    "resName": "예술의메달",
+    "unidResName": null,
+    "description": "ลูกแก้วที่ปลุกพลังให้กับอาวุธ Booster ให้ตื่นขึ้น\n\nATK/MATK + 100\nเพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 40%\nเมื่อกำจัดมอนสเตอร์ด้วยการโจมตีทางกายภาพ/เวทมนตร์ ฟื้นฟู HP + 500, SP + 50\n\n(ความสามารถของไอเท็มชิ้นนี้จะถูกลบออกหลังปิดปรับปรุงเซิร์ฟเวอร์วันที่ 13 มกราคม 2570)",
+    "slots": 0,
+    "itemTypeId": 11,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 65535,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "atk": [
+        "100"
+      ],
+      "matk": [
+        "100"
+      ],
+      "p_size_all": [
+        "40"
+      ],
+      "m_size_all": [
+        "40"
+      ]
+    }
+  },
+  "410776": {
+    "id": 410776,
+    "aegisName": "C_CLB_Riko",
+    "flavorText": null,
+    "name": "Costume Riko Minimi",
+    "unidName": null,
+    "resName": "C_CLB_Riko",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nP.ATK/S.MATK + 15,\nเพิ่มค่าประสบการณ์ที่ได้รับเมื่อกำจัดมอนสเตอร์ 10%,\nAll Trait + 10\n\n(ความสามารถของไอเท็มชิ้นนี้จะถูกลบหลังปิดปรับปรุงเซิฟเวอร์วันที่ 2 กรกฎาคม 2570)\n\nประเภท : ^777777Costume^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Middle^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^7777771^000000\nอาชีพที่ต้องการ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 9,
+    "itemSubTypeId": 520,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": 1,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "pAtk": [
+        "15"
+      ],
+      "sMatk": [
+        "15"
+      ],
+      "allTrait": [
+        "10"
+      ]
+    }
+  },
+  "410777": {
+    "id": 410777,
+    "aegisName": "C_CLB_Vera",
+    "flavorText": null,
+    "name": "Costume Vera Minimi",
+    "unidName": null,
+    "resName": "C_CLB_Vera",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nP.ATK/S.MATK + 15,\nเพิ่มอัตราดรอปไอเทม 10%,\nAll Status + 10\n\n(ความสามารถของไอเท็มชิ้นนี้จะถูกลบหลังปิดปรับปรุงเซิฟเวอร์วันที่ 2 กรกฎาคม 2570)\n\nประเภท : ^777777Costume^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Middle^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^7777771^000000\nอาชีพที่ต้องการ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 9,
+    "itemSubTypeId": 520,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": 1,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "pAtk": [
+        "15"
+      ],
+      "sMatk": [
+        "15"
+      ],
+      "allStatus": [
+        "10"
+      ],
+      "drop": [
+        "10"
+      ]
+    }
+  },
+  "421062": {
+    "id": 421062,
+    "aegisName": "C_CLB_Dice_Rose",
+    "flavorText": null,
+    "name": "Costume Cold Rose Dice",
+    "unidName": null,
+    "resName": "C_CLB_Dice_Rose",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nเมื่อโจมตีทางกายภาพ/เวทมนตร์ มีโอกาส 50% ที่จะได้รับสถานะเพิ่มความเร็วเคลื่อนที่สูงสุดเป็นระยะเวลา 10 วินาที\n\nเมื่อสวมใส่ร่วมกับ Costume Riko Minimi, เพิ่มอัตราดรอปไอเทมขึ้นอีก 10%\nเมื่อสวมใส่ร่วมกับ Costume Vera Minimi, เพิ่มค่าประสบการณ์ที่ได้รับเมื่อกำจัดมอนสเตอร์ 10%\n\n(ความสามารถของไอเท็มชิ้นนี้จะถูกลบหลังปิดปรับปรุงเซิฟเวอร์วันที่ 2 กรกฎาคม 2570)\n\nประเภท : ^777777Costume^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Lower^000000 น้ำหนัก : ^7777770^000000\nเลเวลที่ต้องการ : ^7777771^000000\nอาชีพที่ต้องการ : ^777777ทุกอาชีพ^000000",
+    "slots": 0,
+    "itemTypeId": 9,
+    "itemSubTypeId": 521,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 0,
+    "requiredLevel": 1,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "drop": [
+        "EQUIP[Costume Riko Minimi]===10"
+      ]
+    }
+  },
+  "481019": {
+    "id": 481019,
+    "aegisName": "Doram_Coat_TH",
+    "flavorText": null,
+    "name": "Doram Mink Coat [1]",
+    "unidName": null,
+    "resName": "ErymanthianSkin",
+    "unidResName": null,
+    "description": "เสื้อคลุมที่ไม่ได้ผลิตจากขนของเผ่าโดรัม แต่ทำจากวัสดุที่เผ่าโดรัมชื่นชอบ อย่างไรก็ตาม ยังไม่ทราบแน่ชัดว่าเป็นขนของสัตว์ชนิดใด\nทุก ๆ การอัพเกรด 2 ขั้น, ATK, MATK + 15, POW + 1, SPL + 1\nทุก ๆ การอัพเกรด 3 ขั้น, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกขนาด 5%\nเมื่ออัพเกรดถึงขั้น 7, ASPD + 15%\nเมื่ออัพเกรดถึงขั้น 9, เพิ่ม Damage สกิล Hyunrok Cannon และ Hogogong Strike 20%\nเมื่ออัพเกรดถึงขั้น 11, ATK, MATK + 12%\nเมื่ออัพเกรดถึงขั้น 12, เพิ่ม Damage ทางกายภาพต่อศัตรูทุกเผ่า 15%\n\nเมื่อเรียนรู้สกิล Spirit Of Land, เพิ่ม Damage ของสกิล Hyunrok Cannon 30%, ลด Cooldown ของสกิล Hyunrok Breeze 0.1 วินาที\nเมื่อเรียนรู้สกิล Spirit Of Life, เพิ่ม Damage ของสกิล Hogogong Strike 30%, ลด Cooldown ของสกิล Howling of Chulho 0.5 วินาที\nเมื่อเรียนรู้สกิล Spirit Of Sea, เพิ่ม Damage ของทางกายภาพระไกล 15%, MATK + 15%,\nเมื่อโจมตีทางกายภาพระยะไกล มีโอกาสแสดงผล Autospell ดังนี้,\nมีโอกาส 8% ที่จะ Autospell สกิล Catnip Meteor Lv.4 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nมีโอกาส 25% ที่จะ Autospell สกิล Lunatic Carrot Beat Lv.4 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nมีโอกาส 25% ที่จะ Autospell สกิล Chulho Sonic Claw Lv.4 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nมีโอกาส 25% ที่จะ Autospell สกิล Hyunrok Cannon Lv.4 (เมื่อเรียนสกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด)\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] RES, MRES + 30\n[Grade C] POW, SPL + 8\n[Grade B] เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกประเภท 12%\n[Grade A] เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูทุกธาตุ 12%\n\nประเภท : ^777777Garment^000000  พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777710^000000\nเลเวล Armor : ^7777772^000000\nเลเวลที่ต้องการ : ^777777150^000000\nอาชีพที่ใส่ได้ : ^777777Summoner (Doram)^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 515,
+    "itemLevel": 2,
+    "attack": 0,
+    "defense": 0,
+    "weight": 10,
+    "requiredLevel": 150,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": true,
+    "usableClass": [
+      "Doram"
+    ],
+    "script": {
+      "atk": [
+        "2---15"
+      ],
+      "matk": [
+        "2---15"
+      ],
+      "pow": [
+        "2---1",
+        "GRADE[me==C]===8"
+      ],
+      "spl": [
+        "2---1",
+        "GRADE[me==C]===8"
+      ],
+      "p_size_all": [
+        "3---5"
+      ],
+      "m_size_all": [
+        "3---5"
+      ],
+      "aspdPercent": [
+        "7===15"
+      ],
+      "Hyunrok Cannon": [
+        "9===20",
+        "LEARN_SKILL[Spirit Of Land==1]===30"
+      ],
+      "Hogogong Strike": [
+        "9===20",
+        "LEARN_SKILL[Spirit Of Life==1]===30"
+      ],
+      "atkPercent": [
+        "11===12"
+      ],
+      "matkPercent": [
+        "11===12",
+        "LEARN_SKILL[Spirit Of Sea==1]===15"
+      ],
+      "p_race_all": [
+        "12===15"
+      ],
+      "cd__Hyunrok Breeze": [
+        "LEARN_SKILL[Spirit Of Land==1]===0.1"
+      ],
+      "cd__Howling of Chulho": [
+        "LEARN_SKILL[Spirit Of Life==1]===0.5"
+      ],
+      "range": [
+        "LEARN_SKILL[Spirit Of Sea==1]===15"
+      ],
+      "res": [
+        "GRADE[me==D]===30"
+      ],
+      "mres": [
+        "GRADE[me==D]===30"
+      ],
+      "p_class_all": [
+        "GRADE[me==B]===12"
+      ],
+      "m_class_all": [
+        "GRADE[me==B]===12"
+      ],
+      "p_element_all": [
+        "GRADE[me==A]===12"
+      ],
+      "m_element_all": [
+        "GRADE[me==A]===12"
+      ]
+    }
+  },
+  "481020": {
+    "id": 481020,
+    "aegisName": "Revolver_Cape_LT",
+    "flavorText": null,
+    "name": "Revolver Red Cape-LT [1]",
+    "unidName": null,
+    "resName": "홍련의스톨",
+    "unidResName": null,
+    "description": "ผ้าคลุมสีแดงของเหล่ามือปืนรับจ้าง พวกเขาจะใส่มันเพื่อปกปิดซ่อนอะไรบางอย่างบนร่างกาย\nลด Cooldown สกิล Rich's Coin 3 วินาที\n\nทุก ๆ การอัพเกรด 2 ขั้น, ATK + 25, Perfect Hit + 10%\nทุก ๆ การอัพเกรด 4 ขั้น เพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 5%\nเมื่ออัพเกรดถึงขั้น 9, เพิ่ม Damage สกิล Fire Dance 50%, เพิ่ม Damage สกิล Magazine For One 10%, ลดปริมาณการใช้ SP สกิล Fire Dance 50%, ASPD + 12%\nเมื่ออัพเกรดถึงขั้น 11, ลด Global Cooldown 10%, เพิ่ม Damage สกิล Fire Dance 50% เพิ่มเติม, เพิ่ม Damage สกิล Magazine For One 10% เพิ่มเติม, เพิกเฉยต่อพลังป้องกันทางกายภาพของทุกเผ่า 30% (ยกเว้น Player)\n\nเมื่อใช้งานร่วมกับ Sweety Card,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 20%,\nทุก ๆ การอัพเกรด Weapon 1 ขั้น เพิ่ม Damage สกิล Fire Dance 25%, เพิ่ม Hit Damage ทางกายภาพ 2%, เพิ่ม Damage สกิล Magazine For One 3%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] เพิ่ม Damage ทางกายภาพระยะไกล 10%, ATK + 30 เพิ่มเติม\n[Grade C] ลด Global Cooldown 10%, ASPD + 10%, Perfect Hit + 30% เพิ่มเติม\n[Grade B] เพิ่ม Damage ทางกายภาพต่อศัตรูทุกเผ่า 15%, Max HP +20%\n[Grade A] ทุก ๆ การอัพเกรด 2 ขั้น เพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 4%, ทุก ๆ การอัพเกรด 3 ขั้น เพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 8%\n\nประเภท : ^777777Garment^000000  พลังป้องกัน : ^77777755^000000\nน้ำหนัก : ^77777780^000000\nเลเวล Armor : ^7777772^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777Gunslinger Classes^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 515,
+    "itemLevel": 2,
+    "attack": 0,
+    "defense": 55,
+    "weight": 80,
+    "requiredLevel": 100,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": true,
+    "usableClass": [
+      "Rebellion"
+    ],
+    "script": {
+      "cd__Rich's Coin": [
+        "3"
+      ],
+      "atk": [
+        "2---25",
+        "GRADE[me==D]===30"
+      ],
+      "perfectHit": [
+        "2---10",
+        "GRADE[me==C]===30"
+      ],
+      "p_size_all": [
+        "4---5",
+        "EQUIP[Sweety Card]===20"
+      ],
+      "Fire Dance": [
+        "9===50",
+        "11===50",
+        "EQUIP[Sweety Card]REFINE[weapon==1]---25"
+      ],
+      "Magazine For One": [
+        "9===10",
+        "11===10",
+        "EQUIP[Sweety Card]REFINE[weapon==1]---3"
+      ],
+      "aspdPercent": [
+        "9===12",
+        "GRADE[me==C]===10"
+      ],
+      "acd": [
+        "11===10",
+        "GRADE[me==C]===10"
+      ],
+      "p_pene_race_all": [
+        "11===30"
+      ],
+      "hitDmg": [
+        "EQUIP[Sweety Card]REFINE[weapon==1]---2"
+      ],
+      "range": [
+        "GRADE[me==D]===10"
+      ],
+      "p_race_all": [
+        "GRADE[me==B]===15"
+      ],
+      "hpPercent": [
+        "GRADE[me==B]===20"
+      ],
+      "p_element_all": [
+        "GRADE[me==A]2---4"
+      ],
+      "p_class_all": [
+        "GRADE[me==A]3---8"
+      ]
+    },
+    "isRefinable": true
+  },
+  "481021": {
+    "id": 481021,
+    "aegisName": "Ny27_Baphomet_th",
+    "flavorText": null,
+    "name": "Baphomet Depth'27 [1]",
+    "unidName": null,
+    "resName": "매의날개옷",
+    "unidResName": null,
+    "description": "^ff0000ไอเท็มนี้ไม่สามารถแลกเปลี่ยนกับผู้เล่นคนอื่นได้^000000\nผ้าคลุมที่หลอมขึ้นจากชิ้นส่วนที่หลุดออกมาจากแกนเครื่องจักรนั้น\n\nทุก ๆ การอัพเกรด 1 ขั้น, เพิ่มค่าประสบการณ์ที่ได้รับจากมอนสเตอร์ 1%, เพิ่มอัตราดรอปไอเทม 1%\nทุก ๆ การอัพเกรด 3 ขั้น, ATK/MATK + 15. \nเมื่ออัพเกรดถึงขั้น 7, ลดระยะเวลาร่ายแบบแปรผัน 10%, ASPD + 10%\nเมื่ออัพเกรดถึงขั้น 9, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อมอนเตอร์ทุกขนาด 10%\nเมื่ออัพเกรดถึงขั้น 11, MATK + 10%, เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 10%\nเมื่ออัพเกรดถึงขั้น 12, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อมอนเตอร์ทุกประเภท 10%\n\nเมื่อสวมใส่ร่วมกับ Baphomet Card,\nP.ATK/S.MATK + 10, เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อศัตรูประเภท Boss 30%\n\nเมื่อสวมใส่ร่วมกับ Bapho Jr. Card,\nMATK + 20%, เพิ่ม Damage ทางกายภาพระยะใกล้/ไกล 20%\n\n[Option เพิ่มเติมตาม Grade]\n[Grade D] เพิกเฉยต่อพลังป้องกันทางกายภาพ/เวทมนตร์ต่อศัตรูทุกเผ่า 40% (ยกเว้น Player)\n[Grade C] Perfect Hit + 50%, เพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 20%\n[Grade B] P.ATK/S.MATK + 7\n[Grade A] เพิ่ม Damage ทางกายภาพ/เวทมนตร์ต่อมอนเตอร์ทุกธาตุ 10%\n\nประเภท : ^777777Costume^000000 พลังป้องกัน : ^7777770^000000\nตำแหน่ง : ^777777Garment^000000 น้ำหนัก : ^77777730^000000\nเลเวล Armor : ^7777772^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777ทุกอาชีพ^000000",
+    "slots": 1,
+    "itemTypeId": 9,
+    "itemSubTypeId": 515,
+    "itemLevel": 2,
+    "attack": 0,
+    "defense": 0,
+    "weight": 30,
+    "requiredLevel": 100,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": true,
+    "usableClass": [
+      "all"
+    ],
+    "script": {
+      "drop": [
+        "1---1"
+      ],
+      "atk": [
+        "3---15"
+      ],
+      "matk": [
+        "3---15"
+      ],
+      "vct": [
+        "7===10"
+      ],
+      "aspdPercent": [
+        "7===10"
+      ],
+      "p_size_all": [
+        "9===10"
+      ],
+      "m_size_all": [
+        "9===10"
+      ],
+      "matkPercent": [
+        "11===10",
+        "EQUIP[Bapho Jr. Card]===20"
+      ],
+      "melee": [
+        "11===10",
+        "EQUIP[Bapho Jr. Card]===20"
+      ],
+      "range": [
+        "11===10",
+        "EQUIP[Bapho Jr. Card]===20"
+      ],
+      "p_class_all": [
+        "12===10"
+      ],
+      "m_class_all": [
+        "12===10"
+      ],
+      "pAtk": [
+        "EQUIP[Baphomet Card]===10",
+        "GRADE[me==B]===7"
+      ],
+      "sMatk": [
+        "EQUIP[Baphomet Card]===10",
+        "GRADE[me==B]===7"
+      ],
+      "p_class_boss": [
+        "EQUIP[Baphomet Card]===30"
+      ],
+      "m_class_boss": [
+        "EQUIP[Baphomet Card]===30"
+      ],
+      "p_pene_race_all": [
+        "GRADE[me==D]===40"
+      ],
+      "m_pene_race_all": [
+        "GRADE[me==D]===40"
+      ],
+      "perfectHit": [
+        "GRADE[me==C]===50"
+      ],
+      "m_my_element_all": [
+        "GRADE[me==C]===20"
+      ],
+      "p_element_all": [
+        "GRADE[me==A]===10"
+      ],
+      "m_element_all": [
+        "GRADE[me==A]===10"
+      ]
+    }
+  },
+  "491144": {
+    "id": 491144,
+    "aegisName": "FuriousRing_WH",
+    "flavorText": null,
+    "name": "Furious Ring (Windhawk) [1]",
+    "unidName": null,
+    "resName": "Ring_Of_Brave",
+    "unidResName": null,
+    "description": "แหวนที่สั่นพ้องกับ Furious Weapon เพื่อปลุกพลังที่หลับใหลภายใน\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Furious Tornado Bow,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Crescive Bolt 20%\n\nเมื่อ Furious Tornado Bow มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Crescive Bolt 20%\n\nเมื่อ Furious Tornado Bow มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Crescive Bolt 0.3 วินาที,\nเพิ่ม Damage สกิล Crescive Bolt 20%\n\nเมื่อ Furious Tornado Bow มี Grade B ขึ้นไป,\nCritical Damage + 20%,\nสามารถใช้งานสกิล Power Lv.2 ได้,\nเมื่อใช้งานสกิล Crescive Bolt มีโอกาส 30% ที่จะ Autospell สกิล Crescive Bolt Lv.1 (เมื่อเรียนรู้สกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเมื่อใช้งานสกิล Calamity Gale จะได้รับสถานะป้องกันเวทมนตร์ทุกชนิดเป็นเวลา 10 วินาที\nเพิ่ม Damage สกิล Crescive Bolt 20%\n\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777205^000000\nอาชีพที่ใส่ได้ : ^777777Windhawk^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": 1,
+    "attack": 0,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 205,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "Windhawk"
+    ],
+    "script": {
+      "atk": [
+        "100"
+      ],
+      "acd": [
+        "10"
+      ],
+      "pow": [
+        "10"
+      ],
+      "cri": [
+        "15"
+      ],
+      "p_class_all": [
+        "15"
+      ],
+      "p_size_all": [
+        "EQUIP[Furious Tornado Bow]===15"
+      ],
+      "p_element_all": [
+        "EQUIP[Furious Tornado Bow]REFINE[weapon==10]===15"
+      ],
+      "Crescive Bolt": [
+        "EQUIP[Furious Tornado Bow]===20",
+        "EQUIP[Furious Tornado Bow]REFINE[weapon==10]===20",
+        "EQUIP[Furious Tornado Bow]GRADE[weapon==C]===20",
+        "EQUIP[Furious Tornado Bow]GRADE[weapon==B]===20"
+      ],
+      "pAtk": [
+        "EQUIP[Furious Tornado Bow]GRADE[weapon==C]===10"
+      ],
+      "cd__Crescive Bolt": [
+        "EQUIP[Furious Tornado Bow]GRADE[weapon==C]===0.3"
+      ],
+      "criDmg": [
+        "EQUIP[Furious Tornado Bow]GRADE[weapon==B]===20"
+      ],
+      "power": [
+        "EQUIP[Furious Tornado Bow]GRADE[weapon==B]===40"
+      ]
+    }
+  },
+  "491145": {
+    "id": 491145,
+    "aegisName": "FuriousRing_SKE2",
+    "flavorText": null,
+    "name": "White Furious Ring (Sky Emperor) [1]",
+    "unidName": null,
+    "resName": "루파크의반지",
+    "unidResName": null,
+    "description": "แหวนที่สั่นพ้องกับ Furious Weapon เพื่อปลุกพลังที่หลับใหลภายใน\n\nATK + 100\nลด Global Cooldown 10%\nPOW + 10\nCRI + 15\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Furious Sun Book,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Noon Blast 20%\n\nเมื่อ Furious Sun Book มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Noon Blast 20%\n\nเมื่อ Furious Sun Book มี Grade C ขึ้นไป,\nP.ATK + 10,\nลด Cooldown สกิล Noon Blast 0.6 วินาที,\nเพิ่ม Damage สกิล Noon Blast 20%\n\nเมื่อ Furious Sun Book มี Grade B ขึ้นไป,\nเพิ่ม Damage ทางกายภาพระยะใกล้ 25%,\nสามารถใช้งานสกิล Dark Claw Lv.5 ได้,\nเมื่อใช้งานสกิล Flying Kick จะ Autospell สกิล Noon Blast  Lv.1 (เมื่อเรียนรู้สกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเมื่อใช้งานสกิล Noon Blast มีโอกาส 30% ที่จะ Autospell สกิล Noon Blast Lv.1 (เมื่อเรียนรู้สกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Noon Blast 20%\n\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777205^000000\nอาชีพที่ใส่ได้ : ^777777Sky Emperor^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": 1,
+    "attack": 0,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 205,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "SkyEmperor"
+    ],
+    "script": {
+      "atk": [
+        "100"
+      ],
+      "acd": [
+        "10"
+      ],
+      "pow": [
+        "10"
+      ],
+      "cri": [
+        "15"
+      ],
+      "p_class_all": [
+        "15"
+      ],
+      "p_size_all": [
+        "EQUIP[Furious Sun Book]===15"
+      ],
+      "p_element_all": [
+        "EQUIP[Furious Sun Book]REFINE[weapon==10]===15"
+      ],
+      "Noon Blast": [
+        "EQUIP[Furious Sun Book]===20",
+        "EQUIP[Furious Sun Book]REFINE[weapon==10]===20",
+        "EQUIP[Furious Sun Book]GRADE[weapon==C]===20",
+        "EQUIP[Furious Sun Book]GRADE[weapon==B]===20"
+      ],
+      "pAtk": [
+        "EQUIP[Furious Sun Book]GRADE[weapon==C]===10"
+      ],
+      "cd__Noon Blast": [
+        "EQUIP[Furious Sun Book]GRADE[weapon==C]===0.6"
+      ],
+      "melee": [
+        "EQUIP[Furious Sun Book]GRADE[weapon==B]===25"
+      ]
+    }
+  },
+  "491146": {
+    "id": 491146,
+    "aegisName": "FuriousRing_SOA2",
+    "flavorText": null,
+    "name": "White Furious Ring (Soul Ascetic) [1]",
+    "unidName": null,
+    "resName": "루파크의반지",
+    "unidResName": null,
+    "description": "แหวนที่สั่นพ้องกับ Furious Weapon เพื่อปลุกพลังที่หลับใหลภายใน\n\nMATK + 100\nMATK + 10%\nSPL + 10\nลดระยะเวลาร่ายแบบคงที่ 0.5 วินาที\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกประเภท 15%\n\nเมื่อสวมใส่ร่วมกับ Furious Soul,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกขนาด 15%,\nเพิ่ม Damage สกิล Exorcism of Malicious Soul 25%\n\nเมื่อ Furious Soul มีขั้นอัพเกรดตั้งแต่ 10 ขึ้นไป,\nเพิ่ม Damage ทางเวทมนตร์ต่อศัตรูทุกธาตุ 15%,\nเพิ่ม Damage สกิล Exorcism of Malicious Soul 25%\n\nเมื่อ Furious Soul มี Grade C ขึ้นไป,\nS.MATK + 10,\nลด Cooldown สกิล Exorcism of Malicious Soul 0.8 วินาที,\nเพิ่ม Damage สกิล Exorcism of Malicious Soul 25%\n\nเมื่อ Furious Soul มี Grade B ขึ้นไป,\nเพิ่ม Damage ทางเวทมนตร์ทุกธาตุ 25%,\nเมื่อใช้งานสกิล Exorcism of Malicious Soul มีโอกาส 40% ที่จะ Autospell สกิล Comet Lv.5 (Comet ที่เกิดจาก Autospell จะร่ายลงที่ตำแหน่งของผู้ร่ายเท่านั้น), \nเมื่อใช้งานสกิล Exorcism of Malicious Soul จะ Autospell สกิล Soul Gathering Lv.1 (เมื่อเรียนรู้สกิลในเลเวลที่สูงกว่า จะร่ายในเลเวลสูงสุด),\nเพิ่ม Damage สกิล Exorcism of Malicious Soul 25%\n\nประเภท : ^777777Accessory (Right)^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777720^000000\nเลเวลที่ต้องการ : ^777777205^000000\nอาชีพที่ใส่ได้ : ^777777Soul Ascetic^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 510,
+    "itemLevel": 1,
+    "attack": 0,
+    "defense": 0,
+    "weight": 20,
+    "requiredLevel": 205,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "SoulAscetic"
+    ],
+    "script": {
+      "matk": [
+        "100"
+      ],
+      "matkPercent": [
+        "10"
+      ],
+      "spl": [
+        "10"
+      ],
+      "fct": [
+        "0.5"
+      ],
+      "m_class_all": [
+        "15"
+      ],
+      "m_size_all": [
+        "EQUIP[Furious Soul]===15"
+      ],
+      "m_element_all": [
+        "EQUIP[Furious Soul]REFINE[weapon==10]===15"
+      ],
+      "Exorcism of Malicious Soul": [
+        "EQUIP[Furious Soul]===25",
+        "EQUIP[Furious Soul]REFINE[weapon==10]===25",
+        "EQUIP[Furious Soul]GRADE[weapon==C]===25",
+        "EQUIP[Furious Soul]GRADE[weapon==B]===25"
+      ],
+      "sMatk": [
+        "EQUIP[Furious Soul]GRADE[weapon==C]===10"
+      ],
+      "cd__Exorcism of Malicious Soul": [
+        "EQUIP[Furious Soul]GRADE[weapon==C]===0.8"
+      ],
+      "m_my_element_all": [
+        "EQUIP[Furious Soul]GRADE[weapon==B]===25"
+      ]
+    }
+  },
+  "491147": {
+    "id": 491147,
+    "aegisName": "Ball_Of_RasenHuuma_LT",
+    "flavorText": null,
+    "name": "Rasen Huuma's Orb-LT [1]",
+    "unidName": null,
+    "resName": "Ball_Of_RasenHuuma",
+    "unidResName": null,
+    "description": "สมบัติอันล้ำค่าของคนกลุ่มหนึ่ง จำเป็นต้องมีความรู้เกี่ยวกับทักษะมนตราจึงจะหยั่งถึง\nSTR + 10, AGI + 10, VIT + 10\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกประเภท 10%\nเพิ่ม Damage ทางกายภาพต่อศัตรูทุกขนาด 10%\n\nเมื่อเรียนรู้สกิล Illusion - Shadow ถึงเลเวล 5,\nเพิ่ม Damage สกิล Throw Huuma Shuriken 50%, เพิ่ม Damage สกิล Swirling Petal 50%,\nทุกๆ Base Lv.4, ATK + 2, เพิ่ม Damage สกิล Throw Huuma Shuriken 6%, เพิ่ม Damage สกิล Swirling Petal 6%, เพิ่ม Damage สกิล Kunai - Rotation 2%\n\nทุก ๆ การเรียนรู้สกิล llusion - Shock 1 เลเวล,\nลดปริมาณการใช้ SP สกิล Swirling Petal 10%, ลด Cooldown สกิล Swirling Petal 0.5 วินาที\n\nเมื่อเรียนรู้สกิล Rapid Throw ถึงเลเวล 10,\nเมื่อโจมตีทางกายภาพ มีโอกาส 4% ที่จะได้รับ HP 4% จาก Damage ที่ทำได้\nเมื่อโจมตีทางกายภาพ มีโอกาส 4% ที่จะได้รับ SP 2% จาก Damage ที่ทำได้\n\nเมื่อเรียนรู้สกิล Pure Soul ถึงเลเวล 5,\nลด Cooldown สกิล 16th Night 25 วินาที,\nเมื่อใช้งานสกิล 16th Night จะ ATK/MATK +100 เป็นเวลา 60 วินาที\n\nเมื่อเรียนรู้สกิล Soul Cutter ถึงเลเวล 5, ลดระยะเวลาร่ายแบบแปรผันสกิล Swirling Petal 100%\n\nประเภท : ^777777Accessory^000000 พลังป้องกัน : ^7777770^000000\nน้ำหนัก : ^77777710^000000\nเลเวลที่ต้องการ : ^777777100^000000\nอาชีพที่ใส่ได้ : ^777777Ninja Classes^000000",
+    "slots": 1,
+    "itemTypeId": 2,
+    "itemSubTypeId": 517,
+    "itemLevel": 1,
+    "attack": 0,
+    "defense": 0,
+    "weight": 10,
+    "requiredLevel": 100,
+    "location": null,
+    "compositionPos": null,
+    "canGrade": false,
+    "usableClass": [
+      "Kagerou",
+      "Oboro"
+    ],
+    "script": {
+      "str": [
+        "10"
+      ],
+      "agi": [
+        "10"
+      ],
+      "vit": [
+        "10"
+      ],
+      "p_class_all": [
+        "10"
+      ],
+      "p_size_all": [
+        "10"
+      ],
+      "atk": [
+        "LEARN_SKILL2[Illusion - Shadow==5]SUM[level==4]---2"
+      ],
+      "Throw Huuma Shuriken": [
+        "LEARN_SKILL[Illusion - Shadow==5]===50",
+        "LEARN_SKILL2[Illusion - Shadow==5]SUM[level==4]---6"
+      ],
+      "Swirling Petal": [
+        "LEARN_SKILL[Illusion - Shadow==5]===50",
+        "LEARN_SKILL2[Illusion - Shadow==5]SUM[level==4]---6"
+      ],
+      "Kunai - Rotation": [
+        "LEARN_SKILL2[Illusion - Shadow==5]SUM[level==4]---2"
+      ],
+      "cd__Swirling Petal": [
+        "LEARN_SKILL[Illusion - Shock==1]---0.5"
+      ],
+      "cd__16th Night": [
+        "LEARN_SKILL[Pure Soul==5]===25"
+      ],
+      "vct__Swirling Petal": [
+        "LEARN_SKILL[Soul Cutter==5]===100"
+      ],
+      "chance__atk": [
+        "LEARN_SKILL[Pure Soul==5]===100"
+      ],
+      "chance__matk": [
+        "LEARN_SKILL[Pure Soul==5]===100"
+      ]
+    }
+  },
+  "4147": {
+    "id": 4147,
+    "aegisName": "Baphomet_Card",
+    "flavorText": null,
+    "name": "Baphomet Card",
+    "unidName": null,
+    "resName": "이름없는카드",
+    "unidResName": null,
+    "description": "กระจายค่าความเสียหายจากการโจมตีเป็น 9 ช่อง\nจากการโจมตีของตัวละคร ยกเว้นการใช้สกิล\nHIT -10\nประเภท : ^777777Card^000000\nประเภท : ^777777Weapon^000000\nน้ำหนัก : ^7777771^000000",
+    "slots": 0,
+    "itemTypeId": 6,
+    "itemSubTypeId": 0,
+    "itemLevel": null,
+    "attack": 0,
+    "defense": 0,
+    "weight": 1,
+    "requiredLevel": null,
+    "location": null,
+    "compositionPos": 0,
+    "canGrade": false,
+    "script": {
+      "hit": [
+        "-10"
       ]
     }
   }
